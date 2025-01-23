@@ -54,7 +54,7 @@ input {
 }
 #cHeading {
     margin-top: 5px;
-    font-size: 32px;
+    font-size: 36px;
     color: #101010;
 }
 #Feed {
@@ -67,4 +67,11 @@ input {
 #FeedText {
     padding-left: 12px;
     padding-bottom: 16px;
+}
+#ResumeText {
+    margin-top: -20px;
+    margin-bottom: 30px;
+    padding-left: 24px;
+    font-size: 22px;
+    color: #1a1a1a;
 }
