@@ -50,7 +50,10 @@ input {
 #Content {
     padding: 12px 12px 12px 12px;
     background-color: #f0f0f0
-
+}
+#ContentOffset {
+    padding: 12px 12px 12px 12px;
+    background-color: #e5e5e5
 }
 #cHeading {
     margin-top: 5px;
@@ -74,4 +77,32 @@ input {
     padding-left: 24px;
     font-size: 22px;
     color: #1a1a1a;
+}
+#Software {
+    margin-top: 50px;
+    color: #000000;
+}
+#Hardware {
+    margin-top: 50px;
+    color: #000000;
+}
+.CurrentTab {
+    border: none;
+    border-top-style: solid;
+    border-color: #5B5B5B;
+    background-color: #5B7FEA;
+    padding: 10px 20px 10px 20px;
+    text-align: center;
+    margin: 0px;
+    margin-left: -18px;
+}
+.InactiveTab {
+    border: none;
+    border-top-style: solid;
+    border-color: #5B5B5B;
+    background-color: #63BBFF;
+    padding: 10px 20px 10px 20px;
+    text-align: center;
+    margin: 0px;
+    margin-left: -18px;
 }
