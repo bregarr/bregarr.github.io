@@ -52,9 +52,10 @@
     <div id="Content">
         <p id="cHeading">Study on the Impact of Alternative Fuels on Gasoline Consumption</p>
         <p id="ResumeText">As part of my previous major, I took an intro to Data Science class (CMSE 201) where the capstone project required us to come up with a question and answer it utilizing data. The question I picked was "Is Gasoline Mutually Exclusive with Alternative Fuel?" to which I found some pretty interesting results. All the code shown was produced by me unless explicitly stated otherwise.</p>
-        <input type="button" id="1ImageButton" class="InactiveCell" value="Images" onclick="enableCell(1, 'Image', 'Code', 'Source')">
-        <input type="button" id="1CodeButton" class="InactiveCell" value="Code" onclick="enableCell(1, 'Code', 'Image', 'Source')">
-        <input type="button" id="1SourceButton" class="InactiveCell" value="Sources" onclick="enableCell(1, 'Source', 'Image', 'Code')">
+        <input type="button" id="1ImageButton" class="InactiveCell" value="Images" onclick="enableCell(1, 'Image', 'Code', 'Source', 'IPYNB')">
+        <input type="button" id="1CodeButton" class="InactiveCell" value="Code" onclick="enableCell(1, 'Code', 'Image', 'Source', 'IPYNB')">
+        <input type="button" id="1SourceButton" class="InactiveCell" value="Sources" onclick="enableCell(1, 'Source', 'Image', 'Code', 'IPYNB')">
+        <input type="button" id="1IPYNBButton" class="InactiveCell" value="IPYNB" onclick="enableCell(1, 'IPYNB', 'Source', 'Image', 'Code')">
         <div class="CellContent" id="1ImageCell" style="display: none;">
             <img src="assets/GL_map.png" style="width: 600px; height: auto;">
             <img src="assets/GP_map.png" style="width: 600px; height: auto;">
@@ -70,6 +71,11 @@
         </div>
         <div class="CellContent" id="1SourceCell" style="display: none;">
             <embed src="code/cmse201sources.txt" style="width: 80%; height: 500px;">
+        </div>
+        <div class="CellContent" id="1IPYNBCell" style="display: none;">
+            <a href="code/Garrow_CMSE201_Final.ipynb" download="CMSE201_Final">
+                Download the IPYNB presentation.
+            </a>
         </div>
     </div>
 
