@@ -1,0 +1,48 @@
+div {
+    font-family: "Gill Sans", sans-serif;
+    color: #ffffff;
+}
+input {
+    font-family: "Gill Sans", sans-serif;
+    color: #ffffff;
+}
+
+
+#Heading {
+    padding: 5px;
+    padding-bottom: 0px;
+    margin: 0px 0px 0px 0px;
+    background-color: #63BBFF;
+    font-size: 64px;
+    line-height: 2px;
+}
+#Subtitle {
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+#NavButton {
+    border: none;
+    background-color: #63BBFF
+    font-size: 42px;
+    text-decoration: none;
+}
+#CurrentPage {
+    border: none;
+    border-top-style: solid;
+    border-color: #5B5B5B;
+    background-color: #5B7FEA;
+    padding: 10px 20px 10px 20px;
+    text-align: center;
+    margin: 0px;
+
+}
+#InactivePage {
+    border: none;
+    border-top-style: solid;
+    border-color: #5B5B5B;
+    background-color: #63BBFF;
+    padding: 10px 20px 10px 20px;
+    text-align: center;
+    margin: 0px;
+    margin-left: -18px;
+}
