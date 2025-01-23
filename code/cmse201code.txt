@@ -1,0 +1,348 @@
+# Importing libraries & datasets
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import threading
+
+station_data = pd.read_csv('alt_fuel_stations (Nov 3 2024).csv', usecols=['State','Open Date','Country'])
+gas_data = pd.read_csv('Monthly_Motor_Fuel_Sales_Reported_by_States__Selected_Data_from_FHWA_Monthly_Motor_Fuel_Report.csv', usecols=['fuel_type','abbrev','value','date'])
+
+# Cleaning up imported data
+gas_data_clean = gas_data[gas_data.loc[:,'fuel_type'] == "Gasoline/gasohol"]
+
+station_data_clean = station_data[station_data.loc[:,'Country'] == "US"]
+
+station_data_clean = station_data_clean.dropna()
+
+# Sorting alternative station data into a usable dataframe
+# Creating the permanent station dataframe
+station_stats = pd.DataFrame(columns=['Year','State','Stations'])
+# Establishing the rows and columns
+year = 2012
+year_array = []
+state_array = []
+zero_array = []
+states = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']
+while year <= 2023:
+    for k in range(51):
+        year_array.append(year)
+        state_array.append(states[k])
+        zero_array.append(0)
+    year += 1
+
+station_stats['Year'] = year_array
+station_stats['State'] = state_array
+station_stats['Stations'] = zero_array
+
+stat_years = [ [] for _ in range(13) ]
+
+# Sorts incoming data into arrays by year
+def sort_years(clean_data):
+    for stat_i in range(len(clean_data)):
+        yr = clean_data.iloc[stat_i, 1][0:4]
+        if (yr == "2012"):
+            stat_years[0].append(clean_data.iloc[stat_i,0])
+        elif (yr == "2013"):
+            stat_years[1].append(clean_data.iloc[stat_i,0])
+        elif (yr == "2014"):
+            stat_years[2].append(clean_data.iloc[stat_i,0])
+        elif (yr == "2015"):
+            stat_years[3].append(clean_data.iloc[stat_i,0])
+        elif (yr == "2016"):
+            stat_years[4].append(clean_data.iloc[stat_i,0])
+        elif (yr == "2017"):
+            stat_years[5].append(clean_data.iloc[stat_i,0])
+        elif (yr == "2018"):
+            stat_years[6].append(clean_data.iloc[stat_i,0])
+        elif (yr == "2019"):
+            stat_years[7].append(clean_data.iloc[stat_i,0])
+        elif (yr == "2020"):
+            stat_years[8].append(clean_data.iloc[stat_i,0])
+        elif (yr == "2021"):
+            stat_years[9].append(clean_data.iloc[stat_i,0])
+        elif (yr == "2022"):
+            stat_years[10].append(clean_data.iloc[stat_i,0])
+        elif (yr == "2023"):
+            stat_years[11].append(clean_data.iloc[stat_i,0])
+        elif (yr == "2024"):
+            stat_years[12].append(clean_data.iloc[stat_i,0])
+
+# Setup for multi-threading
+stat1 = station_data_clean[:int(len(station_data_clean)/4)]
+stat2 = station_data_clean[int(len(station_data_clean)/4):int(len(station_data_clean)/2)]
+stat3 = station_data_clean[int(len(station_data_clean)/2):int(3*len(station_data_clean)/4)]
+stat4 = station_data_clean[int(3*len(station_data_clean)/4):]
+
+# Multithreading
+t1 = threading.Thread(target=sort_years, args=(stat1, ))
+t2 = threading.Thread(target=sort_years, args=(stat2, ))
+t3 = threading.Thread(target=sort_years, args=(stat3, ))
+t4 = threading.Thread(target=sort_years, args=(stat4, ))
+t1.start()
+t2.start()
+t3.start()
+t4.start()
+t1.join()
+t2.join()
+t3.join()
+t4.join()
+
+# Iterate through years and corresponding states in stat_years // Optimized by ChatGPT
+for year_index, states in enumerate(stat_years):
+    # Calculate the corresponding year (starting from 2012)
+    year = 2012 + year_index
+    
+    # Filter station_stats for the current year
+    year_filter = station_stats['Year'] == year
+    
+    # Count occurrences of each state in the current year's states
+    state_counts = pd.Series(states).value_counts()
+    
+    # Update station_stats for matching states and years
+    for state, count in state_counts.items():
+        state_filter = station_stats['State'] == state
+        station_stats.loc[year_filter & state_filter, 'Stations'] += count
+
+# Sorting gas consumption data into a usable dataframe
+# Re-ordering the gas dataset to be easier to sort
+gas_stats = gas_data_clean.iloc[22:,:].rename(columns={"value": "Gallons", "date": "Month","fuel_type": "Year", "abbrev": "State"})
+for k in range(len(gas_stats.iloc[:, 0])):
+    gas_stats.iloc[k, 2] = gas_stats.iloc[k,1][6:10]
+    gas_stats.iloc[k, 1] = gas_stats.iloc[k,1][0:2]
+
+# Establishing the permanent gas dataframe
+yearly_gas_stats = pd.DataFrame(columns=["Year", "State", "Gallons"])
+yearly_gas_stats['Year'] = year_array
+yearly_gas_stats['State'] = state_array
+yearly_gas_stats['Gallons'] = zero_array
+
+# Sorts incoming data into the proper state & year in the permanent dataframe
+def loop_gas_stats(array, yearly):
+    for k in range(len(array)):
+        s_state = array.iloc[k,3]
+        s_year = array.iloc[k,2]
+        s_month = array.iloc[k,1]
+        for i in range(len(yearly['State'])):
+            y_state = yearly.iloc[i,1]
+            y_year = yearly.iloc[i,0]
+            if((s_state == y_state) and (str(s_year) == str(y_year))):
+                yearly_gas_stats.iloc[i,2] += array.iloc[k,0]
+
+# Setup for multithreading
+stats1 = gas_stats[:int(len(gas_stats['Gallons'])/4)]
+stats2 = gas_stats[int(len(gas_stats['Gallons'])/4):int(2*len(gas_stats['Gallons'])/4)]
+stats3 = gas_stats[int(2*len(gas_stats['Gallons'])/4):int(3*len(gas_stats['Gallons'])/4)]
+stats4 = gas_stats[int(3*len(gas_stats['Gallons'])/4):]
+
+# Multithreading
+t1 = threading.Thread(target=loop_gas_stats, args=(stats1, yearly_gas_stats, ))
+t2 = threading.Thread(target=loop_gas_stats, args=(stats2, yearly_gas_stats, ))
+t3 = threading.Thread(target=loop_gas_stats, args=(stats3, yearly_gas_stats, ))
+t4 = threading.Thread(target=loop_gas_stats, args=(stats4, yearly_gas_stats, ))
+t1.start()
+t2.start()
+t3.start()
+t4.start()
+t1.join()
+t2.join()
+t3.join()
+t4.join()
+
+# Cleaning up residual mess
+yearly_gas_stats = yearly_gas_stats.iloc[:612]
+
+# Initializing a new dataset with both station and gas data
+# Creating the regions
+NE_States = ["ME", "VE", "NH", "MA", "RI", "CT"]
+MA_States = ["NY", "NJ", "MD", "DE", "PA", "DC"]
+GL_States = ["OH", "MI", "IN", "IL", "WI", "MN"]
+GP_States = ["IA", "ND", "SD", "NE", "KS", "MO", "OK"]
+SE_States = ["VA", "WV", "SC", "NC", "GA", "TN", "KY"]
+GU_States = ["LA", "AR", "TX", "FL", "AL", "MS"]
+PA_States = ["HI", "AL", "CA", "WA", "OR", "AZ"]
+RO_States = ["ID", "MT", "NV", "UT", "WY", "CO", "NM"]  
+State_Types = ["NE", "MA", "GL", "GP", "SE", "GU", "PA", "RO"]
+# Creating the rows and columns of the empty datasets
+Years = np.arange(2012, 2024, 1)
+type_list = []
+year_list = []
+zero_list = []
+for year in Years:
+    zero_list.append(0)
+    year_list.append(year)
+
+# Individually initializing the region datasets
+NE_list = pd.DataFrame(columns = ["Year", "State Type", "Gallons", "Stations Opened"])
+MA_list = pd.DataFrame(columns = ["Year", "State Type", "Gallons", "Stations Opened"])
+GL_list = pd.DataFrame(columns = ["Year", "State Type", "Gallons", "Stations Opened"])
+GP_list = pd.DataFrame(columns = ["Year", "State Type", "Gallons", "Stations Opened"])
+SE_list = pd.DataFrame(columns = ["Year", "State Type", "Gallons", "Stations Opened"])
+GU_list = pd.DataFrame(columns = ["Year", "State Type", "Gallons", "Stations Opened"])
+PA_list = pd.DataFrame(columns = ["Year", "State Type", "Gallons", "Stations Opened"])
+RO_list = pd.DataFrame(columns = ["Year", "State Type", "Gallons", "Stations Opened"])
+NE_list['Year'] = year_list
+MA_list['Year'] = year_list
+GL_list['Year'] = year_list
+GP_list['Year'] = year_list
+SE_list['Year'] = year_list
+GU_list['Year'] = year_list
+PA_list['Year'] = year_list
+RO_list['Year'] = year_list
+NE_list['Gallons'] = zero_list
+NE_list['Stations Opened'] = zero_list
+MA_list['Gallons'] = zero_list
+MA_list['Stations Opened'] = zero_list
+GL_list['Gallons'] = zero_list
+GL_list['Stations Opened'] = zero_list
+GP_list['Gallons'] = zero_list
+GP_list['Stations Opened'] = zero_list
+SE_list['Gallons'] = zero_list
+SE_list['Stations Opened'] = zero_list
+GU_list['Gallons'] = zero_list
+GU_list['Stations Opened'] = zero_list
+PA_list['Gallons'] = zero_list
+PA_list['Stations Opened'] = zero_list
+RO_list['Gallons'] = zero_list
+RO_list['Stations Opened'] = zero_list
+NE_list.loc[:, 'State Type'], MA_list.loc[:, 'State Type'], GL_list.loc[:, 'State Type'], GP_list.loc[:, 'State Type'], SE_list.loc[:, 'State Type'], GU_list.loc[:, 'State Type'], PA_list.loc[:, 'State Type'], RO_list.loc[:, 'State Type'] = "NE", "MA", "GL", "GP", "SE", "GU", "PA", "RO"
+
+# Filling in the new combined dataset
+# Sorts gas data into the proper region dataframe
+def form_gas_buckets(clean_data):
+    for k in range(len(clean_data)):
+        if(clean_data.loc[k, 'State'] in NE_States):
+            for j in range(len(NE_list)):
+                if NE_list.loc[j, 'Year'] == clean_data.loc[k, 'Year']:
+                    NE_list.loc[j, 'Gallons'] += clean_data.loc[k, 'Gallons']
+        elif(clean_data.loc[k, 'State'] in MA_States):
+            for j in range(len(MA_list)):
+                if MA_list.loc[j, 'Year'] == clean_data.loc[k, 'Year']:
+                    MA_list.loc[j, 'Gallons'] += clean_data.loc[k, 'Gallons']
+        elif(clean_data.loc[k, 'State'] in GL_States):
+            for j in range(len(GL_list)):
+                if GL_list.loc[j, 'Year'] == clean_data.loc[k, 'Year']:
+                    GL_list.loc[j, 'Gallons'] += clean_data.loc[k, 'Gallons']
+        elif(clean_data.loc[k, 'State'] in GP_States):
+            for j in range(len(GP_list)):
+                if GP_list.loc[j, 'Year'] == clean_data.loc[k, 'Year']:
+                    GP_list.loc[j, 'Gallons'] += clean_data.loc[k, 'Gallons']
+        elif(clean_data.loc[k, 'State'] in SE_States):
+            for j in range(len(SE_list)):
+                if SE_list.loc[j, 'Year'] == clean_data.loc[k, 'Year']:
+                    SE_list.loc[j, 'Gallons'] += clean_data.loc[k, 'Gallons']
+        elif(clean_data.loc[k, 'State'] in GU_States):
+            for j in range(len(GU_list)):
+                if GU_list.loc[j, 'Year'] == clean_data.loc[k, 'Year']:
+                    GU_list.loc[j, 'Gallons'] += clean_data.loc[k, 'Gallons']
+        elif(clean_data.loc[k, 'State'] in PA_States):
+            for j in range(len(PA_list)):
+                if PA_list.loc[j, 'Year'] == clean_data.loc[k, 'Year']:
+                    PA_list.loc[j, 'Gallons'] += clean_data.loc[k, 'Gallons']
+        elif(clean_data.loc[k, 'State'] in RO_States):
+            for j in range(len(RO_list)):
+                if RO_list.loc[j, 'Year'] == clean_data.loc[k, 'Year']:
+                    RO_list.loc[j, 'Gallons'] += clean_data.loc[k, 'Gallons']
+
+# Sorts station data into the proper region dataframe
+def form_stat_buckets(clean_data):
+    for k in range(len(clean_data)):
+        if(clean_data.loc[k, 'State'] in NE_States):
+            for j in range(len(NE_list)):
+                if NE_list.loc[j, 'Year'] == clean_data.loc[k, 'Year']:
+                    NE_list.loc[j, 'Stations Opened'] += clean_data.loc[k, 'Stations']
+        elif(clean_data.loc[k, 'State'] in MA_States):
+            for j in range(len(MA_list)):
+                if MA_list.loc[j, 'Year'] == clean_data.loc[k, 'Year']:
+                    MA_list.loc[j, 'Stations Opened'] += clean_data.loc[k, 'Stations']
+        elif(clean_data.loc[k, 'State'] in GL_States):
+            for j in range(len(GL_list)):
+                if GL_list.loc[j, 'Year'] == clean_data.loc[k, 'Year']:
+                    GL_list.loc[j, 'Stations Opened'] += clean_data.loc[k, 'Stations']
+        elif(clean_data.loc[k, 'State'] in GP_States):
+            for j in range(len(GP_list)):
+                if GP_list.loc[j, 'Year'] == clean_data.loc[k, 'Year']:
+                    GP_list.loc[j, 'Stations Opened'] += clean_data.loc[k, 'Stations']
+        elif(clean_data.loc[k, 'State'] in SE_States):
+            for j in range(len(SE_list)):
+                if SE_list.loc[j, 'Year'] == clean_data.loc[k, 'Year']:
+                    SE_list.loc[j, 'Stations Opened'] += clean_data.loc[k, 'Stations']
+        elif(clean_data.loc[k, 'State'] in GU_States):
+            for j in range(len(GU_list)):
+                if GU_list.loc[j, 'Year'] == clean_data.loc[k, 'Year']:
+                    GU_list.loc[j, 'Stations Opened'] += clean_data.loc[k, 'Stations']
+        elif(clean_data.loc[k, 'State'] in PA_States):
+            for j in range(len(PA_list)):
+                if PA_list.loc[j, 'Year'] == clean_data.loc[k, 'Year']:
+                    PA_list.loc[j, 'Stations Opened'] += clean_data.loc[k, 'Stations']
+        elif(clean_data.loc[k, 'State'] in RO_States):
+            for j in range(len(RO_list)):
+                if RO_list.loc[j, 'Year'] == clean_data.loc[k, 'Year']:
+                    RO_list.loc[j, 'Stations Opened'] += clean_data.loc[k, 'Stations']
+
+# Calls the sorting functions
+form_gas_buckets(yearly_gas_stats)
+form_stat_buckets(station_stats)
+# Puts all region datasets into a combined dataframe
+frames = [NE_list, MA_list, GL_list, GP_list, SE_list, GU_list, PA_list, RO_list]
+bucket_stats = pd.concat(frames)
+
+# Creating final graphs
+
+def final_plot(abbrev, title):
+    fig, ax = plt.subplots(figsize = (10, 5))
+    plt.title('Gasoline Consumption and Alternative Fuel Stations Opened in '+title+' States')
+
+    ax2 = ax.twinx() # Secondary Axis code provided by Geeks for Geeks // https://www.geeksforgeeks.org/how-to-add-a-y-axis-label-to-the-secondary-y-axis-in-matplotlib/
+    ax.plot(bucket_stats[bucket_stats["State Type"]==abbrev].loc[:,"Year"], bucket_stats[bucket_stats["State Type"]==abbrev].loc[:,"Gallons"], label='Gallons', color = 'g')
+    ax2.plot(bucket_stats[bucket_stats["State Type"]==abbrev].loc[:,"Year"], bucket_stats[bucket_stats["State Type"]==abbrev].loc[:,"Stations Opened"], label='Stations', color = 'b')
+    ax.axhline(y=np.mean(bucket_stats[bucket_stats["State Type"]==abbrev].loc[:,"Gallons"]), color='g', linestyle='--')
+    ax2.axhline(y=np.mean(bucket_stats[bucket_stats["State Type"]==abbrev].loc[:,"Stations Opened"]), color='b', linestyle='--')
+    
+    ax.set_xlabel('Year', color = 'r')
+    ax.set_ylabel('Gallons', color = 'g')
+    ax2.set_ylabel('Stations Opened', color = 'b')
+    plt.tight_layout()
+    plt.show()
+
+# Northeast
+final_plot("NE", "New England")
+
+# Mid-Atlantic
+final_plot("MA", "Mid-Atlantic")
+
+# Great Lakes
+final_plot("GL", "Great Lakes")
+
+# Great Plains
+final_plot("GP", "Great Plains")
+
+# Southeast
+final_plot("SE", "Southeastern")
+
+# Gulf
+final_plot("GU", "Gulf")
+
+# Pacific
+final_plot("PA", "Pacific")
+
+# Rocky
+final_plot("RO", "Rocky Mountain")
+
+# Entire dataframe
+fig, ax = plt.subplots(figsize = (10, 6))
+plt.title('Gasoline Consumption and Alternative Fuel Stations Opened in the United States')
+
+ax2 = ax.twinx()
+# Colors for the list
+colors = ["#5E3AFE", "#FEAA19", "#16A9FE", "#5FFE49", "#FE4B19", "#7FFEF4", "#FEF319", "#CC5F00"]
+for k in range(len(colors)):
+    ax.plot(bucket_stats[bucket_stats["State Type"]==State_Types[k]].loc[:,"Year"], bucket_stats[bucket_stats["State Type"]==State_Types[k]].loc[:,"Gallons"], label=str(State_Types[k]+' Gallons'), color = colors[k])
+    ax2.plot(bucket_stats[bucket_stats["State Type"]==State_Types[k]].loc[:,"Year"], bucket_stats[bucket_stats["State Type"]==State_Types[k]].loc[:,"Stations Opened"], label=str(State_Types[k]+" Stations"), color = colors[k], linestyle='--')
+
+ax.set_xlabel('Year', color = 'r')
+ax.set_ylabel('Gallons', color = 'g')
+ax2.set_ylabel('Stations Opened', color = 'b')
+ax.legend(loc='upper left')
+ax2.legend(loc='lower left')
+plt.tight_layout()
+plt.show()
