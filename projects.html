@@ -2,6 +2,35 @@
 <head>
     <link rel="stylesheet" href="styles.css">
     <title>Techxas Student Site</title>
+    <script>
+        function swapTab(h, s) {
+            document.getElementById(s).style.display = 'inline';
+            document.getElementById(h).style.display = 'none';
+            document.getElementById(s+"Button").classList.add('CurrentTab');
+            document.getElementById(s+"Button").classList.remove('InactiveTab');
+            document.getElementById(h+"Button").classList.remove('CurrentTab');
+            document.getElementById(h+"Button").classList.add('InactiveTab');
+        }
+
+        function enableCell(n, e, ...dl){
+            if (document.getElementById(n+e+'Button').classList.contains('SelectedCell')) {
+                document.getElementById(n+e+'Button').classList.remove('SelectedCell');
+                document.getElementById(n+e+'Button').classList.add('InactiveCell');
+                document.getElementById(n+e+'Cell').style.display = 'none';
+            } else {
+            document.getElementById(n+e+'Button').classList.add('SelectedCell');
+            document.getElementById(n+e+'Button').classList.remove('InactiveCell');
+            document.getElementById(n+e+'Cell').style.display = 'block';
+            for (let d in dl) {
+                document.getElementById(n+dl[d]+'Cell').style.display = 'none';
+                if (document.getElementById(n+dl[d]+'Button').classList.contains('SelectedCell')) {
+                    document.getElementById(n+dl[d]+'Button').classList.remove('SelectedCell');
+                    document.getElementById(n+dl[d]+'Button').classList.add('InactiveCell');
+                }
+            }
+            }
+        }
+    </script>
 </head>
 <div id="Heading">
     <p>Projects</p>
@@ -12,4 +41,65 @@
         <input type="button" id="CurrentPage" value="Projects">
         <input type="button" id="InactivePage" value="Contact" onclick="location.href='contact.html';">
     </div>
+    <div type="NavButton">
+        <input type="button" class="CurrentTab" id="SoftwareButton" value="Software" style="margin-left: -5px;" onclick="swapTab('Hardware', 'Software')">
+        <input type="button" class="InactiveTab" id="HardwareButton" value="Hardware" onclick="swapTab('Software', 'Hardware')">
+    </div>
+</div>
+
+<div id="Software" style="display: inline;">
+
+    <div id="Content">
+        <p id="cHeading">Study on the Impact of Alternative Fuels on Gasoline Consumption</p>
+        <p id="ResumeText">As part of my previous major, I took an intro to Data Science class (CMSE 201) where the capstone project required us to come up with a question and answer it utilizing data. The question I picked was "Is Gasoline Mutually Exclusive with Alternative Fuel?" to which I found some pretty interesting results. All the code shown was produced by me unless explicitly stated otherwise.</p>
+        <input type="button" id="1ImageButton" class="InactiveCell" value="Images" onclick="enableCell(1, 'Image', 'Code', 'Source')">
+        <input type="button" id="1CodeButton" class="InactiveCell" value="Code" onclick="enableCell(1, 'Code', 'Image', 'Source')">
+        <input type="button" id="1SourceButton" class="InactiveCell" value="Sources" onclick="enableCell(1, 'Source', 'Image', 'Code')">
+        <div class="CellContent" id="1ImageCell" style="display: none;">
+            <img src="assets/GL_map.png" style="width: 600px; height: auto;">
+            <img src="assets/GP_map.png" style="width: 600px; height: auto;">
+            <img src="assets/GU_map.png" style="width: 600px; height: auto;">
+            <img src="assets/MA_map.png" style="width: 600px; height: auto;">
+            <img src="assets/NE_map.png" style="width: 600px; height: auto;">
+            <img src="assets/PA_map.png" style="width: 600px; height: auto;">
+            <img src="assets/RO_map.png" style="width: 600px; height: auto;">
+            <img src="assets/SE_map.png" style="width: 600px; height: auto;">
+        </div>
+        <div class="CellContent" id="1CodeCell" style="display: none;">
+            <embed src="code/cmse201code.txt" style="width: 80%; height: 500px;">
+        </div>
+        <div class="CellContent" id="1SourceCell" style="display: none;">
+            <embed src="code/cmse201sources.txt" style="width: 80%; height: 500px;">
+        </div>
+    </div>
+
+
+</div>
+
+
+<div id="Hardware" style="display: none;">
+
+    <div id="Content">
+        <p id="cHeading">3D Designed and Printed Phone Case</p>
+        <p id="ResumeText">In my freshman year of College, I was in the College of Engineering which required me to take the EGR100 class, in which we were tasked to design and optionally print a phone case.</p>
+        <p id="ResumeText">I worked with my team to complete this task, where I designed the final product and printed it utilizing TPU filament due to its high elasticity, which better protected the phone from damage.</p>
+        <input type="button" id="2ImageButton" class="InactiveCell" value="Images" onclick="enableCell(2, 'Image')">
+        <div class="CellContent" id="2ImageCell" style="display: none;">
+            <img src="assets/phoneDesignBack.png" style="width: 700px; height:auto;">
+            <img src="assets/phonePrintTop.png" style="width: 700px; height:auto;">
+        </div>
+
+    </div>
+    <div id="ContentOffset">
+        <p id="cHeading">Custom Laptop Build</p>
+        <p id="ResumeText">To satiate my need to build computers while on campus, I bought some parts -- notably the Framework Laptop Mainboard -- and assembled a laptop as seen below. This is still somewhat of a work-in-progress at the moment which I have placed on hold, but I intend on designing and printing a case for it in the near future.</p>
+        <p id="ResumeText">And yes, it *can* play Minecraft.</p>
+        <input type="button" id="3ImageButton" class="InactiveCell" value="Images" onclick="enableCell(3, 'Image')">
+        <div class="CellContent" id="3ImageCell" style="display: none;">
+            <img src="assets/laptopMainboardOff.png" style="width: 400px; height:auto;">
+            <img src="assets/laptopMainboardOn.png" style="width: 400px; height:auto;">
+        </div>
+
+    </div>
+
 </div>
