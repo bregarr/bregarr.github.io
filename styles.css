@@ -34,6 +34,7 @@ input {
     padding: 10px 20px 10px 20px;
     text-align: center;
     margin: 0px;
+    margin-left: -18px;
 
 }
 #InactivePage {
@@ -45,4 +46,25 @@ input {
     text-align: center;
     margin: 0px;
     margin-left: -18px;
+}
+#Content {
+    padding: 12px 12px 12px 12px;
+    background-color: #f0f0f0
+
+}
+#cHeading {
+    margin-top: 5px;
+    font-size: 32px;
+    color: #101010;
+}
+#Feed {
+    background-color: #c1c1c1;
+}
+#FeedPost {
+    padding: 5px 5px 2px 5px;
+    color: #616161;
+}
+#FeedText {
+    padding-left: 12px;
+    padding-bottom: 16px;
 }

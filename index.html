@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="styles.css">
     <title>Techxas Student Site</title>
@@ -7,8 +8,18 @@
     <p id="Subtitle">This is my portfolio site to display what I've created and create connections.</p>
     <div type="NavButton">
         <input type="button" id="CurrentPage" value="Home" style="margin-left: -5px;">
-        <input type="button" id="InactivePage" value="About Me" onclick="window.location = https://bregarr.github.io/about.html;">
-        <input type="button" id="InactivePage" value="Projects" onclick="window.location = https://bregarr.github.io/projects.html;">
-        <input type="button" id="InactivePage" value="Contact" onclick="window.location = https://bregarr.github.io/contact.html;">
+        <input type="button" id="InactivePage" value="About Me" onclick="location.href='about.html';">
+        <input type="button" id="InactivePage" value="Projects" onclick="location.href='projects.html';">
+        <input type="button" id="InactivePage" value="Contact" onclick="location.href='contact.html';">
+    </div>
+</div>
+
+<div id="Content">
+    <p id="cHeading">Activity Feed</p>
+
+    <div id="Feed">
+        <h1 id="FeedPost" style="margin-bottom: -20px;">First Post!</h1>
+        <h4 id="FeedPost">1/22/2025 11:05PM EST</h4>
+        <p id="FeedText">While the website is still offline as of typing this post, it is nice to have *something* to put here to test my code and styles before everything is officially public. My domain purchase is still pending but I am really excited about what I got (and even more suprised about the deal I got!). Hopefully I'll look back at this post and cringe about my hard-coding of this section, but for now this'll do.</p>
     </div>
 </div>
