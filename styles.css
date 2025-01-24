@@ -1,3 +1,11 @@
+:root {
+    --outlines: #111D13;
+    --headings: #8FB996;
+    --backgrounds: #A1CCA5;
+    --selection: #709775;
+}
+
+
 div {
     font-family: monaco, monospace;
     color: #ffffff;
@@ -12,7 +20,7 @@ input {
     padding: 5px;
     padding-bottom: 0px;
     margin: 0px 0px 0px 0px;
-    background-color: #63BBFF;
+    background-color: var(--headings);
     font-size: 64px;
     line-height: 2px;
     text-align: center;
@@ -31,8 +39,8 @@ input {
 .CurrentPage {
     border: none;
     border-top-style: solid;
-    border-color: #5B5B5B;
-    background-color: #5B7FEA;
+    border-color: var(--outlines);
+    background-color: var(--selection);
     padding: 10px 20px 10px 20px;
     text-align: center;
     margin: 0px;
@@ -42,8 +50,8 @@ input {
 .InactivePage {
     border: none;
     border-top-style: solid;
-    border-color: #5B5B5B;
-    background-color: #63BBFF;
+    border-color: var(--outlines);
+    background-color: var(--headings);
     padding: 10px 20px 10px 20px;
     text-align: center;
     margin: 0px;
@@ -63,27 +71,29 @@ input {
     color: #101010;
 }
 .Feed {
-    background-color: #c1c1c1;
+    background-color: var(--backgrounds);
     border-radius: 8px;
     border: 4px;
-    border-color: #5B5B5B;
+    border-color: var(--outlines);
     border-style: solid;
     margin-bottom: 16px;
 }
 .FeedPost {
     padding: 5px 5px 2px 5px;
-    color: #616161;
+    color: #050505;
     font-size: 14px;
+    margin-left: 16px;
 }
 .FeedText {
     padding-left: 12px;
     padding-bottom: 16px;
     font-size: 18px;
     margin-bottom: 6px;
+    color: #202020;
 }
 .FeedTitle {
     padding: 5px 5px 2px 5px;
-    color: #616161;
+    color: #050505;
     margin-bottom: -20px;
     font-size: 32px;
     font-weight: bold;
@@ -107,8 +117,8 @@ input {
 .CurrentTab {
     border: none;
     border-top-style: solid;
-    border-color: #5B5B5B;
-    background-color: #5B7FEA;
+    border-color: var(--outlines);
+    background-color: var(--selection);
     padding: 10px 20px 10px 20px;
     text-align: center;
     margin: 0px;
@@ -117,14 +127,15 @@ input {
 .InactiveTab {
     border: none;
     border-top-style: solid;
-    border-color: #5B5B5B;
-    background-color: #63BBFF;
+    border-color: var(--outlines);
+    background-color: var(--headings);
     padding: 10px 20px 10px 20px;
     text-align: center;
     margin: 0px;
     margin-left: -36px;
 }
 .InactiveCell {
+    padding: 20px 20px 20px 20px;
     border: none;
     border-top-style: solid;
     border-color: #afafaf   ;
@@ -134,28 +145,27 @@ input {
     margin: 0px;
     padding-top: 12px;
     padding-bottom: 12px;
-    margin-bottom: -20px;
+    margin-left: -10px;
 }
 .SelectedCell {
+    padding: 20px 20px 20px 20px;
     border: none;
     border-top-style: solid;
     border-color: #afafaf   ;
     text-align: center;
-    background-color: #f5f5f5;
+    background-color: #d5d5d5;
     color: #0f0f0f;
     margin: 0px;
     padding-top: 12px;
     padding-bottom: 12px;
-    margin-bottom: -20px;
+    margin-left: -10px;
 }
 .CellContent {
     padding: 12px 12px 12px 12px;
-    background-color: #f5f5f5
-    text-align: justify;
+    background-color: #d5d5d5;
 }
 .CellText {
     color: #0a0a0a;
-    text-align: justify;
 }
 .ImageText {
     color: #0a0a0a;
