@@ -66,19 +66,21 @@
 
                 var contentTypes = new Array(0);
 
-                if (!softwareProj[k][2].includes("<")) { const imgButton = document.createElement("input"); imgButton.textContent = "Images"; newDiv.appendChild(imgButton);
+                const imgButton = document.createElement("input"); const codeButton = document.createElement("input");
+                const sourceButton = document.createElement("input"); const filesButton = document.createElement("input");
+                if (!softwareProj[k][2].includes("<")) { imgButton.textContent = "Images"; newDiv.appendChild(imgButton);
                                                          imgButton.classList.add('InactiveCell'); imgButton.id = k+'sImageButton'; contentTypes.push('Image');
                                                          const imgDiv = document.createElement("div"); newDiv.appendChild(imgDiv); imgDiv.classList.add('CellContent');
                                                          imgDiv.style = "display: none;"; imgDiv.id = k+'ImageCell'; }
-                if (!softwareProj[k][3].includes("<")) { const codeButton = document.createElement("input"); codeButton.textContent = "Code"; newDiv.appendChild(codeButton);
+                if (!softwareProj[k][3].includes("<")) { codeButton.textContent = "Code"; newDiv.appendChild(codeButton);
                                                          codeButton.classList.add('InactiveCell'); codeButton.id = k+'sCodeButton'; contentTypes.push('Code');
                                                          const codeDiv = document.createElement("div"); newDiv.appendChild(codeDiv); codeDiv.classList.add('CellContent');
                                                          codeDiv.style = "display: none;"; codeDiv.id = k+'CodeCell'; }
-                if (!softwareProj[k][4].includes("<")) { const sourceButton = document.createElement("input"); sourceButton.textContent = "Sources"; newDiv.appendChild(sourceButton);
+                if (!softwareProj[k][4].includes("<")) { sourceButton.textContent = "Sources"; newDiv.appendChild(sourceButton);
                                                          sourceButton.classList.add('InactiveCell'); sourceButton.id = k+'sSourceButton'; contentTypes.push('Source');
                                                          const srcDiv = document.createElement("div"); newDiv.appendChild(srcDiv); srcDiv.classList.add('CellContent');
                                                          srcDiv.style = "display: none;"; srcDiv.id = k+'SourceCell'; }
-                if (!softwareProj[k][5].includes("<")) { const filesButton = document.createElement("input"); filesButton.textContent = "Files"; newDiv.appendChild(filesButton);
+                if (!softwareProj[k][5].includes("<")) { filesButton.textContent = "Files"; newDiv.appendChild(filesButton);
                                                          filesButton.classList.add('InactiveCell'); filesButton.id = k+'sFilesButton'; contentTypes.push('Files');
                                                          const fileDiv = document.createElement("div"); newDiv.appendChild(fileDiv); fileDiv.classList.add('CellContent');
                                                          fileDiv.style = "display: none;"; fileDiv.id = k+'FilesCell'; }
