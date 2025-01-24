@@ -98,13 +98,13 @@
                                                          codeDiv.style = "display: none;"; codeDiv.id = k+'sCodeCell';
 
                                                          var codeFiles = new Array(0); var tempWord = "";
-                                                         console.log(softwareProj[k][3].length-1);
                                                          for (let i = 0; i<softwareProj[k][3].length; i++){
                                                             currChar = softwareProj[k][3].substring(i,i+1)
                                                             if(currChar !== '&'){ tempWord += currChar; } else { codeFiles.push(tempWord); tempWord = ""; }
-                                                            console.log(tempWord);
                                                          }
+                                                         codeFiles.push(tempWord);
 
+                                                         console.log(codeFiles.length);
                                                          for (let i = 0; i<codeFiles.length; i++){
                                                             const newCode = document.createElement('embed'); newCode.src = "code/"+codeFiles[i];
                                                             newCode.classList.add('CodeEmbed');
@@ -130,6 +130,7 @@
                                                             currChar = softwareProj[k][3].substring(i,i+1)
                                                             if(currChar !== '&'){ tempWord += currChar; } else { fileFiles.push(tempWord); tempWord = ""; }
                                                          }
+                                                         fileFiles.push(tempWord);
 
                                                          for (let i = 0; i<fileFiles.length; i++){
                                                             const newFile = document.createElement('a'); newFile.href = "code/"+fileFiles[i];
