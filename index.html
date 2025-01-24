@@ -15,18 +15,61 @@
 </div>
 
 <div id="Content">
-    <p id="cHeading">Activity Feed</p>
+    <p class="cHeading" style="padding-top: 4px; margin-bottom: 10px;">Activity Feed</p>
 
-    <div id="Feed">
-        <h1 id="FeedPost" style="margin-bottom: -20px;">Domain Acquired!</h1>
-        <h4 id="FeedPost">1/23/2025 2:15PM EST</h4>
-        <p id="FeedText">I have officially obtained a domain for this site! texascod.in now directs users to this page. I'm not sure the redirect is up quite yet, but I'm marking this down now as opposed to checking over the course of the next few hours. I've also built out some more pages, but the projects page isn't quite ready yet. Here's to the beginning of my portfolio!</p>
-    </div>
 
-    <div id="Feed">
-        <h1 id="FeedPost" style="margin-bottom: -20px;">First Post!</h1>
-        <h4 id="FeedPost">1/22/2025 11:05PM EST</h4>
-        <p id="FeedText">While the website is still offline as of typing this post, it is nice to have *something* to put here to test my code and styles before everything is officially public. My domain purchase is still pending but I am really excited about what I got (and even more suprised about the deal I got!). Hopefully I'll look back at this post and cringe about my hard-coding of this section, but for now this'll do.</p>
-    </div>
+
+    <script>
+        var activityFeed;
+        async function fetchPrivateSheet() {
+            const apiKey = "AIzaSyCE-rKpVbm6l23iLdmD5mIWpvOiAnOh4oo";
+            const sheetID = "1fQmtzIvjzD_6DSqiuy9-txca9QZQ4Z_0eLRKi0pWTk0";
+            const range = "Sheet1!A1:C10";  // Specify your data range
+            const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${range}?key=${apiKey}`;
+
+            const response = await fetch(url);
+            const data = await response.json();
+
+            activityFeed = new Array(data.values.length);
+
+            for (var i = (activityFeed.length-1); i >= 0; i--) {
+                let tempArray = [data.values[i][0],data.values[i][1],data.values[i][2]];
+                activityFeed[activityFeed.length - i - 1] = tempArray;
+            }
+            console.log(activityFeed);
+        }
+
+        (async function() {
+            await fetchPrivateSheet();
+            const endDiv = document.getElementById("EOF");
+            for (let k in activityFeed)  { // https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement
+
+                const newDiv = document.createElement("div");
+                const newTitle = document.createElement("p");
+                const newDate = document.createElement("p");
+                const newDesc = document.createElement("p");
+
+                newTitle.textContent = activityFeed[k][0];
+                newDate.textContent = activityFeed[k][1];
+                newDesc.textContent = activityFeed[k][2];
+
+                newDiv.appendChild(newTitle);
+                newDiv.appendChild(newDate);
+                newDiv.appendChild(newDesc);
+
+                newDiv.classList.add('Feed');
+                newTitle.classList.add('FeedTitle');
+                newDate.classList.add('FeedPost');
+                newDesc.classList.add('FeedText');
+
+                const contentDiv = document.getElementById("Content");
+                contentDiv.insertBefore(newDiv, EOF);
+            }
+        })();
+
+
+    </script>
+
+    <div id="EOF"></div>
 
 </div>

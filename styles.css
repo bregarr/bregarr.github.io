@@ -66,6 +66,7 @@ input {
 #FeedPost {
     padding: 5px 5px 2px 5px;
     color: #616161;
+    font-size: 14px;
 }
 #FeedText {
     padding-left: 12px;
