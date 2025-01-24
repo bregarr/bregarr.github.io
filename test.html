@@ -73,7 +73,7 @@
                 const imgButton = document.createElement("input"); const codeButton = document.createElement("input");
                 const srcButton = document.createElement("input"); const filesButton = document.createElement("input");
                 const imgDiv = document.createElement("div"); const codeDiv = document.createElement("div");
-                const srcDiv = document.createElement("div"); const fileDiv = document.createElement("div"); 
+                const srcDiv = document.createElement("div"); const fileDiv = document.createElement("div");
                 if (!softwareProj[k][2].includes("<")) { imgButton.value = "Images"; newDiv.appendChild(imgButton); imgButton.type = 'Button';
                                                          imgButton.classList.add('InactiveCell'); imgButton.id = k+'sImageButton'; contentTypes.push('Image');
                                                          imgDiv.classList.add('CellContent');
@@ -106,11 +106,12 @@
                                                          fileDiv.classList.add('CellContent');
                                                          fileDiv.style = "display: none;"; fileDiv.id = k+'sFilesCell'; }
 
-                imgIndex = contentTypes.indexOf('Image'); codeIndex = contentTypes.indexOf('Code'); srcIndex = contentTypes.indexOf('Source'); fileIndex = contentTypes.indexOf('Files');
-                if (imgIndex !== -1) { newDiv.appendChild(imgDiv); imgButton.onclick = () => enableCell(true, k, 'Image', contentTypes.splice(imgIndex, 1)); }
-                if (codeIndex !== -1) { newDiv.appendChild(codeDiv); codeButton.onclick = () => enableCell(true, k, 'Code', contentTypes.splice(codeIndex, 1)); }
-                if (srcIndex !== -1) { newDiv.appendChild(srcDiv); srcButton.onclick = () => enableCell(true, k, 'Source', contentTypes.splice(srcIndex, 1)); }
-                if (fileIndex !== -1) { newDiv.appendChild(fileDiv); filesButton.onclick = () => enableCell(true, k, 'Files', contentTypes.splice(fileIndex, 1)); }
+                var imgIndex = contentTypes.indexOf('Image'); var codeIndex = contentTypes.indexOf('Code'); var srcIndex = contentTypes.indexOf('Source'); var fileIndex = contentTypes.indexOf('Files');
+                var imgContentTypes = contentTypes; var codeContentTypes = contentTypes; var srcContentTypes = contentTypes; var fileContentTypes = contentTypes;
+                if (imgIndex !== -1) { newDiv.appendChild(imgDiv); imgButton.onclick = () => enableCell(true, k, 'Image', imgContentTypes.splice(imgIndex, 1)); }
+                if (codeIndex !== -1) { newDiv.appendChild(codeDiv); codeButton.onclick = () => enableCell(true, k, 'Code', codeContentTypes.splice(codeIndex, 1)); }
+                if (srcIndex !== -1) { newDiv.appendChild(srcDiv); srcButton.onclick = () => enableCell(true, k, 'Source', srcContentTypes.splice(srcIndex, 1)); }
+                if (fileIndex !== -1) { newDiv.appendChild(fileDiv); filesButton.onclick = () => enableCell(true, k, 'Files', fileContentTypes.splice(fileIndex, 1)); }
 
                 newTitle.textContent = softwareProj[k][0];
                 newDesc.textContent = softwareProj[k][1];
