@@ -186,3 +186,7 @@ input {
     width: 80%;
     height: 500px;
 }
+.SourceEmbed {
+    width: 80%
+    height: auto;
+}

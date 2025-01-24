@@ -104,7 +104,6 @@
                                                          }
                                                          codeFiles.push(tempWord);
 
-                                                         console.log(codeFiles.length);
                                                          for (let i = 0; i<codeFiles.length; i++){
                                                             const newCode = document.createElement('embed'); newCode.src = "code/"+codeFiles[i];
                                                             newCode.classList.add('CodeEmbed');
@@ -117,7 +116,7 @@
                                                          srcDiv.style = "display: none;"; srcDiv.id = k+'sSourceCell';
 
                                                          const newSource = document.createElement('embed'); newSource.src = "code/"+softwareProj[k][4];
-                                                         newSource.classList.add('CodeEmbed');
+                                                         newSource.classList.add('SourceEmbed');
                                                          srcDiv.appendChild(newSource);
                 }
                 if (!softwareProj[k][5].includes("<")) { filesButton.value = "Files"; newDiv.appendChild(filesButton); filesButton.type = 'Button';
@@ -126,8 +125,8 @@
                                                          fileDiv.style = "display: none;"; fileDiv.id = k+'sFilesCell';
 
                                                          var fileFiles = new Array(0); var tempWord = "";
-                                                         for (let i = 0; i<softwareProj[k][3].length; i++){
-                                                            currChar = softwareProj[k][3].substring(i,i+1)
+                                                         for (let i = 0; i<softwareProj[k][5].length; i++){
+                                                            currChar = softwareProj[k][5].substring(i,i+1)
                                                             if(currChar !== '&'){ tempWord += currChar; } else { fileFiles.push(tempWord); tempWord = ""; }
                                                          }
                                                          fileFiles.push(tempWord);
