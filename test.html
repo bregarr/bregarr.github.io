@@ -25,7 +25,6 @@
             document.getElementById(n+mod+e+'Cell').style.display = 'block';
             }
             for (let d in dl) {
-                console.log('dl='+dl);
                 document.getElementById(n+mod+dl[d]+'Cell').style.display = 'none';
                 if (document.getElementById(n+mod+dl[d]+'Button').classList.contains('SelectedCell')) {
                     document.getElementById(n+mod+dl[d]+'Button').classList.remove('SelectedCell');
@@ -99,9 +98,11 @@
                                                          codeDiv.style = "display: none;"; codeDiv.id = k+'sCodeCell';
 
                                                          var codeFiles = new Array(0); var tempWord = "";
+                                                         console.log(softwareProj[k][3].length-1);
                                                          for (let i = 0; i<softwareProj[k][3].length-1; i++){
                                                             currChar = softwareProj[k][3].substring(i,i+1)
                                                             if(currChar !== '&'){ tempWord += currChar; } else { codeFiles.push(tempWord); tempWord = ""; }
+                                                            console.log(tempWord);
                                                          }
 
                                                          for (let i = 0; i<codeFiles.length; i++){

@@ -103,7 +103,7 @@ input {
 }
 .FeedImage {
     margin: 16px 16px 16px 16px;
-    width: 20%;
+    width: 450px;
     height: auto;
 }
 .ResumeText {
@@ -174,12 +174,6 @@ input {
 .CellText {
     color: #0a0a0a;
 }
-.ImageText {
-    color: #0a0a0a;
-    position: absolute;
-    top: 10%;
-    left: 10%;
-}
 .HorizImg {
     height: auto;
     width: 650px;
@@ -187,4 +181,8 @@ input {
 .VertImg {
     height: auto;
     width: 400px;
+}
+.CodeEmbed {
+    width: 80%;
+    height: 500px;
 }
