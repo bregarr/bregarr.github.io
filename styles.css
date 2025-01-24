@@ -55,21 +55,30 @@ input {
     padding: 12px 12px 12px 12px;
     background-color: #e5e5e5
 }
-#cHeading {
+.cHeading {
     margin-top: 5px;
     font-size: 36px;
     color: #101010;
 }
-#Feed {
+.Feed {
     background-color: #c1c1c1;
 }
-#FeedPost {
+.FeedPost {
     padding: 5px 5px 2px 5px;
     color: #616161;
+    font-size: 14px;
 }
-#FeedText {
+.FeedText {
     padding-left: 12px;
     padding-bottom: 16px;
+    font-size: 18px;
+}
+.FeedTitle {
+    padding: 5px 5px 2px 5px;
+    color: #616161;
+    margin-bottom: -20px;
+    font-size: 32px;
+    font-weight: bold;
 }
 #ResumeText {
     margin-top: -20px;
