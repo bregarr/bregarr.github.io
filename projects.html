@@ -100,6 +100,7 @@
                                                             currChar = hardwareProj[k][2].substring(i,i+1)
                                                             if(currChar !== '&'){ tempWord += currChar; } else { imgFiles.push(tempWord); tempWord = ""; }
                                                          }
+                                                         imgFiles.push(tempWord);
 
                                                          for (let i = 0; i<imgFiles.length; i++){
                                                             var insIndex = imgFiles[i].indexOf('>');
@@ -259,8 +260,10 @@
                                                             const newFile = document.createElement('a'); newFile.href = "code/"+fileFiles[i];
                                                             newFile.download = "code/"+fileFiles[i];
                                                             newFile.classList.add('FileDownload');
-                                                            newFile.textContent = "Download " + fileFiles[i] + "\n\n";
+                                                            newFile.textContent = "Download " + fileFiles[i];
+                                                            const lineBreak = document.createElement('br');
                                                             fileDiv.appendChild(newFile);
+                                                            fileDiv.appendChild(lineBreak);
                                                          }
                 }
 
