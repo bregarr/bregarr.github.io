@@ -12,24 +12,282 @@
             document.getElementById(h+"Button").classList.add('InactiveTab');
         }
 
-        function enableCell(n, e, ...dl){
-            if (document.getElementById(n+e+'Button').classList.contains('SelectedCell')) {
-                document.getElementById(n+e+'Button').classList.remove('SelectedCell');
-                document.getElementById(n+e+'Button').classList.add('InactiveCell');
-                document.getElementById(n+e+'Cell').style.display = 'none';
+        function enableCell(m, n, e, dl){
+            var mod;
+            if (m) { mod = 's'; } else { mod = 'h'; }
+            if (document.getElementById(n+mod+e+'Button').classList.contains('SelectedCell')) {
+                document.getElementById(n+mod+e+'Button').classList.remove('SelectedCell');
+                document.getElementById(n+mod+e+'Button').classList.add('InactiveCell');
+                document.getElementById(n+mod+e+'Cell').style.display = 'none';
             } else {
-            document.getElementById(n+e+'Button').classList.add('SelectedCell');
-            document.getElementById(n+e+'Button').classList.remove('InactiveCell');
-            document.getElementById(n+e+'Cell').style.display = 'block';
+            document.getElementById(n+mod+e+'Button').classList.add('SelectedCell');
+            document.getElementById(n+mod+e+'Button').classList.remove('InactiveCell');
+            document.getElementById(n+mod+e+'Cell').style.display = 'block';
+            }
             for (let d in dl) {
-                document.getElementById(n+dl[d]+'Cell').style.display = 'none';
-                if (document.getElementById(n+dl[d]+'Button').classList.contains('SelectedCell')) {
-                    document.getElementById(n+dl[d]+'Button').classList.remove('SelectedCell');
-                    document.getElementById(n+dl[d]+'Button').classList.add('InactiveCell');
+                document.getElementById(n+mod+dl[d]+'Cell').style.display = 'none';
+                if (document.getElementById(n+mod+dl[d]+'Button').classList.contains('SelectedCell')) {
+                    document.getElementById(n+mod+dl[d]+'Button').classList.remove('SelectedCell');
+                    document.getElementById(n+mod+dl[d]+'Button').classList.add('InactiveCell');
                 }
             }
+        }
+
+        var softwareProj;
+        var hardwareProj;
+        async function fetchPrivateSheet() {
+            const apiKey = "AIzaSyCE-rKpVbm6l23iLdmD5mIWpvOiAnOh4oo";
+            const sheetID = "1fQmtzIvjzD_6DSqiuy9-txca9QZQ4Z_0eLRKi0pWTk0";
+            const rangeSoft = "Sheet1!G2:L50";  // Specify your data range
+            const rangeHard = "Sheet1!N2:S50";
+            const urlSoft = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${rangeSoft}?key=${apiKey}`;
+            const urlHard = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${rangeHard}?key=${apiKey}`;
+
+            const responseSoft = await fetch(urlSoft);
+            const responseHard = await fetch(urlHard);
+            const dataSoft = await responseSoft.json();
+            const dataHard = await responseHard.json();
+
+            softwareProj = new Array(dataSoft.values.length);
+            hardwareProj = new Array(dataHard.values.length);
+
+            for (var i = (softwareProj.length-1); i >= 0; i--) {
+                let tempArray = [dataSoft.values[i][0],dataSoft.values[i][1]];
+                if (dataSoft.values[i][2] != undefined){ tempArray.push(dataSoft.values[i][2]); } else { tempArray.push("<"); }
+                if (dataSoft.values[i][3] != undefined){ tempArray.push(dataSoft.values[i][3]); } else { tempArray.push("<"); }
+                if (dataSoft.values[i][4] != undefined){ tempArray.push(dataSoft.values[i][4]); } else { tempArray.push("<"); }
+                if (dataSoft.values[i][5] != undefined){ tempArray.push(dataSoft.values[i][5]); } else { tempArray.push("<"); }
+                softwareProj[softwareProj.length - i - 1] = tempArray;
+            }
+            for (var i = (hardProj.length-1); i >= 0; i--) {
+                let tempArray = [dataHard.values[i][0],dataHard.values[i][1]];
+                if (dataHard.values[i][2] != undefined){ tempArray.push(dataHard.values[i][2]); } else { tempArray.push("<"); }
+                if (dataHard.values[i][3] != undefined){ tempArray.push(dataHard.values[i][3]); } else { tempArray.push("<"); }
+                if (dataHard.values[i][4] != undefined){ tempArray.push(dataHard.values[i][4]); } else { tempArray.push("<"); }
+                if (dataHard.values[i][5] != undefined){ tempArray.push(dataHard.values[i][5]); } else { tempArray.push("<"); }
+                hardwareProj[hardwareProj.length - i - 1] = tempArray;
             }
         }
+
+        (async function() {
+            await fetchPrivateSheet();
+            const endDiv = document.getElementById("EOFsoft");
+            const endDivHard = document.getElementById("EOFhard");
+
+            //Hardware
+            for (let k in hardwareProj)  { // https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement
+
+                const newDiv = document.createElement("div");
+                const newTitle = document.createElement("p");
+                const newDesc = document.createElement("p");
+
+                var contentTypes = new Array(0);
+
+                newDiv.appendChild(newTitle);
+                newDiv.appendChild(newDesc);
+
+                const imgButton = document.createElement("input"); const codeButton = document.createElement("input");
+                const srcButton = document.createElement("input"); const filesButton = document.createElement("input");
+                const imgDiv = document.createElement("div"); const codeDiv = document.createElement("div");
+                const srcDiv = document.createElement("div"); const fileDiv = document.createElement("div");
+                if (!hardwareProj[k][2].includes("<")) { imgButton.value = "Images"; newDiv.appendChild(imgButton); imgButton.type = 'Button';
+                                                         imgButton.classList.add('InactiveCell'); imgButton.id = k+'hImageButton'; contentTypes.push('Image');
+                                                         imgDiv.classList.add('CellContent');
+                                                         imgDiv.style = "display: none;"; imgDiv.id = k+'hImageCell';
+
+                                                         var imgFiles = new Array(0); var tempWord = "";
+                                                         for (let i = 0; i<hardwareProj[k][2].length-1; i++){
+                                                            currChar = hardwareProj[k][2].substring(i,i+1)
+                                                            if(currChar !== '&'){ tempWord += currChar; } else { imgFiles.push(tempWord); tempWord = ""; }
+                                                         }
+
+                                                         for (let i = 0; i<imgFiles.length; i++){
+                                                            var insIndex = imgFiles[i].indexOf('>');
+                                                            const newImg = document.createElement('img'); newImg.src = "assets/"+imgFiles[i].substring(0,insIndex);
+                                                            newImg.classList.add(imgFiles[i].substring(insIndex+1,imgFiles[i].length));
+                                                            imgDiv.appendChild(newImg);
+                                                         }
+
+                }
+                if (!hardwareProj[k][3].includes("<")) { codeButton.value = "Code"; newDiv.appendChild(codeButton); codeButton.type = 'Button';
+                                                         codeButton.classList.add('InactiveCell'); codeButton.id = k+'hCodeButton'; contentTypes.push('Code');
+                                                         codeDiv.classList.add('CellContent');
+                                                         codeDiv.style = "display: none;"; codeDiv.id = k+'hCodeCell';
+
+                                                         var codeFiles = new Array(0); var tempWord = "";
+                                                         for (let i = 0; i<hardwareProj[k][3].length; i++){
+                                                            currChar = hardwareProj[k][3].substring(i,i+1)
+                                                            if(currChar !== '&'){ tempWord += currChar; } else { codeFiles.push(tempWord); tempWord = ""; }
+                                                         }
+                                                         codeFiles.push(tempWord);
+
+                                                         for (let i = 0; i<codeFiles.length; i++){
+                                                            const newCode = document.createElement('embed'); newCode.src = "code/"+codeFiles[i];
+                                                            newCode.classList.add('CodeEmbed');
+                                                            codeDiv.appendChild(newCode);
+                                                         }
+                }
+                if (!hardwareProj[k][4].includes("<")) { srcButton.value = "Sources"; newDiv.appendChild(srcButton); srcButton.type = 'Button';
+                                                         srcButton.classList.add('InactiveCell'); srcButton.id = k+'hSourceButton'; contentTypes.push('Source');
+                                                         srcDiv.classList.add('CellContent');
+                                                         srcDiv.style = "display: none;"; srcDiv.id = k+'hSourceCell';
+
+                                                         const newSource = document.createElement('embed'); newSource.src = "code/"+hardwareProj[k][4];
+                                                         newSource.classList.add('SourceEmbed');
+                                                         srcDiv.appendChild(newSource);
+                }
+                if (!hardwareProj[k][5].includes("<")) { filesButton.value = "Files"; newDiv.appendChild(filesButton); filesButton.type = 'Button';
+                                                         filesButton.classList.add('InactiveCell'); filesButton.id = k+'hFilesButton'; contentTypes.push('Files');
+                                                         fileDiv.classList.add('CellContent');
+                                                         fileDiv.style = "display: none;"; fileDiv.id = k+'hFilesCell';
+
+                                                         var fileFiles = new Array(0); var tempWord = "";
+                                                         for (let i = 0; i<hardwareProj[k][5].length; i++){
+                                                            currChar = hardwareProj[k][5].substring(i,i+1)
+                                                            if(currChar !== '&'){ tempWord += currChar; } else { fileFiles.push(tempWord); tempWord = ""; }
+                                                         }
+                                                         fileFiles.push(tempWord);
+
+                                                         for (let i = 0; i<fileFiles.length; i++){
+                                                            const newFile = document.createElement('a'); newFile.href = "code/"+fileFiles[i];
+                                                            newFile.download = "code/"+fileFiles[i];
+                                                            newFile.classList.add('FileDownload');
+                                                            newFile.textContent = "Download " + fileFiles[i] + "\n\n";
+                                                            fileDiv.appendChild(newFile);
+                                                         }
+                }
+
+                var indexLen = contentTypes.length;
+                var imgIndex = contentTypes.indexOf('Image'); var codeIndex = contentTypes.indexOf('Code'); var srcIndex = contentTypes.indexOf('Source'); var fileIndex = contentTypes.indexOf('Files');
+                var imgContentTypes = contentTypes.filter((_, i) => i !== imgIndex); var codeContentTypes = contentTypes.filter((_, i) => i !== codeIndex);
+                var srcContentTypes = contentTypes.filter((_, i) => i !== srcIndex); var fileContentTypes = contentTypes.filter((_, i) => i !== fileIndex);
+
+                var firstTab = true;
+                if (imgIndex !== -1) { if (firstTab) { firstTab = false; imgButton.style = "margin-left = 18px;"; } newDiv.appendChild(imgDiv); imgButton.onclick = () => enableCell(false, k, 'Image', imgContentTypes); }
+                if (codeIndex !== -1) { if (firstTab) { firstTab = false; codeButton.style = "margin-left = 18px;"; } newDiv.appendChild(codeDiv); codeButton.onclick = () => enableCell(false, k, 'Code', codeContentTypes); }
+                if (srcIndex !== -1) { if (firstTab) { firstTab = false; srcButton.style = "margin-left = 18px;"; } newDiv.appendChild(srcDiv); srcButton.onclick = () => enableCell(false, k, 'Source', srcContentTypes); }
+                if (fileIndex !== -1) { if (firstTab) { firstTab = false; fileButton.style = "margin-left = 18px;"; } newDiv.appendChild(fileDiv); filesButton.onclick = () => enableCell(false, k, 'Files', fileContentTypes); }
+
+                newTitle.textContent = hardwareProj[k][0];
+                newDesc.textContent = hardwareProj[k][1];
+
+                if (k%2==0) { newDiv.classList.add('Content'); }
+                else { newDiv.classList.add('ContentOffset'); }
+
+                newTitle.classList.add('cHeading');
+                newDesc.classList.add('ResumeText');
+
+                const hardwareDiv = document.getElementById("Hardware");
+                hardwareDiv.insertBefore(newDiv, EOFhard);
+            }
+
+            //Software
+            for (let k in softwareProj)  { // https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement
+
+                const newDiv = document.createElement("div");
+                const newTitle = document.createElement("p");
+                const newDesc = document.createElement("p");
+
+                var contentTypes = new Array(0);
+
+                newDiv.appendChild(newTitle);
+                newDiv.appendChild(newDesc);
+
+                const imgButton = document.createElement("input"); const codeButton = document.createElement("input");
+                const srcButton = document.createElement("input"); const filesButton = document.createElement("input");
+                const imgDiv = document.createElement("div"); const codeDiv = document.createElement("div");
+                const srcDiv = document.createElement("div"); const fileDiv = document.createElement("div");
+                if (!softwareProj[k][2].includes("<")) { imgButton.value = "Images"; newDiv.appendChild(imgButton); imgButton.type = 'Button';
+                                                         imgButton.classList.add('InactiveCell'); imgButton.id = k+'sImageButton'; contentTypes.push('Image');
+                                                         imgDiv.classList.add('CellContent');
+                                                         imgDiv.style = "display: none;"; imgDiv.id = k+'sImageCell';
+
+                                                         var imgFiles = new Array(0); var tempWord = "";
+                                                         for (let i = 0; i<softwareProj[k][2].length-1; i++){
+                                                            currChar = softwareProj[k][2].substring(i,i+1)
+                                                            if(currChar !== '&'){ tempWord += currChar; } else { imgFiles.push(tempWord); tempWord = ""; }
+                                                         }
+
+                                                         for (let i = 0; i<imgFiles.length; i++){
+                                                            var insIndex = imgFiles[i].indexOf('>');
+                                                            const newImg = document.createElement('img'); newImg.src = "assets/"+imgFiles[i].substring(0,insIndex);
+                                                            newImg.classList.add(imgFiles[i].substring(insIndex+1,imgFiles[i].length));
+                                                            imgDiv.appendChild(newImg);
+                                                         }
+
+                }
+                if (!softwareProj[k][3].includes("<")) { codeButton.value = "Code"; newDiv.appendChild(codeButton); codeButton.type = 'Button';
+                                                         codeButton.classList.add('InactiveCell'); codeButton.id = k+'sCodeButton'; contentTypes.push('Code');
+                                                         codeDiv.classList.add('CellContent');
+                                                         codeDiv.style = "display: none;"; codeDiv.id = k+'sCodeCell';
+
+                                                         var codeFiles = new Array(0); var tempWord = "";
+                                                         for (let i = 0; i<softwareProj[k][3].length; i++){
+                                                            currChar = softwareProj[k][3].substring(i,i+1)
+                                                            if(currChar !== '&'){ tempWord += currChar; } else { codeFiles.push(tempWord); tempWord = ""; }
+                                                         }
+                                                         codeFiles.push(tempWord);
+
+                                                         for (let i = 0; i<codeFiles.length; i++){
+                                                            const newCode = document.createElement('embed'); newCode.src = "code/"+codeFiles[i];
+                                                            newCode.classList.add('CodeEmbed');
+                                                            codeDiv.appendChild(newCode);
+                                                         }
+                }
+                if (!softwareProj[k][4].includes("<")) { srcButton.value = "Sources"; newDiv.appendChild(srcButton); srcButton.type = 'Button';
+                                                         srcButton.classList.add('InactiveCell'); srcButton.id = k+'sSourceButton'; contentTypes.push('Source');
+                                                         srcDiv.classList.add('CellContent');
+                                                         srcDiv.style = "display: none;"; srcDiv.id = k+'sSourceCell';
+
+                                                         const newSource = document.createElement('embed'); newSource.src = "code/"+softwareProj[k][4];
+                                                         newSource.classList.add('SourceEmbed');
+                                                         srcDiv.appendChild(newSource);
+                }
+                if (!softwareProj[k][5].includes("<")) { filesButton.value = "Files"; newDiv.appendChild(filesButton); filesButton.type = 'Button';
+                                                         filesButton.classList.add('InactiveCell'); filesButton.id = k+'sFilesButton'; contentTypes.push('Files');
+                                                         fileDiv.classList.add('CellContent');
+                                                         fileDiv.style = "display: none;"; fileDiv.id = k+'sFilesCell';
+
+                                                         var fileFiles = new Array(0); var tempWord = "";
+                                                         for (let i = 0; i<softwareProj[k][5].length; i++){
+                                                            currChar = softwareProj[k][5].substring(i,i+1)
+                                                            if(currChar !== '&'){ tempWord += currChar; } else { fileFiles.push(tempWord); tempWord = ""; }
+                                                         }
+                                                         fileFiles.push(tempWord);
+
+                                                         for (let i = 0; i<fileFiles.length; i++){
+                                                            const newFile = document.createElement('a'); newFile.href = "code/"+fileFiles[i];
+                                                            newFile.download = "code/"+fileFiles[i];
+                                                            newFile.classList.add('FileDownload');
+                                                            newFile.textContent = "Download " + fileFiles[i] + "\n\n";
+                                                            fileDiv.appendChild(newFile);
+                                                         }
+                }
+
+                var indexLen = contentTypes.length;
+                var imgIndex = contentTypes.indexOf('Image'); var codeIndex = contentTypes.indexOf('Code'); var srcIndex = contentTypes.indexOf('Source'); var fileIndex = contentTypes.indexOf('Files');
+                var imgContentTypes = contentTypes.filter((_, i) => i !== imgIndex); var codeContentTypes = contentTypes.filter((_, i) => i !== codeIndex);
+                var srcContentTypes = contentTypes.filter((_, i) => i !== srcIndex); var fileContentTypes = contentTypes.filter((_, i) => i !== fileIndex);
+
+                var firstTab = true;
+                if (imgIndex !== -1) { if (firstTab) { firstTab = false; imgButton.style = "margin-left = 18px;"; } newDiv.appendChild(imgDiv); imgButton.onclick = () => enableCell(true, k, 'Image', imgContentTypes); }
+                if (codeIndex !== -1) { if (firstTab) { firstTab = false; codeButton.style = "margin-left = 18px;"; } newDiv.appendChild(codeDiv); codeButton.onclick = () => enableCell(true, k, 'Code', codeContentTypes); }
+                if (srcIndex !== -1) { if (firstTab) { firstTab = false; srcButton.style = "margin-left = 18px;"; } newDiv.appendChild(srcDiv); srcButton.onclick = () => enableCell(true, k, 'Source', srcContentTypes); }
+                if (fileIndex !== -1) { if (firstTab) { firstTab = false; fileButton.style = "margin-left = 18px;"; } newDiv.appendChild(fileDiv); filesButton.onclick = () => enableCell(true, k, 'Files', fileContentTypes); }
+
+                newTitle.textContent = softwareProj[k][0];
+                newDesc.textContent = softwareProj[k][1];
+
+                if (k%2==0) { newDiv.classList.add('Content'); }
+                else { newDiv.classList.add('ContentOffset'); }
+
+                newTitle.classList.add('cHeading');
+                newDesc.classList.add('ResumeText');
+
+                const softwareDiv = document.getElementById("Software");
+                softwareDiv.insertBefore(newDiv, EOFsoft);
+            }
+        })();
     </script>
 </head>
 <div class="Heading">
@@ -49,41 +307,9 @@
 
 <div id="Software" style="display: inline;">
 
-    <div class="Content">
-        <p class="cHeading">Study on the Impact of Alternative Fuels on Gasoline Consumption</p>
-        <p class="ResumeText">As part of my previous major, I took an intro to Data Science class (CMSE 201) where the capstone project required us to come up with a question and answer it utilizing data. The question I picked was "Is Gasoline Mutually Exclusive with Alternative Fuel?" to which I found some pretty interesting results. All the code shown was produced by me unless explicitly stated otherwise.</p>
-        <input type="button" id="1ImageButton" class="InactiveCell" value="Images" onclick="enableCell(1, 'Image', 'Code', 'Source', 'IPYNB')" style="margin-left: 8px;">
-        <input type="button" id="1CodeButton" class="InactiveCell" value="Code" onclick="enableCell(1, 'Code', 'Image', 'Source', 'IPYNB')">
-        <input type="button" id="1SourceButton" class="InactiveCell" value="Sources" onclick="enableCell(1, 'Source', 'Image', 'Code', 'IPYNB')">
-        <input type="button" id="1IPYNBButton" class="InactiveCell" value="IPYNB" onclick="enableCell(1, 'IPYNB', 'Source', 'Image', 'Code')">
-        <div class="CellContent" id="1ImageCell" style="display: none;">
-            <img src="assets/GL_map.png" class="HorizImg">
-            <img src="assets/GP_map.png" class="HorizImg">
-            <img src="assets/GU_map.png" class="HorizImg">
-            <img src="assets/MA_map.png" class="HorizImg">
-            <img src="assets/NE_map.png" class="HorizImg">
-            <img src="assets/PA_map.png" class="HorizImg">
-            <img src="assets/RO_map.png" class="HorizImg">
-            <img src="assets/SE_map.png" class="HorizImg">
-        </div>
-        <div class="CellContent" id="1CodeCell" style="display: none;">
-            <embed src="code/cmse201code.txt" style="width: 80%; height: 500px;">
-        </div>
-        <div class="CellContent" id="1SourceCell" style="display: none;">
-            <embed src="code/cmse201sources.txt" style="width: 80%; height: auto;">
-            <a href="assets/alt_fuel_stations (Nov 3 2024).csv" download="alt_fuel_stations (Nov 3 2024).csv" style="display: block;">
-                Download the Alternate Fuel Stations csv data file.
-            </a>
-            <a href="assets/Monthly_Motor_Fuel_Sales_Reported_by_States__Selected_Data_from_FHWA_Monthly_Motor_Fuel_Report.csv" style="display: block;" download="Monthly_Motor_Fuel_Sales_Reported_by_States__Selected_Data_from_FHWA_Monthly_Motor_Fuel_Report.csv">
-                Download the Monthly Motor Fuel Sales csv data file.
-            </a>
-        </div>
-        <div class="CellContent" id="1IPYNBCell" style="display: none;">
-            <a href="code/Garrow_CMSE201_Final.ipynb" download="CMSE201_Final.ipyb">
-                Download the IPYNB presentation.
-            </a>
-        </div>
-    </div>
+
+    <div id="EOFsoft"></div>
+</div>
 
 
 </div>
@@ -91,29 +317,6 @@
 
 <div id="Hardware" style="display: none;">
 
-    <div class="Content">
-        <p class="cHeading">3D Designed and Printed Phone Case</p>
-        <p class="ResumeText">In my freshman year of College, I was in the College of Engineering which required me to take the EGR100 class, in which we were tasked to design and optionally print a phone case.</p>
-        <p class="ResumeText">I worked with my team to complete this task, where I designed the final product and printed it utilizing TPU filament due to its high elasticity, which better protected the phone from damage.</p>
-        <input type="button" id="2ImageButton" class="InactiveCell" value="Images" onclick="enableCell(2, 'Image')" style="margin-left: 8px;">
-        <div class="CellContent" id="2ImageCell" style="display: none;">
-            <img src="assets/phoneDesignBack.png" class="HorizImg">
-            <img src="assets/phoneDesignTop.png" class="HorizImg">
-            <img src="assets/phonePrintBack.png" class="HorizImg">
-            <img src="assets/phonePrintTop.png" class="HorizImg">
-        </div>
-
-    </div>
-    <div class="ContentOffset">
-        <p class="cHeading">Custom Laptop Build</p>
-        <p class="ResumeText">To satiate my need to build computers while on campus, I bought some parts -- notably the Framework Laptop Mainboard -- and assembled a laptop as seen below. This is still somewhat of a work-in-progress at the moment which I have placed on hold, but I intend on designing and printing a case for it in the near future.</p>
-        <p class="ResumeText">And yes, it *can* play Minecraft.</p>
-        <input type="button" id="3ImageButton" class="InactiveCell" value="Images" onclick="enableCell(3, 'Image')" style="margin-left: 8px;">
-        <div class="CellContent" id="3ImageCell" style="display: none;">
-            <img src="assets/laptopMainboardOff.png" class="VertImg">
-            <img src="assets/laptopMainboardOn.png" class="VertImg">
-        </div>
-
-    </div>
+    <div id="EOFhard"></div>
 
 </div>
