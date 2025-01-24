@@ -24,7 +24,7 @@
         async function fetchPrivateSheet() {
             const apiKey = "AIzaSyCE-rKpVbm6l23iLdmD5mIWpvOiAnOh4oo";
             const sheetID = "1fQmtzIvjzD_6DSqiuy9-txca9QZQ4Z_0eLRKi0pWTk0";
-            const range = "Sheet1!A1:D4";  // Specify your data range
+            const range = "Sheet1!A2:D50";  // Specify your data range
             const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${range}?key=${apiKey}`;
 
             const response = await fetch(url);
