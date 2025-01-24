@@ -96,7 +96,7 @@
                                                          imgDiv.style = "display: none;"; imgDiv.id = k+'hImageCell';
 
                                                          var imgFiles = new Array(0); var tempWord = "";
-                                                         for (let i = 0; i<hardwareProj[k][2].length-1; i++){
+                                                         for (let i = 0; i<hardwareProj[k][2].length; i++){
                                                             currChar = hardwareProj[k][2].substring(i,i+1)
                                                             if(currChar !== '&'){ tempWord += currChar; } else { imgFiles.push(tempWord); tempWord = ""; }
                                                          }
@@ -204,10 +204,11 @@
                                                          imgDiv.style = "display: none;"; imgDiv.id = k+'sImageCell';
 
                                                          var imgFiles = new Array(0); var tempWord = "";
-                                                         for (let i = 0; i<softwareProj[k][2].length-1; i++){
+                                                         for (let i = 0; i<softwareProj[k][2].length; i++){
                                                             currChar = softwareProj[k][2].substring(i,i+1)
                                                             if(currChar !== '&'){ tempWord += currChar; } else { imgFiles.push(tempWord); tempWord = ""; }
                                                          }
+                                                         imgFiles.push(tempWord);
 
                                                          for (let i = 0; i<imgFiles.length; i++){
                                                             var insIndex = imgFiles[i].indexOf('>');
