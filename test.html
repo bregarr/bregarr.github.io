@@ -67,7 +67,7 @@
                 var contentTypes = new Array(0);
 
                 const imgButton = document.createElement("input"); const codeButton = document.createElement("input");
-                const sourceButton = document.createElement("input"); const filesButton = document.createElement("input");
+                const srcButton = document.createElement("input"); const filesButton = document.createElement("input");
                 if (!softwareProj[k][2].includes("<")) { imgButton.textContent = "Images"; newDiv.appendChild(imgButton);
                                                          imgButton.classList.add('InactiveCell'); imgButton.id = k+'sImageButton'; contentTypes.push('Image');
                                                          const imgDiv = document.createElement("div"); newDiv.appendChild(imgDiv); imgDiv.classList.add('CellContent');
@@ -76,8 +76,8 @@
                                                          codeButton.classList.add('InactiveCell'); codeButton.id = k+'sCodeButton'; contentTypes.push('Code');
                                                          const codeDiv = document.createElement("div"); newDiv.appendChild(codeDiv); codeDiv.classList.add('CellContent');
                                                          codeDiv.style = "display: none;"; codeDiv.id = k+'CodeCell'; }
-                if (!softwareProj[k][4].includes("<")) { sourceButton.textContent = "Sources"; newDiv.appendChild(sourceButton);
-                                                         sourceButton.classList.add('InactiveCell'); sourceButton.id = k+'sSourceButton'; contentTypes.push('Source');
+                if (!softwareProj[k][4].includes("<")) { srcButton.textContent = "Sources"; newDiv.appendChild(srcButton);
+                                                         srcButton.classList.add('InactiveCell'); srcButton.id = k+'sSourceButton'; contentTypes.push('Source');
                                                          const srcDiv = document.createElement("div"); newDiv.appendChild(srcDiv); srcDiv.classList.add('CellContent');
                                                          srcDiv.style = "display: none;"; srcDiv.id = k+'SourceCell'; }
                 if (!softwareProj[k][5].includes("<")) { filesButton.textContent = "Files"; newDiv.appendChild(filesButton);
