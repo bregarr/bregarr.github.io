@@ -24,7 +24,7 @@
         async function fetchPrivateSheet() {
             const apiKey = "AIzaSyCE-rKpVbm6l23iLdmD5mIWpvOiAnOh4oo";
             const sheetID = "1fQmtzIvjzD_6DSqiuy9-txca9QZQ4Z_0eLRKi0pWTk0";
-            const range = "Sheet1!A1:C10";  // Specify your data range
+            const range = "Sheet1!A1:D4";  // Specify your data range
             const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${range}?key=${apiKey}`;
 
             const response = await fetch(url);
@@ -34,6 +34,9 @@
 
             for (var i = (activityFeed.length-1); i >= 0; i--) {
                 let tempArray = [data.values[i][0],data.values[i][1],data.values[i][2]];
+                if (data.values[i][3] != undefined){
+                    tempArray.push(data.values[i][3]);
+                }
                 activityFeed[activityFeed.length - i - 1] = tempArray;
             }
         }
@@ -60,6 +63,13 @@
                 newTitle.classList.add('FeedTitle');
                 newDate.classList.add('FeedPost');
                 newDesc.classList.add('FeedText');
+
+                if (activityFeed[k].length > 3) {
+                    const newImage = document.createElement("img");
+                    newImage.src = activityFeed[k][3];
+                    newDiv.appendChild(newImage);
+                    newImage.classList.add('FeedImage');
+                }
 
                 const contentDiv = document.getElementById("Content");
                 contentDiv.insertBefore(newDiv, EOF);

@@ -99,6 +99,11 @@ input {
     font-weight: bold;
     margin-top: 0px;
 }
+.FeedImage {
+    margin: 16px 16px 16px 16px;
+    width: 20%;
+    height: auto;
+}
 .ResumeText {
     margin-top: -20px;
     margin-bottom: 30px;
