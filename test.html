@@ -99,7 +99,7 @@
 
                                                          var codeFiles = new Array(0); var tempWord = "";
                                                          console.log(softwareProj[k][3].length-1);
-                                                         for (let i = 0; i<softwareProj[k][3].length-1; i++){
+                                                         for (let i = 0; i<softwareProj[k][3].length; i++){
                                                             currChar = softwareProj[k][3].substring(i,i+1)
                                                             if(currChar !== '&'){ tempWord += currChar; } else { codeFiles.push(tempWord); tempWord = ""; }
                                                             console.log(tempWord);
@@ -126,7 +126,7 @@
                                                          fileDiv.style = "display: none;"; fileDiv.id = k+'sFilesCell';
 
                                                          var fileFiles = new Array(0); var tempWord = "";
-                                                         for (let i = 0; i<softwareProj[k][3].length-1; i++){
+                                                         for (let i = 0; i<softwareProj[k][3].length; i++){
                                                             currChar = softwareProj[k][3].substring(i,i+1)
                                                             if(currChar !== '&'){ tempWord += currChar; } else { fileFiles.push(tempWord); tempWord = ""; }
                                                          }
