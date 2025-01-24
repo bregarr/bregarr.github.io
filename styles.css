@@ -8,7 +8,7 @@ input {
 }
 
 
-#Heading {
+.Heading {
     padding: 5px;
     padding-bottom: 0px;
     margin: 0px 0px 0px 0px;
@@ -16,11 +16,11 @@ input {
     font-size: 64px;
     line-height: 2px;
 }
-#Subtitle {
+.Subtitle {
     font-size: 28px;
     margin-bottom: 30px;
 }
-#NavButton {
+.NavButton {
     border: none;
     background-color: #63BBFF
     font-size: 42px;
@@ -47,30 +47,38 @@ input {
     margin: 0px;
     margin-left: -18px;
 }
-#Content {
+.Content {
     padding: 12px 12px 12px 12px;
     background-color: #f0f0f0
 }
-#ContentOffset {
+.ContentOffset {
     padding: 12px 12px 12px 12px;
     background-color: #e5e5e5
 }
-#cHeading {
+.cHeading {
     margin-top: 5px;
     font-size: 36px;
     color: #101010;
 }
-#Feed {
+.Feed {
     background-color: #c1c1c1;
 }
-#FeedPost {
+.FeedPost {
     padding: 5px 5px 2px 5px;
     color: #616161;
     font-size: 14px;
 }
-#FeedText {
+.FeedText {
     padding-left: 12px;
     padding-bottom: 16px;
+    font-size: 18px;
+}
+.FeedTitle {
+    padding: 5px 5px 2px 5px;
+    color: #616161;
+    margin-bottom: -20px;
+    font-size: 32px;
+    font-weight: bold;
 }
 #ResumeText {
     margin-top: -20px;

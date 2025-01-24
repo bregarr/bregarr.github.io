@@ -32,16 +32,16 @@
         }
     </script>
 </head>
-<div id="Heading">
+<div class="Heading">
     <p>Projects</p>
-    <p id="Subtitle">This page contains all of my works that I believe show off my professional ability.</p>
+    <p class="Subtitle">This page contains all of my works that I believe show off my professional ability.</p>
     <div type="NavButton">
         <input type="button" id="InactivePage" value="Home" style="margin-left: -5px;" onclick="location.href='index.html';">
         <input type="button" id="InactivePage" value="About Me" onclick="location.href='about.html';">
         <input type="button" id="CurrentPage" value="Projects">
         <input type="button" id="InactivePage" value="Contact" onclick="location.href='contact.html';">
     </div>
-    <div type="NavButton">
+    <div class="NavButton">
         <input type="button" class="CurrentTab" id="SoftwareButton" value="Software" style="margin-left: -5px;" onclick="swapTab('Hardware', 'Software')">
         <input type="button" class="InactiveTab" id="HardwareButton" value="Hardware" onclick="swapTab('Software', 'Hardware')">
     </div>
@@ -49,7 +49,7 @@
 
 <div id="Software" style="display: inline;">
 
-    <div id="Content">
+    <div class="Content">
         <p class="cHeading">Study on the Impact of Alternative Fuels on Gasoline Consumption</p>
         <p id="ResumeText">As part of my previous major, I took an intro to Data Science class (CMSE 201) where the capstone project required us to come up with a question and answer it utilizing data. The question I picked was "Is Gasoline Mutually Exclusive with Alternative Fuel?" to which I found some pretty interesting results. All the code shown was produced by me unless explicitly stated otherwise.</p>
         <input type="button" id="1ImageButton" class="InactiveCell" value="Images" onclick="enableCell(1, 'Image', 'Code', 'Source', 'IPYNB')">
@@ -91,7 +91,7 @@
 
 <div id="Hardware" style="display: none;">
 
-    <div id="Content">
+    <div class="Content">
         <p class="cHeading">3D Designed and Printed Phone Case</p>
         <p id="ResumeText">In my freshman year of College, I was in the College of Engineering which required me to take the EGR100 class, in which we were tasked to design and optionally print a phone case.</p>
         <p id="ResumeText">I worked with my team to complete this task, where I designed the final product and printed it utilizing TPU filament due to its high elasticity, which better protected the phone from damage.</p>
@@ -104,7 +104,7 @@
         </div>
 
     </div>
-    <div id="ContentOffset">
+    <div class="ContentOffset">
         <p class="cHeading">Custom Laptop Build</p>
         <p id="ResumeText">To satiate my need to build computers while on campus, I bought some parts -- notably the Framework Laptop Mainboard -- and assembled a laptop as seen below. This is still somewhat of a work-in-progress at the moment which I have placed on hold, but I intend on designing and printing a case for it in the near future.</p>
         <p id="ResumeText">And yes, it *can* play Minecraft.</p>

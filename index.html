@@ -3,10 +3,10 @@
     <link rel="stylesheet" href="styles.css">
     <title>Techxas Student Site</title>
 </head>
-<div id="Heading">
+<div class="Heading">
     <p>Welcome to my site!</p>
-    <p id="Subtitle">This is my portfolio site to display what I've created and create connections.</p>
-    <div type="NavButton">
+    <p class="Subtitle">This is my portfolio site to display what I've created and create connections.</p>
+    <div class="NavButton">
         <input type="button" id="CurrentPage" value="Home" style="margin-left: -5px;">
         <input type="button" id="InactivePage" value="About Me" onclick="location.href='about.html';">
         <input type="button" id="InactivePage" value="Projects" onclick="location.href='projects.html';">
@@ -14,7 +14,7 @@
     </div>
 </div>
 
-<div id="Content">
+<div class="Content" id="Content">
     <p class="cHeading" style="padding-top: 4px; margin-bottom: 10px;">Activity Feed</p>
 
 
@@ -36,7 +36,6 @@
                 let tempArray = [data.values[i][0],data.values[i][1],data.values[i][2]];
                 activityFeed[activityFeed.length - i - 1] = tempArray;
             }
-            console.log(activityFeed);
         }
 
         (async function() {
