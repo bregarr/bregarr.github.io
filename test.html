@@ -23,14 +23,14 @@
             document.getElementById(n+mod+e+'Button').classList.add('SelectedCell');
             document.getElementById(n+mod+e+'Button').classList.remove('InactiveCell');
             document.getElementById(n+mod+e+'Cell').style.display = 'block';
+            }
             for (let d in dl) {
-                console.log(n+mod+dl[d]+'Cell');
+                console.log('dl='+dl);
                 document.getElementById(n+mod+dl[d]+'Cell').style.display = 'none';
                 if (document.getElementById(n+mod+dl[d]+'Button').classList.contains('SelectedCell')) {
                     document.getElementById(n+mod+dl[d]+'Button').classList.remove('SelectedCell');
                     document.getElementById(n+mod+dl[d]+'Button').classList.add('InactiveCell');
                 }
-            }
             }
         }
 
