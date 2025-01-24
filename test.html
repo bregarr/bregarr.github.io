@@ -96,24 +96,59 @@
                 if (!softwareProj[k][3].includes("<")) { codeButton.value = "Code"; newDiv.appendChild(codeButton); codeButton.type = 'Button';
                                                          codeButton.classList.add('InactiveCell'); codeButton.id = k+'sCodeButton'; contentTypes.push('Code');
                                                          codeDiv.classList.add('CellContent');
-                                                         codeDiv.style = "display: none;"; codeDiv.id = k+'sCodeCell'; }
+                                                         codeDiv.style = "display: none;"; codeDiv.id = k+'sCodeCell';
+
+                                                         var codeFiles = new Array(0); var tempWord = "";
+                                                         for (let i = 0; i<softwareProj[k][3].length-1; i++){
+                                                            currChar = softwareProj[k][3].substring(i,i+1)
+                                                            if(currChar !== '&'){ tempWord += currChar; } else { codeFiles.push(tempWord); tempWord = ""; }
+                                                         }
+
+                                                         for (let i = 0; i<codeFiles.length; i++){
+                                                            const newCode = document.createElement('embed'); newCode.src = "code/"+codeFiles[i];
+                                                            newCode.classList.add('CodeEmbed');
+                                                            codeDiv.appendChild(newCode);
+                                                         }
+                }
                 if (!softwareProj[k][4].includes("<")) { srcButton.value = "Sources"; newDiv.appendChild(srcButton); srcButton.type = 'Button';
                                                          srcButton.classList.add('InactiveCell'); srcButton.id = k+'sSourceButton'; contentTypes.push('Source');
                                                          srcDiv.classList.add('CellContent');
-                                                         srcDiv.style = "display: none;"; srcDiv.id = k+'sSourceCell'; }
+                                                         srcDiv.style = "display: none;"; srcDiv.id = k+'sSourceCell';
+
+                                                         const newSource = document.createElement('embed'); newSource.src = "code/"+softwareProj[k][4];
+                                                         newSource.classList.add('CodeEmbed');
+                                                         sourceDiv.appendChild(newSource);
+                }
                 if (!softwareProj[k][5].includes("<")) { filesButton.value = "Files"; newDiv.appendChild(filesButton); filesButton.type = 'Button';
                                                          filesButton.classList.add('InactiveCell'); filesButton.id = k+'sFilesButton'; contentTypes.push('Files');
                                                          fileDiv.classList.add('CellContent');
-                                                         fileDiv.style = "display: none;"; fileDiv.id = k+'sFilesCell'; }
+                                                         fileDiv.style = "display: none;"; fileDiv.id = k+'sFilesCell';
+
+                                                         var fileFiles = new Array(0); var tempWord = "";
+                                                         for (let i = 0; i<softwareProj[k][3].length-1; i++){
+                                                            currChar = softwareProj[k][3].substring(i,i+1)
+                                                            if(currChar !== '&'){ tempWord += currChar; } else { fileFiles.push(tempWord); tempWord = ""; }
+                                                         }
+
+                                                         for (let i = 0; i<fileFiles.length; i++){
+                                                            const newFile = document.createElement('a'); newFile.href = "code/"+fileFiles[i];
+                                                            newFile.download = "code/"+fileFiles[i];
+                                                            newFile.classList.add('FileDownload');
+                                                            newFile.textContent = "Download " + fileFiles[i];
+                                                            fileDiv.appendChild(newFile);
+                                                         }
+                }
 
                 var indexLen = contentTypes.length;
                 var imgIndex = contentTypes.indexOf('Image'); var codeIndex = contentTypes.indexOf('Code'); var srcIndex = contentTypes.indexOf('Source'); var fileIndex = contentTypes.indexOf('Files');
                 var imgContentTypes = contentTypes.filter((_, i) => i !== imgIndex); var codeContentTypes = contentTypes.filter((_, i) => i !== codeIndex);
                 var srcContentTypes = contentTypes.filter((_, i) => i !== srcIndex); var fileContentTypes = contentTypes.filter((_, i) => i !== fileIndex);
-                if (imgIndex !== -1) { newDiv.appendChild(imgDiv); imgButton.onclick = () => enableCell(true, k, 'Image', imgContentTypes); }
-                if (codeIndex !== -1) { newDiv.appendChild(codeDiv); codeButton.onclick = () => enableCell(true, k, 'Code', codeContentTypes); }
-                if (srcIndex !== -1) { newDiv.appendChild(srcDiv); srcButton.onclick = () => enableCell(true, k, 'Source', srcContentTypes); }
-                if (fileIndex !== -1) { newDiv.appendChild(fileDiv); filesButton.onclick = () => enableCell(true, k, 'Files', fileContentTypes); }
+
+                var firstTab = true;
+                if (imgIndex !== -1) { if (firstTab) { firstTab = false; imgButton.style = "margin-left = 18px;"; } newDiv.appendChild(imgDiv); imgButton.onclick = () => enableCell(true, k, 'Image', imgContentTypes); }
+                if (codeIndex !== -1) { if (firstTab) { firstTab = false; codeButton.style = "margin-left = 18px;"; } newDiv.appendChild(codeDiv); codeButton.onclick = () => enableCell(true, k, 'Code', codeContentTypes); }
+                if (srcIndex !== -1) { if (firstTab) { firstTab = false; srcButton.style = "margin-left = 18px;"; } newDiv.appendChild(srcDiv); srcButton.onclick = () => enableCell(true, k, 'Source', srcContentTypes); }
+                if (fileIndex !== -1) { if (firstTab) { firstTab = false; fileButton.style = "margin-left = 18px;"; } newDiv.appendChild(fileDiv); filesButton.onclick = () => enableCell(true, k, 'Files', fileContentTypes); }
 
                 newTitle.textContent = softwareProj[k][0];
                 newDesc.textContent = softwareProj[k][1];
