@@ -106,9 +106,10 @@
                                                          fileDiv.classList.add('CellContent');
                                                          fileDiv.style = "display: none;"; fileDiv.id = k+'sFilesCell'; }
 
+                var indexLen = contentTypes.length;
                 var imgIndex = contentTypes.indexOf('Image'); var codeIndex = contentTypes.indexOf('Code'); var srcIndex = contentTypes.indexOf('Source'); var fileIndex = contentTypes.indexOf('Files');
-                var imgContentList = contentTypes; var codeContentList = contentTypes; var srcContentList = contentTypes; var fileContentList = contentTypes;
-                var imgContentTypes = imgContentList.splice(imgIndex, 1); var codeContentTypes = codeContentList.splice(codeIndex, 1); var srcContentTypes = srcContentList.splice(srcIndex, 1); var fileContentTypes = fileContentList.splice(fileIndex, 1);
+                var imgContentTypes = contentTypes.filter((_, i) => i !== imgIndex); var codeContentTypes = contentTypes.filter((_, i) => i !== codeIndex);
+                var srcContentTypes = contentTypes.filter((_, i) => i !== srcIndex); var fileContentTypes = contentTypes.filter((_, i) => i !== fileIndex);
                 if (imgIndex !== -1) { newDiv.appendChild(imgDiv); imgButton.onclick = () => enableCell(true, k, 'Image', imgContentTypes); }
                 if (codeIndex !== -1) { newDiv.appendChild(codeDiv); codeButton.onclick = () => enableCell(true, k, 'Code', codeContentTypes); }
                 if (srcIndex !== -1) { newDiv.appendChild(srcDiv); srcButton.onclick = () => enableCell(true, k, 'Source', srcContentTypes); }
