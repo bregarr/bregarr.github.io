@@ -107,11 +107,12 @@
                                                          fileDiv.style = "display: none;"; fileDiv.id = k+'sFilesCell'; }
 
                 var imgIndex = contentTypes.indexOf('Image'); var codeIndex = contentTypes.indexOf('Code'); var srcIndex = contentTypes.indexOf('Source'); var fileIndex = contentTypes.indexOf('Files');
-                var imgContentTypes = contentTypes; var codeContentTypes = contentTypes; var srcContentTypes = contentTypes; var fileContentTypes = contentTypes;
-                if (imgIndex !== -1) { newDiv.appendChild(imgDiv); imgButton.onclick = () => enableCell(true, k, 'Image', imgContentTypes.splice(imgIndex, 1)); }
-                if (codeIndex !== -1) { newDiv.appendChild(codeDiv); codeButton.onclick = () => enableCell(true, k, 'Code', codeContentTypes.splice(codeIndex, 1)); }
-                if (srcIndex !== -1) { newDiv.appendChild(srcDiv); srcButton.onclick = () => enableCell(true, k, 'Source', srcContentTypes.splice(srcIndex, 1)); }
-                if (fileIndex !== -1) { newDiv.appendChild(fileDiv); filesButton.onclick = () => enableCell(true, k, 'Files', fileContentTypes.splice(fileIndex, 1)); }
+                var imgContentList = contentTypes; var codeContentList = contentTypes; var srcContentList = contentTypes; var fileContentList = contentTypes;
+                var imgContentTypes = imgContentList.splice(imgIndex, 1); var codeContentTypes = codeContentList.splice(codeIndex, 1); var srcContentTypes = srcContentList.splice(srcIndex, 1); var fileContentTypes = fileContentList.splice(fileIndex, 1);
+                if (imgIndex !== -1) { newDiv.appendChild(imgDiv); imgButton.onclick = () => enableCell(true, k, 'Image', imgContentTypes); }
+                if (codeIndex !== -1) { newDiv.appendChild(codeDiv); codeButton.onclick = () => enableCell(true, k, 'Code', codeContentTypes); }
+                if (srcIndex !== -1) { newDiv.appendChild(srcDiv); srcButton.onclick = () => enableCell(true, k, 'Source', srcContentTypes); }
+                if (fileIndex !== -1) { newDiv.appendChild(fileDiv); filesButton.onclick = () => enableCell(true, k, 'Files', fileContentTypes); }
 
                 newTitle.textContent = softwareProj[k][0];
                 newDesc.textContent = softwareProj[k][1];
