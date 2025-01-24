@@ -29,6 +29,8 @@ input {
     font-size: 28px;
     margin-bottom: 30px;
     text-align: center;
+    word-wrap: break-word;
+    line-height: 28px;
 }
 .NavButton {
     border: none;
@@ -177,4 +179,12 @@ input {
     position: absolute;
     top: 10%;
     left: 10%;
+}
+.HorizImg {
+    height: auto;
+    width: 650px;
+}
+.VertImg {
+    height: auto;
+    width: 400px;
 }
