@@ -61,12 +61,24 @@ input {
 }
 .Content {
     padding: 12px 12px 12px 12px;
-    background-color: #f0f0f0
-    display: block;
+    background-color: #f0f0f0;
+    display: inline;
+    width: 48%;
 }
 .ContentOffset {
     padding: 12px 12px 12px 12px;
-    background-color: #e5e5e5
+    background-color: #e5e5e5;
+    display: inline;
+    width: 48%
+}
+.MainContent {
+    padding: 12px 12px 12px 12px;
+    background-color: #f0f0f0;
+    display: block;
+}
+.MainContentOffset {
+    padding: 12px 12px 12px 12px;
+    background-color: #e5e5e5;
     display: block;
 }
 .cHeading {
