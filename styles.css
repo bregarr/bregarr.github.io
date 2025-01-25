@@ -5,7 +5,6 @@
     --selection: #709775;
 }
 
-
 div {
     font-family: monaco, monospace;
     color: #ffffff;
@@ -62,14 +61,18 @@ input {
 .Content {
     padding: 12px 12px 12px 12px;
     background-color: #f0f0f0;
-    display: inline;
+    display: inline-block;
     width: 48%;
+    position: relative;
+    padding-bottom: 48px;
 }
 .ContentOffset {
     padding: 12px 12px 12px 12px;
     background-color: #e5e5e5;
-    display: inline;
-    width: 48%
+    display: inline-block;
+    width: 48%;
+    position: relative;
+    padding-bottom: 48px;
 }
 .MainContent {
     padding: 12px 12px 12px 12px;
@@ -184,6 +187,9 @@ input {
 .CellContent {
     padding: 12px 12px 12px 12px;
     background-color: #d5d5d5;
+    position: relative;
+    margin-top: 48px;
+    word-wrap: break-word;
 }
 .CellText {
     color: #0a0a0a;
@@ -231,24 +237,51 @@ input {
     margin-top: 8px;
 }
 .HorizThumb {
-    height: auto;
-    width: 400px;
+    display: inline-block;
+    height: 250px;
+    width: auto;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    position: relative;
+    vertical-align: top;
     float: left;
 }
 .VertThumb {
-    height: auto;
-    width: 250px;
+    height: 250px;
+    width: auto;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
     float: left;
 }
 .ProjText {
-    margin-top: -20px;
+    vertical-align: top;
     margin-bottom: 30px;
     padding-left: 24px;
     font-size: 22px;
     color: #1a1a1a;
+    text-align: justify;
+    display: inline;
+    overflow: auto;
+    display: table-row;
 }
 .ProjHeading {
     margin-top: 5px;
     font-size: 36px;
     color: #101010;
+    display: table-row;
+}
+.ProjNav {
+    position: absolute;
+    margin-top: 8px;
+    padding-left: 10px;
+
+    left: 0px;
+    display: table-row;
+}
+.ProjCell {
+    position: relative;
+    display: table;
 }
