@@ -230,3 +230,25 @@ input {
     height: 4%;
     margin-top: 8px;
 }
+.HorizThumb {
+    height: auto;
+    width: 400px;
+    float: left;
+}
+.VertThumb {
+    height: auto;
+    width: 250px;
+    float: left;
+}
+.ProjText {
+    margin-top: -20px;
+    margin-bottom: 30px;
+    padding-left: 24px;
+    font-size: 22px;
+    color: #1a1a1a;
+}
+.ProjHeading {
+    margin-top: 5px;
+    font-size: 36px;
+    color: #101010;
+}

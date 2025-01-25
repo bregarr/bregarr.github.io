@@ -38,8 +38,8 @@
         async function fetchPrivateSheet() {
             const apiKey = "AIzaSyCE-rKpVbm6l23iLdmD5mIWpvOiAnOh4oo";
             const sheetID = "1fQmtzIvjzD_6DSqiuy9-txca9QZQ4Z_0eLRKi0pWTk0";
-            const rangeSoft = "Sheet1!G2:L50";  // Specify your data range
-            const rangeHard = "Sheet1!N2:S50";
+            const rangeSoft = "Sheet1!G2:M50";  // Specify your data range
+            const rangeHard = "Sheet1!N2:T50";
             const urlSoft = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${rangeSoft}?key=${apiKey}`;
             const urlHard = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${rangeHard}?key=${apiKey}`;
 
@@ -80,10 +80,12 @@
                 const newDiv = document.createElement("div");
                 const newTitle = document.createElement("p");
                 const newDesc = document.createElement("p");
+                const thumbImg = document.createElement("p");
 
                 var contentTypes = new Array(0);
 
                 newDiv.appendChild(newTitle);
+                newDiv.appendChild(thumbImg);
                 newDiv.appendChild(newDesc);
 
                 const imgButton = document.createElement("input"); const codeButton = document.createElement("input");
@@ -169,6 +171,14 @@
                 if (srcIndex !== -1) { if (firstTab) { firstTab = false; srcButton.style = "margin-left = 18px;"; } newDiv.appendChild(srcDiv); srcButton.onclick = () => enableCell(false, k, 'Source', srcContentTypes); }
                 if (fileIndex !== -1) { if (firstTab) { firstTab = false; fileButton.style = "margin-left = 18px;"; } newDiv.appendChild(fileDiv); filesButton.onclick = () => enableCell(false, k, 'Files', fileContentTypes); }
 
+                var thumbSrc = hardwareProj[k][6];
+                var divIndex = thumbSrc.indexOf('>');
+                thumbImg.src = thumbSrc.substring(0,divIndex);
+                thumbImg.classList.add(thumbSrc.substring(divIndex+1,thumbSrc.length));
+
+                newTitle.textContent = hardwareProj[k][0];
+                newDesc.textContent = hardwareProj[k][1];
+
                 newTitle.textContent = hardwareProj[k][0];
                 newDesc.textContent = hardwareProj[k][1];
 
@@ -191,10 +201,12 @@
                 const newDiv = document.createElement("div");
                 const newTitle = document.createElement("p");
                 const newDesc = document.createElement("p");
+                const thumbImg = document.createElement("p");
 
                 var contentTypes = new Array(0);
 
                 newDiv.appendChild(newTitle);
+                newDiv.appendChild(thumbImg);
                 newDiv.appendChild(newDesc);
 
                 const imgButton = document.createElement("input"); const codeButton = document.createElement("input");
@@ -282,14 +294,22 @@
                 if (srcIndex !== -1) { if (firstTab) { firstTab = false; srcButton.style = "margin-left = 18px;"; } newDiv.appendChild(srcDiv); srcButton.onclick = () => enableCell(true, k, 'Source', srcContentTypes); }
                 if (fileIndex !== -1) { if (firstTab) { firstTab = false; fileButton.style = "margin-left = 18px;"; } newDiv.appendChild(fileDiv); filesButton.onclick = () => enableCell(true, k, 'Files', fileContentTypes); }
 
+                var thumbSrc = softwareProj[k][6];
+                var divIndex = thumbSrc.indexOf('>');
+                thumbImg.src = thumbSrc.substring(0,divIndex);
+                thumbImg.classList.add(thumbSrc.substring(divIndex+1,thumbSrc.length));
+
                 newTitle.textContent = softwareProj[k][0];
                 newDesc.textContent = softwareProj[k][1];
 
                 if (k%2==0) { newDiv.classList.add('Content'); }
                 else { newDiv.classList.add('ContentOffset'); }
 
-                newTitle.classList.add('cHeading');
-                newDesc.classList.add('ResumeText');
+                if ((k%4==0) || (k%4==2)) { newDiv.style = "float: left;"; }
+                else { newDiv.style = "float: right;"; }
+
+                newTitle.classList.add('ProjHeading');
+                newDesc.classList.add('ProjText');
 
                 const softwareDiv = document.getElementById("Software");
                 softwareDiv.insertBefore(newDiv, EOFsoft);
