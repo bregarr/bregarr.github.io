@@ -57,7 +57,7 @@
                 if (dataSoft.values[i][3] != undefined){ tempArray.push(dataSoft.values[i][3]); } else { tempArray.push("<"); }
                 if (dataSoft.values[i][4] != undefined){ tempArray.push(dataSoft.values[i][4]); } else { tempArray.push("<"); }
                 if (dataSoft.values[i][5] != undefined){ tempArray.push(dataSoft.values[i][5]); } else { tempArray.push("<"); }
-                if (dataSoft.values[i][5] != undefined){ tempArray.push(dataSoft.values[i][6]); } else { tempArray.push("<"); }
+                if (dataSoft.values[i][6] != undefined){ tempArray.push(dataSoft.values[i][6]); } else { tempArray.push("<"); }
                 softwareProj[softwareProj.length - i - 1] = tempArray;
             }
             for (var i = (hardwareProj.length-1); i >= 0; i--) {
@@ -66,7 +66,7 @@
                 if (dataHard.values[i][3] != undefined){ tempArray.push(dataHard.values[i][3]); } else { tempArray.push("<"); }
                 if (dataHard.values[i][4] != undefined){ tempArray.push(dataHard.values[i][4]); } else { tempArray.push("<"); }
                 if (dataHard.values[i][5] != undefined){ tempArray.push(dataHard.values[i][5]); } else { tempArray.push("<"); }
-                if (dataHard.values[i][6] != undefined){ tempArray.push(dataHard.values[i][5]); } else { tempArray.push("<"); }
+                if (dataHard.values[i][6] != undefined){ tempArray.push(dataHard.values[i][6]); } else { tempArray.push("<"); }
                 hardwareProj[hardwareProj.length - i - 1] = tempArray;
             }
         }
@@ -82,7 +82,7 @@
                 const newDiv = document.createElement("div");
                 const newTitle = document.createElement("p");
                 const newDesc = document.createElement("p");
-                const thumbImg = document.createElement("p");
+                const thumbImg = document.createElement("img");
 
                 var contentTypes = new Array(0);
 
@@ -175,7 +175,8 @@
 
                 var thumbSrc = hardwareProj[k][6];
                 var divIndex = thumbSrc.indexOf('>');
-                thumbImg.src = thumbSrc.substring(0,divIndex);
+                thumbImg.src = "assets/"+thumbSrc.substring(0,divIndex);
+
                 thumbImg.classList.add(thumbSrc.substring(divIndex+1,thumbSrc.length));
 
                 newTitle.textContent = hardwareProj[k][0];
@@ -187,8 +188,8 @@
                 if (k%2==0) { newDiv.classList.add('Content'); }
                 else { newDiv.classList.add('ContentOffset'); }
 
-                if ((k%4==0) || (k%4==2)) { newDiv.style = "float: left;"; }
-                else { newDiv.style = "float: right;"; }
+                if ((k%4==0) || (k%4==2)) { newDiv.style = "float: left; margin-left: 10px;"; }
+                else { newDiv.style = "float: left;"; }
 
                 newTitle.classList.add('cHeading');
                 newDesc.classList.add('ResumeText');
@@ -203,7 +204,7 @@
                 const newDiv = document.createElement("div");
                 const newTitle = document.createElement("p");
                 const newDesc = document.createElement("p");
-                const thumbImg = document.createElement("p");
+                const thumbImg = document.createElement("img");
 
                 var contentTypes = new Array(0);
 
@@ -298,7 +299,8 @@
 
                 var thumbSrc = softwareProj[k][6];
                 var divIndex = thumbSrc.indexOf('>');
-                thumbImg.src = thumbSrc.substring(0,divIndex);
+                thumbImg.src = "assets/"+thumbSrc.substring(0,divIndex);
+
                 thumbImg.classList.add(thumbSrc.substring(divIndex+1,thumbSrc.length));
 
                 newTitle.textContent = softwareProj[k][0];
@@ -307,8 +309,8 @@
                 if (k%2==0) { newDiv.classList.add('Content'); }
                 else { newDiv.classList.add('ContentOffset'); }
 
-                if ((k%4==0) || (k%4==2)) { newDiv.style = "float: left;"; }
-                else { newDiv.style = "float: right;"; }
+                if ((k%4==0) || (k%4==2)) { newDiv.style = "float: left; margin-left: 10px;"; }
+                else { newDiv.style = "float: left;"; }
 
                 newTitle.classList.add('ProjHeading');
                 newDesc.classList.add('ProjText');
