@@ -57,6 +57,7 @@
                 if (dataSoft.values[i][3] != undefined){ tempArray.push(dataSoft.values[i][3]); } else { tempArray.push("<"); }
                 if (dataSoft.values[i][4] != undefined){ tempArray.push(dataSoft.values[i][4]); } else { tempArray.push("<"); }
                 if (dataSoft.values[i][5] != undefined){ tempArray.push(dataSoft.values[i][5]); } else { tempArray.push("<"); }
+                if (dataSoft.values[i][5] != undefined){ tempArray.push(dataSoft.values[i][6]); } else { tempArray.push("<"); }
                 softwareProj[softwareProj.length - i - 1] = tempArray;
             }
             for (var i = (hardwareProj.length-1); i >= 0; i--) {
@@ -65,6 +66,7 @@
                 if (dataHard.values[i][3] != undefined){ tempArray.push(dataHard.values[i][3]); } else { tempArray.push("<"); }
                 if (dataHard.values[i][4] != undefined){ tempArray.push(dataHard.values[i][4]); } else { tempArray.push("<"); }
                 if (dataHard.values[i][5] != undefined){ tempArray.push(dataHard.values[i][5]); } else { tempArray.push("<"); }
+                if (dataHard.values[i][6] != undefined){ tempArray.push(dataHard.values[i][5]); } else { tempArray.push("<"); }
                 hardwareProj[hardwareProj.length - i - 1] = tempArray;
             }
         }
@@ -171,9 +173,7 @@
                 if (srcIndex !== -1) { if (firstTab) { firstTab = false; srcButton.style = "margin-left = 18px;"; } newDiv.appendChild(srcDiv); srcButton.onclick = () => enableCell(false, k, 'Source', srcContentTypes); }
                 if (fileIndex !== -1) { if (firstTab) { firstTab = false; fileButton.style = "margin-left = 18px;"; } newDiv.appendChild(fileDiv); filesButton.onclick = () => enableCell(false, k, 'Files', fileContentTypes); }
 
-                console.log(hardwareProj[k][6]);
                 var thumbSrc = hardwareProj[k][6];
-                console.log(thumbSrc);
                 var divIndex = thumbSrc.indexOf('>');
                 thumbImg.src = thumbSrc.substring(0,divIndex);
                 thumbImg.classList.add(thumbSrc.substring(divIndex+1,thumbSrc.length));
