@@ -200,3 +200,21 @@ input {
     border-style: solid;
     margin-bottom: 16px;
 }
+.SkillText {
+    margin-top: -20px;
+    margin-bottom: 30px;
+    padding-left: 24px;
+    font-size: 22px;
+    color: #1a1a1a;
+    display: block;
+}
+.InlineImg {
+    width: 12%;
+    height: 12%;
+    margin-top: 8px;
+}
+.InlineImgRight {
+    width: 4%;
+    height: 4%;
+    margin-top: 8px;
+}
