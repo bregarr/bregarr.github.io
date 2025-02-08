@@ -21,12 +21,12 @@
                 document.getElementById(n+mod+e+'Button').classList.add('InactiveCell');
                 document.getElementById(n+mod+e+'Cell').style.display = 'none';
             } else {
-            console.log(n+mod+e+'Button');
             document.getElementById(n+mod+e+'Button').classList.add('SelectedCell');
             document.getElementById(n+mod+e+'Button').classList.remove('InactiveCell');
             document.getElementById(n+mod+e+'Cell').style.display = 'block';
             }
             for (let d in dl) {
+                console.log(n+mod+dl[d]+'Cell')
                 document.getElementById(n+mod+dl[d]+'Cell').style.display = 'none';
                 if (document.getElementById(n+mod+dl[d]+'Button').classList.contains('SelectedCell')) {
                     document.getElementById(n+mod+dl[d]+'Button').classList.remove('SelectedCell');
@@ -416,7 +416,6 @@
                                                          srcDiv.classList.add('CellContent');
                                                          srcDiv.style = "display: none;"; srcDiv.id = k+'aSourceCell';
 
-                                                         console.log("code/"+artProj[k][4]);
                                                          const newSource = document.createElement('embed'); newSource.src = "code/"+artProj[k][4];
                                                          newSource.classList.add('SourceEmbed');
                                                          srcDiv.appendChild(newSource);
