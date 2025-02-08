@@ -15,24 +15,33 @@
             document.getElementById(a+"Button").classList.add('InactiveTab');
         }
 
-        function enableCell(mod, n, e, dl){
+        var softwareContents = [[],[]];
+        var hardwareContents = [[],[]];
+        var artContents = [[],[]];
+        function enableCell(mod, n, e){
+            var dl = [[], []];
+            if(mod == 's') {dl = softwareContents[n];}
+            else if(mod == 'h') {dl = hardwareContents[n];}
+            else if(mod == 'a') {dl = artContents[n];}
             if (document.getElementById(n+mod+e+'Button').classList.contains('SelectedCell')) {
                 document.getElementById(n+mod+e+'Button').classList.remove('SelectedCell');
                 document.getElementById(n+mod+e+'Button').classList.add('InactiveCell');
                 document.getElementById(n+mod+e+'Cell').style.display = 'none';
             } else {
-            document.getElementById(n+mod+e+'Button').classList.add('SelectedCell');
-            document.getElementById(n+mod+e+'Button').classList.remove('InactiveCell');
-            document.getElementById(n+mod+e+'Cell').style.display = 'block';
+                document.getElementById(n+mod+e+'Button').classList.add('SelectedCell');
+                document.getElementById(n+mod+e+'Button').classList.remove('InactiveCell');
+                document.getElementById(n+mod+e+'Cell').style.display = 'block';
             }
             for (let d in dl) {
-                console.log(n+mod+dl[d]+'Cell')
+                if(dl[d] != e){
                 document.getElementById(n+mod+dl[d]+'Cell').style.display = 'none';
                 if (document.getElementById(n+mod+dl[d]+'Button').classList.contains('SelectedCell')) {
                     document.getElementById(n+mod+dl[d]+'Button').classList.remove('SelectedCell');
                     document.getElementById(n+mod+dl[d]+'Button').classList.add('InactiveCell');
                 }
+                }
             }
+
         }
 
         var softwareProj;
@@ -184,16 +193,13 @@
                                                          }
                 }
 
-                var indexLen = contentTypes.length;
-                var imgIndex = contentTypes.indexOf('Image'); var codeIndex = contentTypes.indexOf('Code'); var srcIndex = contentTypes.indexOf('Source'); var fileIndex = contentTypes.indexOf('Files');
-                var imgContentTypes = contentTypes.filter((_, i) => i !== imgIndex); var codeContentTypes = contentTypes.filter((_, i) => i !== codeIndex);
-                var srcContentTypes = contentTypes.filter((_, i) => i !== srcIndex); var fileContentTypes = contentTypes.filter((_, i) => i !== fileIndex);
+                hardwareContents[k] = contentTypes;
 
                 var firstTab = true;
-                if (imgIndex !== -1) { if (firstTab) { firstTab = false; imgButton.style = "margin-left = 18px;"; } newDiv.appendChild(imgDiv); imgButton.onclick = () => enableCell('h', k, 'Image', imgContentTypes); }
-                if (codeIndex !== -1) { if (firstTab) { firstTab = false; codeButton.style = "margin-left = 18px;"; } newDiv.appendChild(codeDiv); codeButton.onclick = () => enableCell('h', k, 'Code', codeContentTypes); }
-                if (srcIndex !== -1) { if (firstTab) { firstTab = false; srcButton.style = "margin-left = 18px;"; } newDiv.appendChild(srcDiv); srcButton.onclick = () => enableCell('h', k, 'Source', srcContentTypes); }
-                if (fileIndex !== -1) { if (firstTab) { firstTab = false; fileButton.style = "margin-left = 18px;"; } newDiv.appendChild(fileDiv); filesButton.onclick = () => enableCell('h', k, 'Files', fileContentTypes); }
+                if (hardwareContents[k].includes('Image')) { if (firstTab) { firstTab = false; imgButton.style = "margin-left = 18px;"; } newDiv.appendChild(imgDiv); imgButton.onclick = () => enableCell('h', k, 'Image'); }
+                if (hardwareContents[k].includes('Code')) { if (firstTab) { firstTab = false; codeButton.style = "margin-left = 18px;"; } newDiv.appendChild(codeDiv); codeButton.onclick = () => enableCell('h', k, 'Code'); }
+                if (hardwareContents[k].includes('Source')) { if (firstTab) { firstTab = false; srcButton.style = "margin-left = 18px;"; } newDiv.appendChild(srcDiv); srcButton.onclick = () => enableCell('h', k, 'Source'); }
+                if (hardwareContents[k].includes('Files')) { if (firstTab) { firstTab = false; fileButton.style = "margin-left = 18px;"; } newDiv.appendChild(fileDiv); filesButton.onclick = () => enableCell('h', k, 'Files'); }
 
                 var thumbSrc = hardwareProj[k][6];
                 var divIndex = thumbSrc.indexOf('>');
@@ -224,6 +230,7 @@
             }
 
             //Software
+
             for (let k in softwareProj)  { // https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement
 
                 const newDiv = document.createElement("div");
@@ -316,16 +323,13 @@
                                                          }
                 }
 
-                var indexLen = contentTypes.length;
-                var imgIndex = contentTypes.indexOf('Image'); var codeIndex = contentTypes.indexOf('Code'); var srcIndex = contentTypes.indexOf('Source'); var fileIndex = contentTypes.indexOf('Files');
-                var imgContentTypes = contentTypes.filter((_, i) => i !== imgIndex); var codeContentTypes = contentTypes.filter((_, i) => i !== codeIndex);
-                var srcContentTypes = contentTypes.filter((_, i) => i !== srcIndex); var fileContentTypes = contentTypes.filter((_, i) => i !== fileIndex);
+                softwareContents[k] = contentTypes;
 
                 var firstTab = true;
-                if (imgIndex !== -1) { if (firstTab) { firstTab = false; imgButton.style = "margin-left = 18px;"; } newDiv.appendChild(imgDiv); imgButton.onclick = () => enableCell('s', k, 'Image', imgContentTypes); }
-                if (codeIndex !== -1) { if (firstTab) { firstTab = false; codeButton.style = "margin-left = 18px;"; } newDiv.appendChild(codeDiv); codeButton.onclick = () => enableCell('s', k, 'Code', codeContentTypes); }
-                if (srcIndex !== -1) { if (firstTab) { firstTab = false; srcButton.style = "margin-left = 18px;"; } newDiv.appendChild(srcDiv); srcButton.onclick = () => enableCell('s', k, 'Source', srcContentTypes); }
-                if (fileIndex !== -1) { if (firstTab) { firstTab = false; fileButton.style = "margin-left = 18px;"; } newDiv.appendChild(fileDiv); filesButton.onclick = () => enableCell('s', k, 'Files', fileContentTypes); }
+                if (softwareContents[k].includes('Image')) { if (firstTab) { firstTab = false; imgButton.style = "margin-left = 18px;"; } newDiv.appendChild(imgDiv); imgButton.onclick = () => enableCell('s', k, 'Image'); }
+                if (softwareContents[k].includes('Code')) { if (firstTab) { firstTab = false; codeButton.style = "margin-left = 18px;"; } newDiv.appendChild(codeDiv); codeButton.onclick = () => enableCell('s', k, 'Code'); }
+                if (softwareContents[k].includes('Source')) { if (firstTab) { firstTab = false; srcButton.style = "margin-left = 18px;"; } newDiv.appendChild(srcDiv); srcButton.onclick = () => enableCell('s', k, 'Source'); }
+                if (softwareContents[k].includes('Files')) { if (firstTab) { firstTab = false; fileButton.style = "margin-left = 18px;"; } newDiv.appendChild(fileDiv); filesButton.onclick = () => enableCell('s', k, 'Files'); }
 
                 var thumbSrc = softwareProj[k][6];
                 var divIndex = thumbSrc.indexOf('>');
@@ -443,16 +447,13 @@
                                                          }
                 }
 
-                var indexLen = contentTypes.length;
-                var imgIndex = contentTypes.indexOf('Image'); var codeIndex = contentTypes.indexOf('Code'); var srcIndex = contentTypes.indexOf('Source'); var fileIndex = contentTypes.indexOf('Files');
-                var imgContentTypes = contentTypes.filter((_, i) => i !== imgIndex); var codeContentTypes = contentTypes.filter((_, i) => i !== codeIndex);
-                var srcContentTypes = contentTypes.filter((_, i) => i !== srcIndex); var fileContentTypes = contentTypes.filter((_, i) => i !== fileIndex);
+                artContents[k] = contentTypes;
 
                 var firstTab = true;
-                if (imgIndex !== -1) { if (firstTab) { firstTab = false; imgButton.style = "margin-left = 18px;"; } newDiv.appendChild(imgDiv); imgButton.onclick = () => enableCell('a', k, 'Image', imgContentTypes); }
-                if (codeIndex !== -1) { if (firstTab) { firstTab = false; codeButton.style = "margin-left = 18px;"; } newDiv.appendChild(codeDiv); codeButton.onclick = () => enableCell('a', k, 'Code', codeContentTypes); }
-                if (srcIndex !== -1) { if (firstTab) { firstTab = false; srcButton.style = "margin-left = 18px;"; } newDiv.appendChild(srcDiv); srcButton.onclick = () => enableCell('a', k, 'Source', srcContentTypes); }
-                if (fileIndex !== -1) { if (firstTab) { firstTab = false; fileButton.style = "margin-left = 18px;"; } newDiv.appendChild(fileDiv); filesButton.onclick = () => enableCell('a', k, 'Files', fileContentTypes); }
+                if (artContents[k].includes('Image')) { if (firstTab) { firstTab = false; imgButton.style = "margin-left = 18px;"; } newDiv.appendChild(imgDiv); imgButton.onclick = () => enableCell('a', k, 'Image'); }
+                if (artContents[k].includes('Code')) { if (firstTab) { firstTab = false; codeButton.style = "margin-left = 18px;"; } newDiv.appendChild(codeDiv); codeButton.onclick = () => enableCell('a', k, 'Code'); }
+                if (artContents[k].includes('Source')) { if (firstTab) { firstTab = false; srcButton.style = "margin-left = 18px;"; } newDiv.appendChild(srcDiv); srcButton.onclick = () => enableCell('a', k, 'Source'); }
+                if (artContents[k].includes('Files')) { if (firstTab) { firstTab = false; fileButton.style = "margin-left = 18px;"; } newDiv.appendChild(fileDiv); filesButton.onclick = () => enableCell('a', k, 'Files'); }
 
                 var thumbSrc = artProj[k][6];
                 var divIndex = thumbSrc.indexOf('>');
