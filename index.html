@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="styles.css">
-    <title>Techxas Student Site</title>
+    <script src="projects.js"></script>
+    <title>TexasCodin Home</title>
 </head>
 <div class="Heading">
     <p>Texascod.in</p>
@@ -9,7 +10,7 @@
     <div class="NavButton">
         <input type="button" class="CurrentPage" value="Home" style="margin-left: -5px;">
         <input type="button" class="InactivePage" value="About Me" onclick="location.href='about.html';">
-        <input type="button" class="InactivePage" value="Projects" onclick="location.href='projects.html';">
+        <input type="button" class="InactivePage" value="Activity Feed" onclick="location.href='projects.html';">
         <input type="button" class="InactivePage" value="Contact" onclick="location.href='contact.html';">
     </div>
 </div>
@@ -22,11 +23,13 @@
         <p class="cHeading" style="padding-left: 16px;">Skills</p>
         <p class="SkillText" style="float: left; padding-right: 15%; width: 35%"> - Programming<br> &nbsp; <img src="assets/Python.png" class="InlineImg"> Python<br> &nbsp;
             <img src="assets/Java.png" class="InlineImg"> Java<br> &nbsp; <img src="assets/JavaScript.png" class="InlineImg"> JavaScript<br> &nbsp;
-            <img src="assets/CS.png" class="InlineImg"> C#<br> &nbsp; <img src="assets/CPP.png" class="InlineImg"> C++</p>
+            <img src="assets/CS.png" class="InlineImg"> C#<br> &nbsp; <img src="assets/CPP.png" class="InlineImg"> C++<br> &nbsp;
+            <img src="assets/HTML.png" class="InlineImg"> HTML</p>
         <p class="SkillText" style="float: center;"> - Programs<br> &nbsp; <img src="assets/OnShape.png" class="InlineImgRight"> OnShape<br> &nbsp;
             <img src="assets/Blender.png" class="InlineImgRight"> Blender<br> &nbsp; <img src="assets/PaintDotNet.png" class="InlineImgRight"> Paint.net<br> &nbsp;
             <img src="assets/VSC.png" class="InlineImgRight"> VSCode<br> &nbsp; <img src="assets/Filmora.png" class="InlineImgRight"> Filmora 9<br> &nbsp;
-            <img src="assets/OBS.png" class="InlineImgRight"> OBS</p>
+            <img src="assets/OBS.png" class="InlineImgRight"> OBS<br> &nbsp; <img src="assets/Unity.png" class="InlineImgRight"> Unity<br> &nbsp;
+            <img src="assets/Painter.png" class="InlineImgRight"> Substance Painter</p>
         </div>
         <div class="SkillBubble">
         <p class="cHeading" style="padding-left: 16px;">Education</p>
@@ -37,71 +40,31 @@
     </div>
 
 <div class="MainContent" id="Content" style="display: table-cell;">
-    <p class="cHeading" style="padding-top: 4px; margin-bottom: 24px; margin-left: 36px;">Activity Feed</p>
+    <p class="cHeading" style="padding-top: 4px; margin-bottom: 24px; margin-left: 36px;">Projects</p>
+    <div class="NavButton">
+        <input type="button" class="CurrentTab" id="SoftwareButton" value="Software" style="margin-left: -5px;" onclick="swapTab('Software', 'Hardware', 'Art')">
+        <input type="button" class="InactiveTab" id="HardwareButton" value="Hardware" onclick="swapTab('Hardware', 'Software', 'Art')">
+        <input type="button" class="InactiveTab" id="ArtButton" value="Art" onclick="swapTab('Art', 'Software', 'Hardware')">
+    </div>
+
+    <div id="Software" style="display: inline; position: relative;">
 
 
-
-    <script>
-        var activityFeed;
-        async function fetchPrivateSheet() {
-            const apiKey = "AIzaSyCE-rKpVbm6l23iLdmD5mIWpvOiAnOh4oo";
-            const sheetID = "1fQmtzIvjzD_6DSqiuy9-txca9QZQ4Z_0eLRKi0pWTk0";
-            const range = "Sheet1!A2:D50";  // Specify your data range
-            const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${range}?key=${apiKey}`;
-
-            const response = await fetch(url);
-            const data = await response.json();
-
-            activityFeed = new Array(data.values.length);
-
-            for (var i = (activityFeed.length-1); i >= 0; i--) {
-                let tempArray = [data.values[i][0],data.values[i][1],data.values[i][2]];
-                if (data.values[i][3] != undefined){
-                    tempArray.push(data.values[i][3]);
-                }
-                activityFeed[activityFeed.length - i - 1] = tempArray;
-            }
-        }
-
-        (async function() {
-            await fetchPrivateSheet();
-            const endDiv = document.getElementById("EOF");
-            for (let k in activityFeed)  { // https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement
-
-                const newDiv = document.createElement("div");
-                const newTitle = document.createElement("p");
-                const newDate = document.createElement("p");
-                const newDesc = document.createElement("p");
-
-                newTitle.textContent = activityFeed[k][0];
-                newDate.textContent = activityFeed[k][1];
-                newDesc.textContent = activityFeed[k][2];
-
-                newDiv.appendChild(newTitle);
-                newDiv.appendChild(newDate);
-                newDiv.appendChild(newDesc);
-
-                newDiv.classList.add('Feed');
-                newTitle.classList.add('FeedTitle');
-                newDate.classList.add('FeedPost');
-                newDesc.classList.add('FeedText');
-
-                if (activityFeed[k].length > 3) {
-                    const newImage = document.createElement("img");
-                    newImage.src = activityFeed[k][3];
-                    newDiv.appendChild(newImage);
-                    newImage.classList.add('FeedImage');
-                }
-
-                const contentDiv = document.getElementById("Content");
-                contentDiv.insertBefore(newDiv, EOF);
-            }
-        })();
+        <div id="EOFsoft"></div>
+    </div>
 
 
-    </script>
+    <div id="Hardware" style="display: none; position: relative;">
 
-    <div id="EOF"></div>
+        <div id="EOFhard"></div>
+
+    </div>
+
+    <div id="Art" style="display: none; position: relative;">
+
+        <div id="EOFart"></div>
+
+    </div>
     <div></div>
 
 </div>
