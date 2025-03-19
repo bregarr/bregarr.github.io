@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="styles.css">
-    <script src="projects.js"></script>
+    <script src="projtest.js"></script>
     <title>TexasCodin Home</title>
 </head>
 <div class="Heading">
@@ -20,52 +20,56 @@
     <div class="MainContentOffset" style="display: table-cell; width: 40%;">
 
         <div class="SkillBubble">
-        <p class="cHeading" style="padding-left: 16px;">Skills</p>
-        <p class="SkillText" style="float: left; padding-right: 15%; width: 35%"> - Programming<br> &nbsp; <img src="assets/Python.png" class="InlineImg"> Python<br> &nbsp;
-            <img src="assets/Java.png" class="InlineImg"> Java<br> &nbsp; <img src="assets/JavaScript.png" class="InlineImg"> JavaScript<br> &nbsp;
-            <img src="assets/CS.png" class="InlineImg"> C#<br> &nbsp; <img src="assets/CPP.png" class="InlineImg"> C++<br> &nbsp;
-            <img src="assets/HTML.png" class="InlineImg"> HTML</p>
-        <p class="SkillText" style="float: center;"> - Programs<br> &nbsp; <img src="assets/OnShape.png" class="InlineImgRight"> OnShape<br> &nbsp;
-            <img src="assets/Blender.png" class="InlineImgRight"> Blender<br> &nbsp; <img src="assets/PaintDotNet.png" class="InlineImgRight"> Paint.net<br> &nbsp;
-            <img src="assets/VSC.png" class="InlineImgRight"> VSCode<br> &nbsp; <img src="assets/Filmora.png" class="InlineImgRight"> Filmora 9<br> &nbsp;
-            <img src="assets/OBS.png" class="InlineImgRight"> OBS<br> &nbsp; <img src="assets/Unity.png" class="InlineImgRight"> Unity<br> &nbsp;
-            <img src="assets/Painter.png" class="InlineImgRight"> Substance Painter</p>
+            <p class="cHeading" style="padding-left: 16px;">Skills</p>
+            <p class="SkillText" style="float: left; padding-right: 15%; width: 35%"> - Programming<br> &nbsp; <img src="assets/Python.png" class="InlineImg"> Python<br> &nbsp;
+                <img src="assets/Java.png" class="InlineImg"> Java<br> &nbsp; <img src="assets/JavaScript.png" class="InlineImg"> JavaScript<br> &nbsp;
+                <img src="assets/CS.png" class="InlineImg"> C#<br> &nbsp; <img src="assets/CPP.png" class="InlineImg"> C++<br> &nbsp;
+                <img src="assets/HTML.png" class="InlineImg"> HTML</p>
+            <p class="SkillText" style="float: center;"> - Programs<br> &nbsp; <img src="assets/OnShape.png" class="InlineImgRight"> OnShape<br> &nbsp;
+                <img src="assets/Blender.png" class="InlineImgRight"> Blender<br> &nbsp; <img src="assets/PaintDotNet.png" class="InlineImgRight"> Paint.net<br> &nbsp;
+                <img src="assets/VSC.png" class="InlineImgRight"> VSCode<br> &nbsp; <img src="assets/Filmora.png" class="InlineImgRight"> Filmora 9<br> &nbsp;
+                <img src="assets/OBS.png" class="InlineImgRight"> OBS<br> &nbsp; <img src="assets/Unity.png" class="InlineImgRight"> Unity<br> &nbsp;
+                <img src="assets/Painter.png" class="InlineImgRight"> Substance Painter</p>
         </div>
         <div class="SkillBubble">
-        <p class="cHeading" style="padding-left: 16px;">Education</p>
-        <p class="SkillText"> - Hardware<br> &nbsp; - 3D Print & Design<br> &nbsp; - CNC Mill<br> &nbsp; - Progress in A+ Cert</p>
-        <p class="SkillText"> - Software<br> &nbsp; - Analysing Data with Code<br> &nbsp; - Progress in CCNA, Security+, & Networking+</p>
+            <p class="cHeading" style="padding-left: 16px;">Education</p>
+            <p class="SkillText"> - Hardware<br> &nbsp; - 3D Print & Design<br> &nbsp; - CNC Mill<br> &nbsp; - Progress in A+ Cert</p>
+            <p class="SkillText"> - Software<br> &nbsp; - Analysing Data with Code<br> &nbsp; - Progress in CCNA, Security+, & Networking+</p>
         </div>
 
     </div>
 
-<div class="MainContent" id="Content" style="display: table-cell;">
-    <p class="cHeading" style="padding-top: 4px; margin-bottom: 24px; margin-left: 36px;">Projects</p>
-    <div class="NavButton">
-        <input type="button" class="CurrentTab" id="SoftwareButton" value="Software" style="margin-left: -5px;" onclick="swapTab('Software', 'Hardware', 'Art')">
-        <input type="button" class="InactiveTab" id="HardwareButton" value="Hardware" onclick="swapTab('Hardware', 'Software', 'Art')">
-        <input type="button" class="InactiveTab" id="ArtButton" value="Art" onclick="swapTab('Art', 'Software', 'Hardware')">
+    <div class="MainContent" id="Content" style="display: table-cell;">
+        <p class="cHeading" style="padding-top: 4px; margin-bottom: 24px; margin-left: 36px;">Projects</p>
+        <div class="NavButton">
+            <input type="button" class="CurrentTab" id="GamedevButton" value="Gamedev" style="margin-left: -5px;" onclick="swapTab('Gamedev', 'Hardware', 'Art', 'Software')">
+            <input type="button" class="InactiveTab" id="SoftwareButton" value="Software" onclick="swapTab('Software', 'Hardware', 'Art', 'Gamedev')">
+            <input type="button" class="InactiveTab" id="HardwareButton" value="Hardware" onclick="swapTab('Hardware', 'Software', 'Art', 'Gamedev')">
+            <input type="button" class="InactiveTab" id="ArtButton" value="Art" onclick="swapTab('Art', 'Software', 'Hardware', 'Gamedev')">
+        </div>
+
+        <div id="Gamedev" style="display: inline; position: relative;">
+
+        </div>
+        <div id="Software" style="display: none; position: relative;">
+
+
+            <div id="EOFsoft"></div>
+        </div>
+
+
+        <div id="Hardware" style="display: none; position: relative;">
+
+            <div id="EOFhard"></div>
+
+        </div>
+
+        <div id="Art" style="display: none; position: relative;">
+
+            <div id="EOFart"></div>
+
+        </div>
+        <div></div>
+
     </div>
-
-    <div id="Software" style="display: inline; position: relative;">
-
-
-        <div id="EOFsoft"></div>
-    </div>
-
-
-    <div id="Hardware" style="display: none; position: relative;">
-
-        <div id="EOFhard"></div>
-
-    </div>
-
-    <div id="Art" style="display: none; position: relative;">
-
-        <div id="EOFart"></div>
-
-    </div>
-    <div></div>
-
-</div>
 </div></div>
