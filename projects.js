@@ -182,7 +182,7 @@ function swapTab(s, h, a, g) {
                 if (softwareContents[k].includes('Image')) { if (firstTab) { firstTab = false; imgButton.style = "margin-left = 18px;"; } newDiv.appendChild(imgDiv); imgButton.onclick = () => enableCell('s', k, 'Image'); }
                 if (softwareContents[k].includes('Code')) { if (firstTab) { firstTab = false; codeButton.style = "margin-left = 18px;"; } newDiv.appendChild(codeDiv); codeButton.onclick = () => enableCell('s', k, 'Code'); }
                 if (softwareContents[k].includes('Source')) { if (firstTab) { firstTab = false; srcButton.style = "margin-left = 18px;"; } newDiv.appendChild(srcDiv); srcButton.onclick = () => enableCell('s', k, 'Source'); }
-                if (softwareContents[k].includes('Files')) { if (firstTab) { firstTab = false; fileButton.style = "margin-left = 18px;"; } newDiv.appendChild(fileDiv); filesButton.onclick = () => enableCell('s', k, 'Files'); }
+                if (softwareContents[k].includes('Files')) { if (firstTab) { firstTab = false; filesButton.style = "margin-left = 18px;"; } newDiv.appendChild(fileDiv); filesButton.onclick = () => enableCell('s', k, 'Files'); }
 
                 var thumbSrc = projArray[k][6];
                 var divIndex = thumbSrc.indexOf('>');
