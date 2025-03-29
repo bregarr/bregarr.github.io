@@ -86,7 +86,6 @@ function swapTab(s, h, a, g) {
                 }}
 
                 const newDiv = document.createElement("div");
-                newTitle;
                 if(projArray[k][7].includes("<")) { newTitle = document.createElement("p"); }
                 else {
                     newTitle = document.createElement("a");
