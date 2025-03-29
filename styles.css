@@ -285,3 +285,7 @@ input {
     position: relative;
     display: table;
 }
+.GalleryImg {
+    width: 480px;
+    height: 270px;
+}

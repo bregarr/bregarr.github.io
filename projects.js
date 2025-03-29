@@ -84,10 +84,14 @@ function swapTab(s, h, a, g) {
 
                     projArray.splice(k, 0, newLine);
                 }}
-                console.log(projArray);
 
                 const newDiv = document.createElement("div");
-                const newTitle = document.createElement("p");
+                const newTitle;
+                if(projArray[k][7].includes("<")) { newTitle = document.createElement("p"); }
+                else {
+                    newTitle = document.createElement("a");
+                    newTitle.href = projArray[k][7];
+                }
                 const newDesc = document.createElement("p");
                 const thumbImg = document.createElement("img");
                 const buttonDiv = document.createElement("div");
@@ -209,7 +213,6 @@ function swapTab(s, h, a, g) {
                 const softwareDiv = document.getElementById(projArray[k][8]);
                 softwareDiv.appendChild(newDiv);
             }
-            console.log(k);
             }
 
         })();
