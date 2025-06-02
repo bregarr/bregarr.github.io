@@ -8,73 +8,86 @@
 
 body {
    background-color: var(--BrightGreen);
-   font-family: "Kadwa", serif;
+   font-family: 'Kadwa', serif;
 }
 
-.content {
-   margin-left: 6.11%;
-   display: grid;
-   grid-template-columns: 6.11% 18.75% 75.14%;
-   margin-top: -24px;
+main {
+   position: relative;
+   top: 0;
+   right: 0;
+   width: 78%;
+   height: 100%;
+   margin-top: 260px;
+   margin-left: 22%;
 }
 
-.sidebar {
-   text-align: center;
-   position: sticky;
-   bottom: 0;
-   display: inline-grid;
-   grid-template-columns: 20% 60% 20%;
-   grid-template-rows: 120px 120px 120px;
-
-   height: 100vh;
-   width: auto;
-   background-color: var(--DeepGreen);
-   grid-column: 2;
-   grid-row: 1 / span 5;
+main div {
+   width: 100%;
+   gap: 40px;
+   display: flex;
+   margin-top: 35px;
 }
 
-.navbutton {
-   color: var(--BrightGreen);
-   text-align: center;
-
-   display: inline-block;
-   font-size: 36px;
+content {
+   background-color: var(--MintGreen);
    width: 100%;
 }
 
-.navbuttontext {
-   text-align: center;
-
-   width: fit-content;
-   margin-left: auto;
-   margin-right: auto;
-   padding-left: 10%;
-   padding-right: 10%;
-
-   border: var(--BrightGreen);
-   border-right-style: solid;
-   border-left-style: solid;
-   border-width: 4px;
+content p {
+   font-size: 4.5vh;
+   line-height: 120%;
+   margin: 30px;
 }
 
-.headbar {
-   background-color: var(--ForestGreen);
+content h3 {
+   font-size: 8vh;
+   margin: 10px;
+   margin-bottom: 0;
+}
+
+nav {
+   background-color: var(--DeepGreen);
+   position: absolute;
+   margin: 0 0 0 6%;
+   top: 0;
+   width: 15%;
+   height: 100%;
+   text-align: center;
+}
+
+nav input {
+   text-decoration: none;
+   border: none;
+   border-left: solid;
+   border-right: solid;
+   border-width: .2em;
+   border-color: var(--BrightGreen);
+   background-color: var(--DeepGreen);
+   width: 80%;
+   height: 2.5em;
+   margin-top: 1em;
+
+   font-size: 4vh;
+   font-family: 'Kadwa', serif;
+   color: var(--BrightGreen);
+   overflow: hidden;
+}
+
+header {
    color: var(--MintGreen);
-   display: grid;
-
-   height: 250%;
-   text-align: center;
-   vertical-align: middle;
-
-   grid-column: 3;
-   grid-template-rows: auto auto auto;
-   grid-template-columns: auto auto auto;
+   background-color: var(--ForestGreen);
+   position: absolute;
+   top: 0;
+   right: 0;
+   width: 79%;
+   height: 240px;
 }
 
-.headertext {
-   grid-row: 2;
-   display: grid;
-   padding-left: 10%;
-   line-height: 0%;
-   align-content: center;
+header h1 {
+   margin: 0;
+   margin-left: 80px;
+   font-size: 120px;
+   display: inline-block;
+   vertical-align: middle;
+   line-height: 200%;
 }
