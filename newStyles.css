@@ -9,14 +9,16 @@
 body {
    background-color: var(--BrightGreen);
    font-family: 'Kadwa', serif;
+   min-height: 100vh;
+   height: 100%;
 }
 
 main {
-   position: relative;
+   /* position: absolute; */
    top: 0;
    right: 0;
    width: 78%;
-   height: 100%;
+   min-height: 100%;
    margin-top: 260px;
    margin-left: 22%;
 }
@@ -33,6 +35,10 @@ content {
    width: 100%;
 }
 
+content div section {
+   width: 50%;
+}
+
 content p {
    font-size: 4.5vh;
    line-height: 120%;
@@ -40,17 +46,143 @@ content p {
 }
 
 content h3 {
-   font-size: 8vh;
-   margin: 10px;
+   font-size: 7vh;
+   margin: 20px;
+   margin-left: 50px;
    margin-bottom: 0;
+   line-height: 150%;
+   text-align: left;
+}
+
+content h4 {
+   font-size: 4vh;
+   margin-top: 0;
+   line-height: 80%;
+   margin-right: 10px;
+   margin-left: 10px;
+}
+
+content section.languages ul {
+   direction: rtl;
+}
+
+content li {
+   font-size: 4.5vh;
+   line-height: 80%;
+   margin: 10px;
+   text-decoration: none;
+   text-align: left;
+   padding-left: 18%;
+   /* list-style-position: inside; */
+}
+
+section.languages h4 {
+   text-align: right;
+}
+
+content li.python::marker {
+   content: image-set("assets/Python.png" 20x);
+}
+content li.java::marker {
+   content: image-set("assets/Java.png" 20x);
+}
+content li.javascript::marker {
+   content: image-set("assets/JavaScript.png" 20x);
+}
+content li.cs::marker {
+   content: image-set("assets/CS.png" 20x);
+}
+content li.cpp::marker {
+   content: image-set("assets/CPP.png" 20x);
+}
+content li.html::marker {
+   content: image-set("assets/HTML.png" 20x);
+}
+
+content li.onshape::marker {
+   content: image-set("assets/OnShape.png" 20x);
+}
+content li.blender::marker {
+   content: image-set("assets/Blender.png" 20x);
+}
+content li.paintdotnet::marker {
+   content: image-set("assets/PaintDotNet.png" 20x);
+}
+content li.vscode::marker {
+   content: image-set("assets/VSC.png" 20x);
+}
+content li.filmora::marker {
+   content: image-set("assets/Filmora.png" 20x);
+}
+content li.obs::marker {
+   content: image-set("assets/OBS.png" 20x);
+}
+content li.unity::marker {
+   content: image-set("assets/Unity.png" 20x);
+}
+content li.substancepainter::marker {
+   content: image-set("assets/Painter.png" 20x);
+}
+
+.project-container {
+   background-color: #fff;
+   width: 90%;
+   margin: auto;
+   margin-bottom: 25px;
+   display: block;
+}
+
+.project-container section {
+   width: 100%;
+   display: flex;
+   text-align: center;
+   margin: auto;
+}
+
+.project-container section input {
+   width: 33.33%;
+   text-decoration: none;
+   border: none;
+   background-color: #e8e8e8;
+   color: #575757;
+   padding: 25px 0;
+   font-size: 4vh;
+}
+.project-container section input:hover {
+   background-color: #d8d8d8;
+}
+.project-container section input:active {
+   background-color: #c8c8c8;
+}
+
+.project-container section input.active-tab {
+   background-color: #fff;
+}
+
+.project-container article {
+   background-color: var(--BrightGreen);
+   margin: auto;
+}
+
+.project-container article h4 {
+   font-weight: normal;
+   padding: 35px 35px 35px 45px;
+   margin: auto;
+   font-size: 8vh;
+}
+
+.project-container article img {
+   width: 40%;
+   margin-left: 15px;
 }
 
 nav {
    background-color: var(--DeepGreen);
-   position: absolute;
+   position: fixed;
    margin: 0 0 0 6%;
    top: 0;
    width: 15%;
+   min-height: 100vh;
    height: 100%;
    text-align: center;
 }
@@ -71,6 +203,16 @@ nav input {
    font-family: 'Kadwa', serif;
    color: var(--BrightGreen);
    overflow: hidden;
+}
+nav input:hover {
+   background-color: #373D37; 
+   color: #B7E0B5;
+   width: 85%;
+}
+nav input:active {
+   background-color: #464E47;
+   color: #A6CCA5;
+   width: 70%;
 }
 
 header {
