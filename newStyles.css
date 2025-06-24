@@ -65,6 +65,15 @@ content h4 {
 content section.languages ul {
    direction: rtl;
 }
+content section.languages ul li p {
+   direction: ltr;
+   unicode-bidi: embed;
+   margin: 0;
+   padding: 0;
+   height: 50%;
+   vertical-align: middle;
+   line-height: 100%;
+}
 
 content li {
    font-size: 4.5vh;
@@ -92,8 +101,20 @@ content li.javascript::marker {
 content li.cs::marker {
    content: image-set("assets/CS.png" 20x);
 }
+content li.cs {
+   direction: ltr;
+   text-align: right;
+   padding-right: 17%;
+   transform: scaleX(-1);
+}
 content li.cpp::marker {
    content: image-set("assets/CPP.png" 20x);
+}
+content li.cpp {
+   direction: ltr;
+   text-align: right;
+   padding-right: 17%;
+   transform: scaleX(-1);
 }
 content li.html::marker {
    content: image-set("assets/HTML.png" 20x);
@@ -162,6 +183,10 @@ content li.substancepainter::marker {
 .project-container article {
    background-color: var(--BrightGreen);
    margin: auto;
+   min-height: max-content;
+   position: relative;
+   width: 98%;
+   box-shadow: 0px 0px 8px 1px var(--DeepGreen);
 }
 
 .project-container article h4 {
@@ -172,11 +197,13 @@ content li.substancepainter::marker {
 }
 
 .project-container article img {
-   width: 40%;
-   margin-left: 15px;
+   height: 250px;
+   width: auto;
+   margin: 30px;
+   float: left;
 }
 
-nav {
+body nav {
    background-color: var(--DeepGreen);
    position: fixed;
    margin: 0 0 0 6%;
@@ -187,7 +214,7 @@ nav {
    text-align: center;
 }
 
-nav input {
+body nav input {
    text-decoration: none;
    border: none;
    border-left: solid;
@@ -204,12 +231,12 @@ nav input {
    color: var(--BrightGreen);
    overflow: hidden;
 }
-nav input:hover {
+body nav input:hover {
    background-color: #373D37; 
    color: #B7E0B5;
    width: 85%;
 }
-nav input:active {
+body nav input:active {
    background-color: #464E47;
    color: #A6CCA5;
    width: 70%;
@@ -232,4 +259,73 @@ header h1 {
    display: inline-block;
    vertical-align: middle;
    line-height: 200%;
+}
+
+article h3 {
+   margin-left: 25px;
+   font-size: 7vh;
+   width: 75%;
+}
+article a {
+   margin-left: 25px;
+   font-size: 7vh;
+   display: block;
+   width: 75%;
+}
+
+/* Code Stuff */
+
+article.Content div {
+   display: block;
+   overflow: auto;
+}
+
+.project-container div {
+   display: none;
+}
+
+.ProjText {
+   max-width: 70%;
+   font-size: 28px;
+   padding-bottom: 20px;
+}
+
+.ProjNav {
+   float: right;
+}
+
+.ProjNav input {
+   background-color: var(--BrightGreen);
+   color: #0f2f0f;
+   border-color: var(--MidGreen);
+   font-size: 32px;
+}
+.ProjNav input:hover {
+   background-color: #B8E8B8;
+   color: #0f2f0f;
+   border-color: #91E2A8;
+   width: 85%;
+}
+.ProjNav input:active {
+   background-color: #B0E0B0;
+   color: #0f2f0f;
+   border-color: #90E0A0;
+   width: 85%;
+}
+
+article nav {
+   background-color: #fefeff;
+   min-height: fit-content;
+   position: absolute;
+   display: block;
+   padding: 0;
+   top: 20px;
+   bottom: 20px;
+   right: 4%;
+   z-index: 2;
+   height: auto;
+}
+
+#Gamedev {
+   display: block;
 }

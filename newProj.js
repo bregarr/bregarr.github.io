@@ -1,5 +1,5 @@
 // Global
-Tabs = ["Gamedev", "Software", "Hardware", "Art"];
+Tabs = ["Gamedev", "Software", "Art"];
 CellContents = [[], []];
 var projArray;
 
@@ -10,20 +10,31 @@ var projArray;
 function swapTab(tabType) {
     // Disables every tab that isn't the newly selected one
     DisableTabs = Tabs.filter(item => item !== tabType);
+    console.log(DisableTabs);
     DisableTabs.forEach(tab => {
         document.getElementById(tab).style.display = 'none';
-        document.getElementById(tab+"Button").classList.remove('CurrentTab');
-        document.getElementById(tab+"Button").classList.add('InactiveTab');
+        document.getElementById(tab+"Button").classList.remove('active-tab');
     });
     
     // Enables the new tab
     document.getElementById(tabType).style.display = 'inline';
-    document.getElementById(tabType+"Button").classList.add('CurrentTab');
-    document.getElementById(tabType+"Button").classList.remove('InactiveTab');
+    document.getElementById(tabType+"Button").classList.add('active-tab');
+}
+
+function getNextUppercase(word, startInd){
+    for(let i=startInd; i<word.length; i++){
+        if(/[A-Z]/.test(word.substring(i,i+1))) { return i; }
+    }
+    return -1;
 }
 
 // num = Entry Number, type = Cell Type
-function enableCell(num, type){
+function enableCell(internalID){
+    // Decomp internalID
+    num = internalID.substring(0,getNextUppercase(internalID,0));
+    const ElementInd = getNextUppercase(internalID, getNextUppercase(internalID, 0)+1);
+    type = internalID.substring(getNextUppercase(internalID, 0), ElementInd);
+
     elemButton = document.getElementById(num+type+'Button'); // Button of the referenced cell
     elemCell = document.getElementById(num+type+'Cell'); // Div of the referenced cell
     // Closes the cell if it is already selected
@@ -94,16 +105,18 @@ async function fetchPrivateSheet() {
             }
         }
 
-        const cellDiv = document.createElement("div");
+        CellContents.push(new Array());
+
+        const cellDiv = document.createElement("article");
         var titleElem;
         // Links to site if column 7 is set
-        if(projArray[k][7].includes("<")) { titleElem = document.createElement("p"); }
+        if(projArray[k][7].includes("<")) { titleElem = document.createElement("h3"); }
         else { titleElem = document.createElement("a"); titleElem.href = projArray[k][7]; }
 
         // Creates other cell elements
         const descElem = document.createElement("p");
         const thumbnailElem = document.createElement("img");
-        const buttonDiv = document.createElement("div");
+        const buttonDiv = document.createElement("nav");
         const projectDiv = document.createElement("div");
 
         // Adds elements to divs
@@ -111,7 +124,167 @@ async function fetchPrivateSheet() {
         projectDiv.appendChild(titleElem);
         projectDiv.appendChild(thumbnailElem);
         projectDiv.appendChild(descElem);
-        projectDiv.appendChild(buttonDiv);
         cellDiv.appendChild(projectDiv);
+
+        // Image Section
+        if(!projArray[k][2].includes("<")) {
+            // Setup
+            const imgButton = document.createElement("input");
+            const imgDiv = document.createElement("div");
+            imgButton.value = "Images";
+            buttonDiv.appendChild(imgButton);
+            imgButton.type = 'Button';
+            cellDiv.appendChild(imgDiv);
+
+            // Ease of Disabling Cells
+            imgDiv.style = "display: none";
+
+            imgButton.classList.add('InactiveCell');
+            imgButton.id = k + 'ImageButton';
+            CellContents[k].push('Image');
+            imgDiv.classList.add('CellContent');
+            imgDiv.id = k+"ImageCell";
+            imgButton.onclick = () => enableCell(imgButton.id);
+
+            // Loads images from data cell
+            var imgFiles = new Array(0);
+            var tempWord = "";
+            for (let i=0; i<projArray[k][2].length; i++){
+                currChar = projArray[k][2].substring(i, i+1);
+                if(currChar !== '&'){ tempWord += currChar; }
+                else { imgFiles.push(tempWord); tempWord = ""; }
+            }
+            imgFiles.push(tempWord);
+
+            for (let i=0; i<imgFiles.length; i++){
+                var insIndex = imgFiles[i].indexOf('>');
+                var newImg = document.createElement('img');
+                newImg.src = "assets/"+imgFiles[i].substring(0,insIndex);
+                newImg.classList.add(imgFiles[i].substring(insIndex+1, imgFiles[i].length));
+                imgDiv.appendChild(newImg);
+            }
+        }
+
+        // Code Section
+        if(!projArray[k][3].includes("<")) {
+            const codeButton = document.createElement("input");
+            const codeDiv = document.createElement("div");
+            codeButton.value = "Code";
+            buttonDiv.appendChild(codeButton);
+            codeButton.type = 'Button';
+            cellDiv.appendChild(codeDiv);
+
+            // Ease of Disabling Cells
+            codeDiv.style = "display: none";
+
+            codeButton.classList.add('InactiveCell');
+            codeButton.id = k+'CodeButton';
+            CellContents[k].push('Code');
+            codeDiv.classList.add('CellContent');
+            codeDiv.id = k+'CodeCell';
+            codeButton.onclick = () => enableCell(codeButton.id);
+
+            var codeFiles = new Array(0);
+            var tempWord = "";
+            for(let i=0; i<projArray[k][3].length; i++){
+                currChar = projArray[k][3].substring(i, i+1);
+                if(currChar !== '&') { tempWord += currChar; }
+                else { codeFiles.push(tempWord); tempWord = ""; }
+            }
+            codeFiles.push(tempWord);
+
+            for(let i=0; i<codeFiles.length; i++){
+                var newCode = document.createElement('embed');
+                newCode.src = "code/"+codeFiles[i];
+                newCode.classList.add('CodeEmbed');
+                codeDiv.appendChild(newCode);
+            }
+        }
+
+        // Source Section
+        if(!projArray[k][4].includes("<")) {
+            const srcButton = document.createElement("input");
+            const srcDiv = document.createElement("div");
+            srcButton.value = "Source";
+            buttonDiv.appendChild(srcButton);
+            srcButton.type = 'Button';
+            cellDiv.appendChild(srcDiv);
+
+            // Ease of Disabling Cells
+            srcDiv.style = "display: none";
+
+            srcButton.classList.add('InactiveCell');
+            srcButton.id = k+'SourceButton';
+            CellContents[k].push('Source');
+            srcDiv.classList.add('CellContent');
+            srcDiv.id = k+'SourceCell';
+            srcButton.onclick = () => enableCell(srcButton.id);
+
+            var newSource = document.createElement('embed');
+            newSource.src = "code/"+projArray[k][4];
+            newSource.classList.add('SourceEmbed');
+            srcDiv.appendChild(newSource);
+        }
+
+        // File Section
+        if(!projArray[k][5].includes("<")) { 
+            const fileButton = document.createElement("input");
+            const fileDiv = document.createElement("div");
+            fileButton.value = "Files";
+            fileDiv.appendChild(fileButton);
+            buttonDiv.appendChild(fileButton);
+            fileButton.type = 'Button';
+            cellDiv.appendChild(fileDiv);
+            
+            // Ease of Disabling Cells
+            fileDiv.style = "display: none";
+
+            fileButton.classList.add('InactiveCell');
+            fileButton.id = k+'FilesButton';
+            CellContents[k].push('Files');
+            fileDiv.classList.add('CellContent');
+            fileDiv.id = k+'FilesCell';
+            fileButton.onclick = () => enableCell(fileButton.id);
+
+            var fileFiles = new Array(0);
+            var tempWord = "";
+            for(let i=0; i<projArray[k][5].length; i++){
+                currChar = projArray[k][5].substring(i, i+1);
+                if(currChar !== '&'){ tempWord += currChar; }
+                else { fileFiles.push(tempWord); tempWord = ""; }
+            }
+            fileFiles.push(tempWord);
+
+            for(let i=0; i<fileFiles.length; i++){
+                const newFile = document.createElement('a');
+                newFile.href = "code/"+fileFiles[i];
+                newFile.download = "code/"+fileFiles[i];
+                newFile.classList.add('FileDownload');
+                newFile.textContent = "Download " + fileFiles[i];
+                const lineBreak = document.createElement('br');
+                fileDiv.appendChild(newFile);
+                fileDiv.appendChild(lineBreak);
+            }
+        }
+
+        // CellDiv Cleanup
+        var thumbSrc = projArray[k][6];
+        var insIndex = thumbSrc.indexOf('>');
+        thumbnailElem.src = "assets/"+thumbSrc.substring(0,insIndex);
+        thumbnailElem.classList.add(thumbSrc.substring(insIndex+1,thumbSrc.length));
+
+        titleElem.textContent = projArray[k][0];
+        descElem.textContent = projArray[k][1];
+
+        cellDiv.classList.add('Content');
+        cellDiv.appendChild(buttonDiv);
+
+        buttonDiv.classList.add('ProjNav');
+        titleElem.classList.add('ProjHeading');
+        descElem.classList.add('ProjText');
+
+        if(document.getElementById(projArray[k][8]) !== null){
+            document.getElementById(projArray[k][8]).appendChild(cellDiv);
+        }
     }
 })();

@@ -5,6 +5,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>TexasCodin'</title>
 
+   <script src="newProj.js"></script>
    <link rel="stylesheet" href="newStyles.css">
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,8 +34,8 @@
                      <li class="python">Python</li>
                      <li class="java">Java</li>
                      <li class="javascript">Javascript</li>
-                     <li class="cs">C#</li>
-                     <li class="cpp">C++</li>
+                     <li class="cs">#Ɔ</li>
+                     <li class="cpp">++Ɔ</li>
                      <li class="html">HTML &amp; CSS</li>
                   </ul>
                </section>
@@ -59,14 +60,14 @@
             <h3>Projects</h3>
             <div class="project-container">
                <section aria-label="Project Navigation">
-                  <input type="button" value="Gamedev" class="active-tab">
-                  <input type="button" value="Software">
-                  <input type="button" value="Art">
+                  <input type="button" value="Gamedev" class="active-tab" id="GamedevButton" onclick="swapTab('Gamedev')">
+                  <input type="button" value="Software" id="SoftwareButton" onclick="swapTab('Software')">
+                  <input type="button" value="Art" id="ArtButton" onclick="swapTab('Art')">
                </section>
-               <article>
-                  <h4>Project 1</h4>
-                  <img src="assets/cas117proj1-2.png">
-               </article>
+               <div id="Gamedev" class="active-proj"></div>
+               <div id="Software"></div>
+               <div id="Hardware"></div>
+               <div id="Art"></div>
             </div>
          </content>
       </div>
