@@ -375,3 +375,35 @@ article nav {
    height: auto;
    position: absolute;
 }
+
+a.ProjHeading {
+   color: var(--DeepGreen);
+}
+
+content.portrait-holder img {
+   width: 80%;
+   height: auto;
+   margin-top: 50px;
+}
+
+content.portrait-holder {
+   text-align: center;
+   width: 40%;
+}
+
+content.portrait-holder p {
+   font-size: 32px;
+}
+
+content.about-holder h2 {
+   font-size: 48px;
+   margin: 10px 30px;
+   padding: 0;
+}
+
+content.about-holder p {
+   font-size: 32px;
+   margin-top: 8px;
+   margin-bottom: 5px;
+   margin-left: 42px;
+}

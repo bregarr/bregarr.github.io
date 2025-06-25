@@ -1,75 +1,75 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="styles.css">
-    <script src="projects.js"></script>
-    <title>TexasCodin Home</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>TexasCodin'</title>
+
+   <script src="newProj.js"></script>
+   <link rel="stylesheet" href="newStyles.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Kadwa:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<div class="Heading">
-    <p>Texascod.in</p>
-    <p class="Subtitle">Portfolio site to display what I've created and create connections.</p>
-    <div class="NavButton">
-        <input type="button" class="CurrentPage" value="Home" style="margin-left: -5px;">
-        <input type="button" class="InactivePage" value="About Me" onclick="location.href='about.html';">
-        <input type="button" class="InactivePage" value="Activity Feed" onclick="location.href='projects.html';">
-        <input type="button" class="InactivePage" value="Contact" onclick="location.href='contact.html';">
-    </div>
-</div>
-
-<div style="width: 100%; display: table;"><div style="display: table-row">
-
-    <div class="MainContentOffset" style="display: table-cell; width: 40%;">
-
-        <div class="SkillBubble">
-            <p class="cHeading" style="padding-left: 16px;">Skills</p>
-            <p class="SkillText" style="float: left; padding-right: 15%; width: 35%"> - Programming<br> &nbsp; <img src="assets/Python.png" class="InlineImg"> Python<br> &nbsp;
-                <img src="assets/Java.png" class="InlineImg"> Java<br> &nbsp; <img src="assets/JavaScript.png" class="InlineImg"> JavaScript<br> &nbsp;
-                <img src="assets/CS.png" class="InlineImg"> C#<br> &nbsp; <img src="assets/CPP.png" class="InlineImg"> C++<br> &nbsp;
-                <img src="assets/HTML.png" class="InlineImg"> HTML</p>
-            <p class="SkillText" style="float: center;"> - Programs<br> &nbsp; <img src="assets/OnShape.png" class="InlineImgRight"> OnShape<br> &nbsp;
-                <img src="assets/Blender.png" class="InlineImgRight"> Blender<br> &nbsp; <img src="assets/PaintDotNet.png" class="InlineImgRight"> Paint.net<br> &nbsp;
-                <img src="assets/VSC.png" class="InlineImgRight"> VSCode<br> &nbsp; <img src="assets/Filmora.png" class="InlineImgRight"> Filmora 9<br> &nbsp;
-                <img src="assets/OBS.png" class="InlineImgRight"> OBS<br> &nbsp; <img src="assets/Unity.png" class="InlineImgRight"> Unity<br> &nbsp;
-                <img src="assets/Painter.png" class="InlineImgRight"> Substance Painter</p>
-        </div>
-        <div class="SkillBubble">
-            <p class="cHeading" style="padding-left: 16px;">Education</p>
-            <p class="SkillText"> - Hardware<br> &nbsp; - 3D Print & Design<br> &nbsp; - CNC Mill<br> &nbsp; - Progress in A+ Cert</p>
-            <p class="SkillText"> - Software<br> &nbsp; - Analysing Data with Code<br> &nbsp; - Progress in CCNA, Security+, & Networking+</p>
-        </div>
-
-    </div>
-
-    <div class="MainContent" id="Content" style="display: table-cell;">
-        <p class="cHeading" style="padding-top: 4px; margin-bottom: 24px; margin-left: 36px;">Projects</p>
-        <div class="NavButton">
-            <input type="button" class="CurrentTab" id="GamedevButton" value="Gamedev" style="margin-left: -5px;" onclick="swapTab('Gamedev', 'Hardware', 'Art', 'Software')">
-            <input type="button" class="InactiveTab" id="SoftwareButton" value="Software" onclick="swapTab('Software', 'Hardware', 'Art', 'Gamedev')">
-            <input type="button" class="InactiveTab" id="HardwareButton" value="Hardware" onclick="swapTab('Hardware', 'Software', 'Art', 'Gamedev')">
-            <input type="button" class="InactiveTab" id="ArtButton" value="Art" onclick="swapTab('Art', 'Software', 'Hardware', 'Gamedev')">
-        </div>
-
-        <div id="Gamedev" style="display: inline; position: relative;">
-
-        </div>
-        <div id="Software" style="display: none; position: relative;">
-
-
-            <div id="EOFsoft"></div>
-        </div>
-
-
-        <div id="Hardware" style="display: none; position: relative;">
-
-            <div id="EOFhard"></div>
-
-        </div>
-
-        <div id="Art" style="display: none; position: relative;">
-
-            <div id="EOFart"></div>
-
-        </div>
-        <div></div>
-
-    </div>
-</div></div>
+<body>
+   <header>
+      <h1>TexasCod.in</h1>
+   </header>
+   <nav>
+      <input type="button" value="Home" style="margin-top: 2em;">
+      <input type="button" value="About" onclick="location.href='about.html';">
+   </nav>
+   <main>
+      <div>
+         <content>
+            <p>As a student in Games and Interactive Media, it is important to have a place to catalogue my work. This site hosts what I believe to be my best work up to this point, which I will update and replace entries as I improve. My projects can be seen below and my current skills can be seen to the right.</p>
+         </content>
+         <content>
+            <h3>Skills</h3>
+            <div style="display: flex; width: 100%;">
+               <section class="languages">
+                  <h4>Languages</h4>
+                  <ul>
+                     <li class="python">Python</li>
+                     <li class="java">Java</li>
+                     <li class="javascript">Javascript</li>
+                     <li class="cs">#C</li>
+                     <li class="cpp">++C</li>
+                     <li class="html">HTML &amp; CSS</li>
+                  </ul>
+               </section>
+               <section class="programs">
+               <h4>Programs</h4>
+                  <ul>
+                     <li class="onshape">OnShape</li>
+                     <li class="blender">Blender</li>
+                     <li class="paintdotnet">Paint.net</li>
+                     <li class="vscode">VSCode</li>
+                     <li class="filmora">Filmora 9</li>
+                     <li class="obs">OBS</li>
+                     <li class="unity">Unity</li>
+                     <li class="substancepainter">Substance Painter</li>
+                  </ul>
+               </section>
+            </div>
+         </content>
+      </div>
+      <div>
+         <content>
+            <h3>Projects</h3>
+            <div class="project-container">
+               <section aria-label="Project Navigation">
+                  <input type="button" value="Gamedev" class="active-tab" id="GamedevButton" onclick="swapTab('Gamedev')">
+                  <input type="button" value="Software" id="SoftwareButton" onclick="swapTab('Software')">
+                  <input type="button" value="Art" id="ArtButton" onclick="swapTab('Art')">
+               </section>
+               <div id="Gamedev" class="active-proj"></div>
+               <div id="Software"></div>
+               <div id="Hardware"></div>
+               <div id="Art"></div>
+            </div>
+         </content>
+      </div>
+   </main>
+</body>
+</html>

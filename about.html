@@ -1,27 +1,41 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="styles.css">
-    <title>Techxas Student Site</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>About -- TexasCodin'</title>
+
+   <link rel="stylesheet" href="newStyles.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Kadwa:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<div class="Heading">
-    <p>About Me</p>
-    <p class="Subtitle">Get to know who I am!</p>
-    <div class="NavButton">
-        <input type="button" class="InactivePage" value="Home" style="margin-left: -5px;" onclick="location.href='index.html';">
-        <input type="button" class="CurrentPage" value="About Me">
-        <input type="button" class="InactivePage" value="Activity Feed" onclick="location.href='projects.html';">
-        <input type="button" class="InactivePage" value="Contact" onclick="location.href='contact.html';">
-    </div>
-</div>
-<div style="display: flex;">
-<div class="Content">
-    <p class="cHeading">Who Am I?</p>
-    <p class="ResumeText">I am a first-year student at Michigan State University, specifically at the College of Communication Arts and Sciences. I am on track to graduate in May 2027 with a Bachelor of Arts in Games and Interactive Media with minors in Computer Science and Games and Interactive Media. I am a very passionate developer with experience with Python, Java, JavaScript, C#, and C++ in descending confidence order.</p>
-    <p class="ResumeText">In my free time, I like to play video games of many genres, but most often I play Minecraft, Grand Theft Auto V, and Software Inc.</p>
-    <p class="ResumeText">During my tenure in high school, I was trained on a CNC mill, a lathe, a laser engraver, and 3D printers. I also received my CCNAv7 certification and was trained on basic network security and cybersecurity.</p>
-</div>
-<div class="ContentOffset" style="width: 25%;">
-    <img src="assets/me.jpg" class="VertImg" style="float: right;">
-    <p class="ResumeText" style="text-align: center; padding-top: 500px; margin-top: 10px; padding-left: 0px;">Me (Brendan "Texas" Garrow)</p>
-</div>
-</div>
+<body>
+   <header>
+      <h1>TexasCod.in</h1>
+   </header>
+   <nav>
+      <input type="button" value="Home" style="margin-top: 2em;" onclick="location.href='index.html';">
+      <input type="button" value="About">
+   </nav>
+   <main>
+      <div>
+         <content class="about-holder">
+            <h2>About Me</h2>
+            <p>I am a first-year student at Michigan State University, specifically at the College of Communication Arts and Sciences. I am on track to graduate in May 2027 with a Bachelor of Arts in Games and Interactive Media with minors in Computer Science and Games and Interactive Media. I am a very passionate developer with experience with Python, Java, JavaScript, C#, and C++ in descending confidence order.</p>
+
+            <p>In my free time, I like to play video games of many genres, but most often I play Minecraft, American Truck Simulator, and Rainbow Six Siege</p>
+
+            <p>During my tenure in high school, I was trained on a CNC mill, a lathe, a laser engraver, and 3D printers. I also received my CCNAv7 certification and was trained on basic network security and cybersecurity.</p>
+
+            <h2>Contact</h2>
+            <p>I can be reached by email at <i>bregarr11@gmail.com</i>, feel free to reach out if you have a question about my projects or just want to chat!</p>
+         </content>
+         <content class="portrait-holder">
+            <img src="assets/me.jpg">
+            <p>Me (Brendan "Texas" Garrow)</p>
+         </content>
+      </div>
+   </main>
+</body>
+</html>
