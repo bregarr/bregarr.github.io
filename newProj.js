@@ -10,7 +10,6 @@ var projArray;
 function swapTab(tabType) {
     // Disables every tab that isn't the newly selected one
     DisableTabs = Tabs.filter(item => item !== tabType);
-    console.log(DisableTabs);
     DisableTabs.forEach(tab => {
         document.getElementById(tab).style.display = 'none';
         document.getElementById(tab+"Button").classList.remove('active-tab');
@@ -116,6 +115,7 @@ async function fetchPrivateSheet() {
         // Creates other cell elements
         const descElem = document.createElement("p");
         const thumbnailElem = document.createElement("img");
+        const navContainer = document.createElement("div");
         const buttonDiv = document.createElement("nav");
         const projectDiv = document.createElement("div");
 
@@ -125,6 +125,9 @@ async function fetchPrivateSheet() {
         projectDiv.appendChild(thumbnailElem);
         projectDiv.appendChild(descElem);
         cellDiv.appendChild(projectDiv);
+        navContainer.appendChild(buttonDiv);
+        navContainer.classList.add("NavContainer");
+
 
         // Image Section
         if(!projArray[k][2].includes("<")) {
@@ -166,7 +169,7 @@ async function fetchPrivateSheet() {
         }
 
         // Code Section
-        if(!projArray[k][3].includes("<")) {
+        if(projArray[k][3].length > 1) {
             const codeButton = document.createElement("input");
             const codeDiv = document.createElement("div");
             codeButton.value = "Code";
@@ -184,25 +187,30 @@ async function fetchPrivateSheet() {
             codeDiv.id = k+'CodeCell';
             codeButton.onclick = () => enableCell(codeButton.id);
 
-            var codeFiles = new Array(0);
-            var tempWord = "";
-            for(let i=0; i<projArray[k][3].length; i++){
-                currChar = projArray[k][3].substring(i, i+1);
-                if(currChar !== '&') { tempWord += currChar; }
-                else { codeFiles.push(tempWord); tempWord = ""; }
-            }
-            codeFiles.push(tempWord);
+            // var codeFiles = new Array(0);
+            // var tempWord = "";
+            // for(let i=0; i<projArray[k][3].length; i++){
+            //     currChar = projArray[k][3].substring(i, i+1);
+            //     if(currChar !== '&') { tempWord += currChar; }
+            //     else { codeFiles.push(tempWord); tempWord = ""; }
+            // }
+            // codeFiles.push(tempWord);
 
-            for(let i=0; i<codeFiles.length; i++){
-                var newCode = document.createElement('embed');
-                newCode.src = "code/"+codeFiles[i];
-                newCode.classList.add('CodeEmbed');
-                codeDiv.appendChild(newCode);
-            }
+            // for(let i=0; i<codeFiles.length; i++){
+            //     var newCode = document.createElement('p');
+            //     newCode.textContent = codeFiles[i];
+            //     newCode.classList.add('CodeEmbed');
+            //     codeDiv.appendChild(newCode);
+            // }
+            var newCode = document.createElement('p');
+            newCode.textContent = projArray[k][3];
+            newCode.classList.add('Embed');
+            newCode.autocapitalize = "off";
+            codeDiv.appendChild(newCode);
         }
 
         // Source Section
-        if(!projArray[k][4].includes("<")) {
+        if(projArray[k][4].length > 1) {
             const srcButton = document.createElement("input");
             const srcDiv = document.createElement("div");
             srcButton.value = "Source";
@@ -220,9 +228,10 @@ async function fetchPrivateSheet() {
             srcDiv.id = k+'SourceCell';
             srcButton.onclick = () => enableCell(srcButton.id);
 
-            var newSource = document.createElement('embed');
-            newSource.src = "code/"+projArray[k][4];
-            newSource.classList.add('SourceEmbed');
+            var newSource = document.createElement('p');
+            newSource.textContent = projArray[k][4];
+            newSource.classList.add('Embed');
+            newSource.autocapitalize = "off";
             srcDiv.appendChild(newSource);
         }
 
@@ -261,9 +270,7 @@ async function fetchPrivateSheet() {
                 newFile.download = "code/"+fileFiles[i];
                 newFile.classList.add('FileDownload');
                 newFile.textContent = "Download " + fileFiles[i];
-                const lineBreak = document.createElement('br');
                 fileDiv.appendChild(newFile);
-                fileDiv.appendChild(lineBreak);
             }
         }
 
@@ -277,7 +284,7 @@ async function fetchPrivateSheet() {
         descElem.textContent = projArray[k][1];
 
         cellDiv.classList.add('Content');
-        cellDiv.appendChild(buttonDiv);
+        cellDiv.appendChild(navContainer);
 
         buttonDiv.classList.add('ProjNav');
         titleElem.classList.add('ProjHeading');

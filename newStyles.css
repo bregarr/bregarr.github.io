@@ -43,6 +43,7 @@ content p {
    font-size: 4.5vh;
    line-height: 120%;
    margin: 30px;
+   margin-bottom: 0;
 }
 
 content h3 {
@@ -102,19 +103,19 @@ content li.cs::marker {
    content: image-set("assets/CS.png" 20x);
 }
 content li.cs {
-   direction: ltr;
+   /* direction: ltr;
    text-align: right;
    padding-right: 17%;
-   transform: scaleX(-1);
+   transform: scaleX(-1); */
 }
 content li.cpp::marker {
    content: image-set("assets/CPP.png" 20x);
 }
 content li.cpp {
-   direction: ltr;
+   /* direction: ltr;
    text-align: right;
    padding-right: 17%;
-   transform: scaleX(-1);
+   transform: scaleX(-1); */
 }
 content li.html::marker {
    content: image-set("assets/HTML.png" 20x);
@@ -187,6 +188,7 @@ content li.substancepainter::marker {
    position: relative;
    width: 98%;
    box-shadow: 0px 0px 8px 1px var(--DeepGreen);
+   padding-bottom: 8px;
 }
 
 .project-container article h4 {
@@ -291,7 +293,13 @@ article.Content div {
 }
 
 .ProjNav {
-   float: right;
+   width: 100%;
+   background-color: #fefeff;
+   position: sticky;
+   top: 0;
+   bottom: 0;
+   margin: 0;
+   margin-bottom: 2em;
 }
 
 .ProjNav input {
@@ -313,19 +321,57 @@ article.Content div {
    width: 85%;
 }
 
-article nav {
-   background-color: #fefeff;
-   min-height: fit-content;
-   position: absolute;
+#Gamedev {
    display: block;
+}
+
+.CellContent {
+   max-width: 75%;
+   background-color: var(--ForestGreen);
+   margin: 25px;
+   margin-bottom: 25px;
+}
+
+.CellContent img.HorizImg {
+   /* width: 400px;
+   height: 100%; */
+   margin: 2%;
+   width: 46%;
+   height: auto;
+}
+
+article a.FileDownload {
+   font-size: 28px;
+   font-family: 'Kadwa', serif;
+   color: var(--MintGreen);
+}
+
+p.Embed {
+   width: 98%;
+   margin: 1%;
+   font-size: 24px;
+   color: var(--MintGreen);
+   text-decoration: none;
+   text-transform: none;
+   white-space: pre-line;
+}
+
+article div.NavContainer {
+   background-color: #fefeff;
+   position: absolute;
+   display: inline;
    padding: 0;
    top: 20px;
    bottom: 20px;
    right: 4%;
-   z-index: 2;
-   height: auto;
+   width: 18%;
+   float: right;
+   overflow: initial;
 }
 
-#Gamedev {
-   display: block;
+
+article nav {
+   min-height: fit-content;
+   height: auto;
+   position: absolute;
 }
