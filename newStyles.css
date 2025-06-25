@@ -30,23 +30,23 @@ main div {
    margin-top: 35px;
 }
 
-content {
+section {
    background-color: var(--MintGreen);
    width: 100%;
 }
 
-content div section {
+section div section {
    width: 50%;
 }
 
-content p {
+section p {
    font-size: 4.5vh;
    line-height: 120%;
    margin: 30px;
    margin-bottom: 0;
 }
 
-content h3 {
+section h3 {
    font-size: 7vh;
    margin: 20px;
    margin-left: 50px;
@@ -55,7 +55,7 @@ content h3 {
    text-align: left;
 }
 
-content h4 {
+section h4 {
    font-size: 4vh;
    margin-top: 0;
    line-height: 80%;
@@ -63,10 +63,10 @@ content h4 {
    margin-left: 10px;
 }
 
-content section.languages ul {
+section section.languages ul {
    direction: rtl;
 }
-content section.languages ul li p {
+section section.languages ul li p {
    direction: ltr;
    unicode-bidi: embed;
    margin: 0;
@@ -76,7 +76,7 @@ content section.languages ul li p {
    line-height: 100%;
 }
 
-content li {
+section li {
    font-size: 4.5vh;
    line-height: 80%;
    margin: 10px;
@@ -90,59 +90,60 @@ section.languages h4 {
    text-align: right;
 }
 
-content li.python::marker {
+section li.python::marker {
+   /* This is marked as invalid but it works so Im leaving it idk */
    content: image-set("assets/Python.png" 20x);
 }
-content li.java::marker {
+section li.java::marker {
    content: image-set("assets/Java.png" 20x);
 }
-content li.javascript::marker {
+section li.javascript::marker {
    content: image-set("assets/JavaScript.png" 20x);
 }
-content li.cs::marker {
+section li.cs::marker {
    content: image-set("assets/CS.png" 20x);
 }
-content li.cs {
+section li.cs {
    /* direction: ltr;
    text-align: right;
    padding-right: 17%;
    transform: scaleX(-1); */
 }
-content li.cpp::marker {
+section li.cpp::marker {
    content: image-set("assets/CPP.png" 20x);
 }
-content li.cpp {
+section li.cpp {
    /* direction: ltr;
    text-align: right;
    padding-right: 17%;
    transform: scaleX(-1); */
 }
-content li.html::marker {
+section li.html::marker {
    content: image-set("assets/HTML.png" 20x);
 }
 
-content li.onshape::marker {
+section li.onshape::marker {
    content: image-set("assets/OnShape.png" 20x);
 }
-content li.blender::marker {
+section li.blender::marker {
    content: image-set("assets/Blender.png" 20x);
 }
-content li.paintdotnet::marker {
+section li.paintdotnet::marker {
    content: image-set("assets/PaintDotNet.png" 20x);
 }
-content li.vscode::marker {
+section li.vscode::marker {
    content: image-set("assets/VSC.png" 20x);
 }
-content li.filmora::marker {
+section li.filmora::marker {
    content: image-set("assets/Filmora.png" 20x);
 }
-content li.obs::marker {
+section li.obs::marker {
    content: image-set("assets/OBS.png" 20x);
 }
-content li.unity::marker {
+section li.unity::marker {
    content: image-set("assets/Unity.png" 20x);
 }
-content li.substancepainter::marker {
+section li.substancepainter::marker {
    content: image-set("assets/Painter.png" 20x);
 }
 
@@ -380,30 +381,36 @@ a.ProjHeading {
    color: var(--DeepGreen);
 }
 
-content.portrait-holder img {
+section.portrait-holder img {
    width: 80%;
    height: auto;
    margin-top: 50px;
 }
 
-content.portrait-holder {
+section.portrait-holder {
    text-align: center;
    width: 40%;
 }
 
-content.portrait-holder p {
+section.portrait-holder p {
    font-size: 32px;
 }
 
-content.about-holder h2 {
+section h2 {
    font-size: 48px;
    margin: 10px 30px;
    padding: 0;
 }
 
-content.about-holder p {
+section.about-holder p {
    font-size: 32px;
    margin-top: 8px;
    margin-bottom: 5px;
    margin-left: 42px;
+}
+
+.mission-holder p {
+   font-size: 32px;
+   margin: 0 38px;
+   text-align: justify;
 }
