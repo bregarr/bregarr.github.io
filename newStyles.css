@@ -39,14 +39,7 @@ section div section {
    width: 50%;
 }
 
-section p {
-   font-size: 4.5vh;
-   line-height: 120%;
-   margin: 30px;
-   margin-bottom: 0;
-}
-
-section h3 {
+section.project-section h2 {
    font-size: 7vh;
    margin: 20px;
    margin-left: 50px;
@@ -55,8 +48,33 @@ section h3 {
    text-align: left;
 }
 
-section h4 {
-   font-size: 4vh;
+section.project-section h3 {
+   font-size: 7vh;
+   margin: 20px;
+   margin-left: 50px;
+   margin-bottom: 0;
+   line-height: 150%;
+   text-align: left;
+}
+
+section p {
+   font-size: 4.5vh;
+   line-height: 120%;
+   margin: 30px;
+   margin-bottom: 0;
+}
+
+section h2 {
+   font-size: 52px;
+   margin: 20px;
+   margin-left: 50px;
+   margin-bottom: 0;
+   line-height: 150%;
+   text-align: left;
+}
+
+section h3 {
+   font-size: 36px;
    margin-top: 0;
    line-height: 80%;
    margin-right: 10px;
@@ -77,7 +95,7 @@ section section.languages ul li p {
 }
 
 section li {
-   font-size: 4.5vh;
+   font-size: 28px;
    line-height: 80%;
    margin: 10px;
    text-decoration: none;
@@ -86,7 +104,7 @@ section li {
    /* list-style-position: inside; */
 }
 
-section.languages h4 {
+section.languages h3 {
    text-align: right;
 }
 
