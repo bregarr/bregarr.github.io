@@ -81,6 +81,10 @@ section h3 {
    margin-left: 10px;
 }
 
+section ul {
+   padding: 0;
+}
+
 section section.languages ul {
    direction: rtl;
 }
@@ -96,30 +100,39 @@ section section.languages ul li p {
 
 section li {
    font-size: 28px;
-   line-height: 80%;
-   margin: 10px;
+   line-height: 150%;
+   margin: 10px 20px;
    text-decoration: none;
    text-align: left;
-   padding-left: 18%;
-   /* list-style-position: inside; */
+   list-style-type: none;
+   background-size: contain;
+   background-position: right;
+   background-repeat: no-repeat;
+   background-clip:content-box;
+}
+
+section.programs li {
+   background-position: left;
+   /* padding-left: 50px; */
+   text-align: right;
 }
 
 section.languages h3 {
    text-align: right;
 }
 
-section li.python::marker {
-   /* This is marked as invalid but it works so Im leaving it idk */
-   content: image-set("assets/Python.png" 20x);
+section li.python {
+   /* content: image-set("assets/Python.png" 20x); */
+   background-image: url("assets/Python.png");
 }
-section li.java::marker {
-   content: image-set("assets/Java.png" 20x);
+section li.java {
+   background-image: url("assets/Java.png");
 }
-section li.javascript::marker {
-   content: image-set("assets/JavaScript.png" 20x);
+section li.javascript {
+   background-image: url("assets/JavaScript.png");
 }
-section li.cs::marker {
-   content: image-set("assets/CS.png" 20x);
+section li.cs {
+   background-image: url("assets/CS.png");
 }
 section li.cs {
    /* direction: ltr;
@@ -127,8 +140,8 @@ section li.cs {
    padding-right: 17%;
    transform: scaleX(-1); */
 }
-section li.cpp::marker {
-   content: image-set("assets/CPP.png" 20x);
+section li.cpp {
+   background-image: url("assets/CPP.png");
 }
 section li.cpp {
    /* direction: ltr;
@@ -136,33 +149,33 @@ section li.cpp {
    padding-right: 17%;
    transform: scaleX(-1); */
 }
-section li.html::marker {
-   content: image-set("assets/HTML.png" 20x);
+section li.html {
+   background-image: url("assets/HTML.png");
 }
 
-section li.onshape::marker {
-   content: image-set("assets/OnShape.png" 20x);
+section li.onshape {
+   background-image: url("assets/OnShape.png");
 }
-section li.blender::marker {
-   content: image-set("assets/Blender.png" 20x);
+section li.blender {
+   background-image: url("assets/Blender.png");
 }
-section li.paintdotnet::marker {
-   content: image-set("assets/PaintDotNet.png" 20x);
+section li.paintdotnet {
+   background-image: url("assets/PaintDotNet.png");
 }
-section li.vscode::marker {
-   content: image-set("assets/VSC.png" 20x);
+section li.vscode {
+   background-image: url("assets/VSC.png");
 }
-section li.filmora::marker {
-   content: image-set("assets/Filmora.png" 20x);
+section li.filmora {
+   background-image: url("assets/Filmora.png");
 }
-section li.obs::marker {
-   content: image-set("assets/OBS.png" 20x);
+section li.obs {
+   background-image: url("assets/OBS.png");
 }
-section li.unity::marker {
-   content: image-set("assets/Unity.png" 20x);
+section li.unity {
+   background-image: url("assets/Unity.png");
 }
-section li.substancepainter::marker {
-   content: image-set("assets/Painter.png" 20x);
+section li.substancepainter {
+   background-image: url("assets/Painter.png");
 }
 
 .project-container {
