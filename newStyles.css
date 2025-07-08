@@ -296,15 +296,19 @@ header h1 {
 }
 
 article h3 {
-   margin-left: 25px;
+   margin: 0 25px;
+   margin-top: 40px;
+   padding-top: 20px;
    font-size: 7vh;
    width: 75%;
+   line-height: 105%;
 }
 article a {
-   margin-left: 25px;
-   font-size: 7vh;
-   display: block;
-   width: 75%;
+   
+}
+article time {
+   margin: 0 50px;
+   font-size: 18px;
 }
 
 /* Code Stuff */
@@ -410,6 +414,10 @@ article nav {
 
 a.ProjHeading {
    color: var(--DeepGreen);
+   margin-left: 25px;
+   font-size: 7vh;
+   display: block;
+   width: 75%;
 }
 
 section.portrait-holder img {
@@ -444,4 +452,24 @@ section.about-holder p {
    font-size: 32px;
    margin: 0 38px;
    text-align: justify;
+}
+
+#DevlogHolder {
+   padding: 5px 15px;
+   padding-bottom: 50px;
+}
+#DevlogHolder img {
+   float: none;
+   margin: 10px;
+}
+#DevlogHolder p {
+   display: inline;
+}
+#DevlogHolder div {
+   display: block;
+}
+div.DevlogArticle {
+   padding: 20px;
+   padding-top: 0;
+   margin-top: 20px;
 }
