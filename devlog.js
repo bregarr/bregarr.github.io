@@ -82,10 +82,10 @@ function PrintArray(){
             newElement.alt = iElem[1];
             articleContent.appendChild(newElement);
          }
-         else if(Identifier == 'b'){
-            newElement = document.createElement("br");
-            articleContent.appendChild(newElement);
-         }
+         // else if(Identifier == 'b'){
+         //    newElement = document.createElement("br");
+         //    articleContent.appendChild(newElement);
+         // }
       }
 
       articleWrapper.appendChild(articleContent);

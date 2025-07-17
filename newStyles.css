@@ -461,9 +461,10 @@ section.about-holder p {
 #DevlogHolder img {
    float: none;
    margin: 10px;
+   display: block;
 }
 #DevlogHolder p {
-   display: inline;
+   display: block;
 }
 #DevlogHolder div {
    display: block;
