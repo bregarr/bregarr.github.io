@@ -259,7 +259,6 @@ body nav input {
    width: 80%;
    height: 2.5em;
    margin-top: 1em;
-
    font-size: 4vh;
    font-family: 'Kadwa', serif;
    color: var(--BrightGreen);
@@ -282,7 +281,7 @@ header {
    position: absolute;
    top: 0;
    right: 0;
-   width: 79%;
+   width: 80%;
    height: 240px;
 }
 
@@ -473,4 +472,61 @@ div.DevlogArticle {
    padding: 20px;
    padding-top: 0;
    margin-top: 20px;
+}
+
+div.skill-section{
+    display: flex; width: 100%; gap: 0;
+}
+
+@media screen and (max-width: 1060px) {
+    body nav { margin: 0; width: 20%; }
+    body nav input { font-size: 3vh; }
+    main div { display: block; }
+    section h2 { font-size: 36px; padding-top: 10px; }
+    section h3 { font-size: 26px; }
+    article div.NavContainer {
+        margin: 0 5%;
+        padding: 0;
+        right: 0;
+        width: 90%;
+        float: none;
+        height: auto;
+        margin-bottom: 5%;
+        position: relative;
+        display: inline-block;
+        min-height: fit-content;
+    }
+    .mission-holder p { font-size: 20px; padding-bottom: 10px; }
+    div.skill-section { margin-top: 0; }
+    nav.ProjNav { margin-bottom: 0; margin-top: -50px; }
+    .ProjNav input {
+        width: 20%;
+        margin: 10px;
+        font-size: 26px;
+        position: relative;
+        min-width: fit-content;
+    }
+    .ProjNav input:hover { width: fit-content; }
+    section li { font-size: 18px; }
+
+    section.project-section h2 { font-size: 36px; padding-top: 10px; margin: 10px 30px; }
+    .project-container section input { font-size: 2.5vh; }
+    section.project-section h3 { font-size: 4vh; margin: 15px; width: 90%; }
+    .project-container article img { width: 80%; height: auto; margin: 2px 10%; }
+    p.ProjText { font-size: 20px; text-align: justify; max-width: 90%; margin: 5%; }
+    a.ProjHeading { font-size: 4vh; margin: 15px; width: 90%; }
+
+    section.about-holder p{ font-size: 20px; padding-bottom: 10px; margin-bottom: 10px; }
+    section.portrait-holder { width: 100%; }
+    section.portrait-holder p { font-size: 28px; margin: 10px; padding-bottom: 10px; }
+
+    article h3 { font-size: 4.5vh; width: 90% }
+    div.DevlogArticle { margin-top: 0px; padding: 5%; width: 90%; padding-top: 0; }
+}
+
+@media screen and (max-width: 800px) {
+    body nav input { font-size: 2.5vh; }
+    header h1 { font-size: 6.5vh; }
+    header { height: 130px; }
+    .TopDiv { margin-top: -100px; }
 }
