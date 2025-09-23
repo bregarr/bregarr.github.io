@@ -73,7 +73,7 @@ async function fetchPrivateSheet() {
     projArray = new Array();
 
     // Take values from data into projArray, clean mistakes
-    for(i = 0; i < data.values.length; i++){
+    for(i = data.values.length-1; i >= 0 ; i--){
         rowArray = [];
         for(c = 0; c < data.values[0].length; c++){
             dataVal = data.values[i][c];
