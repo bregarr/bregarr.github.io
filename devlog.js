@@ -41,7 +41,7 @@ function PrintArray(){
    await fetchPrivateSheet();
 
    // For Each Post
-   for(k = 0; k < projArray.length; k++){
+   for(k = projArray.length - 1; k >= 0; k--){
       
       const articleWrapper = document.createElement("article");
       titleElem = document.createElement("h3");
