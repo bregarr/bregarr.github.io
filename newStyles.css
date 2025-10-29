@@ -122,7 +122,7 @@ section.languages h3 {
 }
 
 section li.python {
-   /* content: image-set("assets/Python.png" 20x); */
+    /*content: image-set("assets/Python.png" 20x);*/
    background-image: url("assets/Python.png");
 }
 section li.java {
