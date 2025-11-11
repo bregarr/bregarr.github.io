@@ -530,3 +530,23 @@ div.skill-section{
     header { height: 130px; }
     .TopDiv { margin-top: -100px; }
 }
+
+/* Project Pages */
+
+h1#MainTitle{
+   font-size: clamp(4vw, 12vw, 4vw);
+   padding: 2% 0;
+   vertical-align: middle;
+   overflow:hidden;
+}
+
+.projectdesc p{
+   font-size: 32px;
+   margin:24px;
+   text-align: justify;
+}
+.projectdesc img{
+   width: 95%;
+   height: auto;
+   margin: 2.5%;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>TexasCodin'</title>
+
+   <script src="testProj.js"></script>
+   <link rel="stylesheet" href="newStyles.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Kadwa:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+   <header>
+      <h1>TexasCod.in</h1>
+   </header>
+   <nav>
+      <input type="button" value="Home" style="margin-top: 2em;">
+      <input type="button" value="About" onclick="location.href='about.html';">
+      <input type="button" value="Devlog" onclick="location.href='devlog.html';">
+   </nav>
+   <main>
+      <div class="TopDiv">
+         <section class="mission-holder">
+            <h2>Mission Statement</h2>
+            <p>As a student in Games and Interactive Media, it is important to have a place to catalogue my work. This site hosts what I believe to be my best work up to this point, which I will update and replace entries as I improve. My projects can be seen below and my current skills can be seen to the right.</p>
+         </section>
+         <section>
+            <h2>Skills</h2>
+            <div class="skill-section">
+               <section class="languages">
+                  <h3>Languages</h3>
+                  <ul>
+                     <li class="python">Python</li>
+                     <li class="java">Java</li>
+                     <li class="javascript">Javascript</li>
+                     <li class="cs">#C</li>
+                     <li class="cpp">++C</li>
+                     <li class="html">HTML &amp; CSS</li>
+                  </ul>
+               </section>
+               <section class="programs">
+               <h3>Programs</h3>
+                  <ul>
+                     <li class="onshape">OnShape</li>
+                     <li class="blender">Blender</li>
+                     <li class="paintdotnet">Paint.net</li>
+                     <li class="vscode">VSCode</li>
+                     <li class="filmora">Filmora 9</li>
+                     <li class="obs">OBS</li>
+                     <li class="unity">Unity</li>
+                     <li class="substancepainter">Substance Painter</li>
+                  </ul>
+               </section>
+            </div>
+        </section>
+      </div>
+      <div>
+         <section class="project-section">
+            <h2>Projects</h2>
+            <div class="project-container">
+               <section aria-label="Project Navigation">
+                  <input type="button" value="Gamedev" class="active-tab" id="GamedevButton" onclick="swapTab('Gamedev')">
+                  <input type="button" value="Software" id="SoftwareButton" onclick="swapTab('Software')">
+                  <input type="button" value="Art" id="ArtButton" onclick="swapTab('Art')">
+               </section>
+               <div id="Gamedev" class="active-proj"></div>
+               <div id="Software"></div>
+               <div id="Hardware"></div>
+               <div id="Art"></div>
+            </div>
+        </section>
+      </div>
+   </main>
+</body>
+</html>
