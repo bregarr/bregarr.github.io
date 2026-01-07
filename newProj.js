@@ -62,6 +62,7 @@ function enableCell(internalID){
 
 // Populates the projArray with Google Sheets data
 async function fetchPrivateSheet() {
+    // I'm aware this is public I promise I'm not stupid its locked down to Google Sheets
     const SheetK = "AIzaSyCE-rKpVbm6l23iLdmD5mIWpvOiAnOh4oo";
     const SheetID = "1fQmtzIvjzD_6DSqiuy9-txca9QZQ4Z_0eLRKi0pWTk0";
     const range = "projSheet!A2:I50";
@@ -84,16 +85,20 @@ async function fetchPrivateSheet() {
     }
 }
 
+var IndexOffset = 0;
+
 // Creates the elements inside the tabs
 (async function() {
     await fetchPrivateSheet();
 
     for(k = 0; k < projArray.length; k++){ // Loops all rows of the projects
         if(projArray[k][8].includes("<")) { continue; }
+        projArray[k][12] = k - IndexOffset;
         // Manage if project is within two tabs
         if(projArray[k][8].includes(",")){
             projSplit = projArray[k][8].split(",");
             if(projSplit.length > 1) {
+                IndexOffset += projSplit.length - 1;
                 typesArray = projSplit.slice(1);
                 projArray[k][8] = projSplit[0];
 
@@ -108,9 +113,9 @@ async function fetchPrivateSheet() {
 
         const cellDiv = document.createElement("article");
         var titleElem;
-        // Links to site if column 7 is set
-        if(projArray[k][7].includes("<")) { titleElem = document.createElement("h3"); }
-        else { titleElem = document.createElement("a"); titleElem.href = projArray[k][7]; }
+        // Links project to its dedicated project page
+        titleElem = document.createElement("a");
+        titleElem.href = "project.html?index="+projArray[k][12];
 
         // Creates other cell elements
         const descElem = document.createElement("p");

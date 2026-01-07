@@ -385,9 +385,10 @@ p.Embed {
    width: 98%;
    margin: 1%;
    font-size: 24px;
-   color: var(--MintGreen);
+   color: var(--DeepGreen);
    text-decoration: none;
    text-transform: none;
+   overflow: scroll;
    white-space: pre-line;
 }
 
@@ -533,11 +534,21 @@ div.skill-section{
 
 /* Project Pages */
 
-h1#MainTitle{
-   font-size: clamp(4vw, 12vw, 4vw);
-   padding: 2% 0;
+#MainTitle{
+   font-size: 4vw;
+   /* padding: 2% 0;  */
    vertical-align: middle;
-   overflow:hidden;
+   overflow: hidden;
+   white-space: pre-line;
+   container-type: inline-size;
+   width: 95%;
+   line-height: 90%;
+}
+
+a#MainTitle{
+   padding-left: 3%;
+   font-weight: bold;
+   color: var(--MintGreen);
 }
 
 .projectdesc p{
@@ -549,4 +560,48 @@ h1#MainTitle{
    width: 95%;
    height: auto;
    margin: 2.5%;
+}
+.ProcEmbed {
+   width: 95%;
+   margin: 1%;
+   font-size: 16px;
+   color: var(--ForestGreen   );
+   text-decoration: none;
+   text-transform: none;
+   white-space: pre-line;
+}
+section.projectdesc{
+   /* max-width: 50%;
+   overflow: scroll;
+   max-height: 80vw;
+   flex-basis: auto;
+   align-self: start;
+
+   padding: 15px;
+   break-inside: avoid-column; */
+
+   max-width: 90%;
+   margin-bottom: 15px;
+   padding: 15px;
+   break-inside: avoid-column;
+   overflow: scroll;
+}
+header.projheader{
+   display:flex;
+   align-items: center;
+}
+
+div#ProjectHolder{
+   /* display: grid;
+   grid-template-columns: 48% 48%;
+   grid-auto-rows: max-content;
+   row-gap: 20px;
+   flex-wrap: wrap;
+   align-items: flex-start;
+   align-self: start; */
+   
+   display:block;
+   column-count: 2;
+   column-gap: 15px;
+   
 }
